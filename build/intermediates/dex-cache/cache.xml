@@ -2,31 +2,85 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="E:\Documents\Github\MixCook-Team\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\quynt\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.3.0\bcacde6a8ccedcc56c127403d26b76072fe6214d\retrofit-2.3.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="E:\Documents\Github\MixCook-Team\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_642862f6d303dc8189b2e14f79b7b3e06dcfe749\classes.dex" />
+        sha1="bcacde6a8ccedcc56c127403d26b76072fe6214d">
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\retrofit-2.3.0_886422248063a3b268a7f1e429ce730794a4537b.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="E:\Documents\Github\MixCook-Team\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\quynt\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.3.0\9e09011e9767bb76b5e27c9b8223476b93b14631\converter-gson-2.3.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="778b342d7c6fce96152376967091023db169c2a1">
-        <dex dex="E:\Documents\Github\MixCook-Team\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_496b84c5e120f8e63446dca1cfaf829c0cc4abef\classes.dex" />
+        sha1="9e09011e9767bb76b5e27c9b8223476b93b14631">
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\converter-gson-2.3.0_a1857f7e8fcc6a0c64b83d90112bfb0c565887a9.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\tungthanh.1497\.android\build-cache\1a548db2337b17c4668b6c119ca4c11f87ea77a7\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\quynt\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.8.0\5a11f020cce2d11eb71ba916700600e18c4547e7\okhttp-3.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\okhttp-3.8.0_83735253621a4e4d1a4b5d79c31e0b54d1aca2de.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\quynt\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\gson-2.7_585394fcc3cdf046539a41cda153b601681b5146.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\quynt\.gradle\caches\modules-2\files-2.1\io.realm\realm-annotations\3.1.4\8726e81201c46a55f594c549fbf0266433c3cd67\realm-annotations-3.1.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8726e81201c46a55f594c549fbf0266433c3cd67">
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\realm-annotations-3.1.4_53eeefc78e397a8b4aa34761c512be80a1b277a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\quynt\.android\build-cache\e975eb3b310e87c64ba67bf65bd96e1067444ec4\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.1"
         sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
-        <dex dex="E:\Documents\Github\MixCook-Team\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f8c3115b88702d8a4fa88d480a278cbde4bb05d1\classes.dex" />
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\classes_0f5a5fa4bf6953e78f79e02c9a288790c5cca9ce.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\quynt\.android\build-cache\7c982a87a8e6c95ea7f52fe807fbf4f13f8b0a95\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2b29d8689808b14eb3ad20b6ce41dae445f1a32d">
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\classes_879092d910d27da4880643c0d52706aed17322bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\quynt\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\okio-1.13.0_a2567e1f3ccd82bc34ace7f433541d35190545a1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\quynt\.android\build-cache\db917aec102890e0c10503bbcd934a0d0e19516e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b64dd5f01bc37de289f90fd59299b0c76d119611">
+        <dex dex="C:\Users\quynt\AndroidStudioProjects\CookMix\app\build\intermediates\pre-dexed\debug\classes_9b21821efd7e2040dec035d660e3617bb1aa9b25.jar" />
     </item>
 
 </items>

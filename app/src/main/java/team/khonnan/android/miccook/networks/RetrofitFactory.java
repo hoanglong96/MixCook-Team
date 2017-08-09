@@ -8,16 +8,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitFactory {
-    private static Retrofit retrofit;
+    private Retrofit retrofit;
 
-    private static RetrofitFactory instance = new RetrofitFactory();
+    private static RetrofitFactory instance = new RetrofitFactory("http://cookmix.herokuapp.com/");
     public static RetrofitFactory getInstance(){
         return instance;
     }
 
-    private RetrofitFactory() {
+    public RetrofitFactory(String baseUrl) {
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://cookmix.herokuapp.com/")
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
