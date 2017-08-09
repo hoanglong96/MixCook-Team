@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/cd3d18834e8019bc26f1e5858308a0ed3f32a382/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f11d4f25082add4142eb2f6ddc649e457c921557/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.8.0/b258209549457d03e912ec4641735fc88048df99/butterknife-annotations-8.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b258209549457d03e912ec4641735fc88048df99">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.8.0_8dea3bfa71951616b173637aac5edcce21b06e7f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/eventbus-3.0.0_68e3fce46f71cc01b790794cdbfe1c060852f676/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/3b4c923744b7a3a2208170ad41bfc217dc5aaaac/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f5519ab13caa9c7b0bdc79e67f06e065fe05834c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/243b04b0c3d177e4e8d470ec35c83c7d1b7de0e7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f3199385b7310d9ec27f4830a889f34f308836c0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Downloads/MixCook-app/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_c59030ed61e4213382433d43d17eb7ebbf33623a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/9f8affc9d0de06c99051590b95d0dd7744375315/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="474cccf169297d49fff89fd35b7634a7a9d1031c">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b2421beccbaf8edf66d035e6ceae5a7676692665/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/8c69c7e46ecf995bbffc1d427abef928f092e72c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_af8a8d60e251ffc9ada4e5e3eaf706ae53d620e6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/7161f8fb934dc251fc30830c8f13eb8182e9a485/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4fd52e6a4c370b765689b9f2fa105a31fa4c77fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/7ea2e8ece7ba58de4d2489b26800e3f7e33a7d03/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="807751a24cf96566fd8675517c94d8463cf364db">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1c27cb2a6f7b36ac1455d73c5def299ac7e35c32/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Downloads/MixCook-app/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8d26bbf72782cc86da50184c88049eb127b9218a">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_489c3a424c514962690aea545acd06508218db5d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/de8b1dc79ad8d28575f142b2a4ef7c951c8e9e39/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fc5e9364ec3a9eab217c6bf357b03351114f4893/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_7f4cc0a555adbbf32912cf702bb1383bf12256e7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/0dccf5d13fd385b0c0d588b827cf8103be4d67d1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_46069dec253bbde321aafc7c35682159f1446cd1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/816161e4606322ba387a38d7cf072382b2a7da01/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_76ef315f2afee8bbbe8c6bd9e69dfc8d83b8e3b8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/8825f0c3f62cb88a598204ef0a4f9a78adb2398e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7a95c7c7d7c0b635de7f7bd442a16bd2d0b91708/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_fe0aa882ed67d269c43943f236b9ffb98416ff73/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/457f3bd896a38a90bdb77cbd7492999c804bc9bb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fb0dd1608e85e6bda57796e0e562f2be221c6d12/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-applinks-1.4.0_967df9bb6d49c3a73b6b9199206d35640680ce0c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/ed4eb8fdc844e1e6e5bdfedf3db21b4a686af5ba/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a32af965383ad711c1ce7e3b2017c69754b0145c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/4a102d15fcec876517e35f0a0f0c42e8bfd5ef28/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4f62de5071ca5f2dc83d73cf5dbd2aa845340dde/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/8f82cc8c2021a355c367295dfbff7618bb073bb5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cf4ee66e4cc1038d53fd6608128ff7cc0d10bef4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/3aae158de6bdeb6fa276649a4cc6d708d2d62aaa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_dfe1f23da0ed94b677bd28300764769d30e685b8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/.android/build-cache/0e320e74e5fae03cb8069014f462c41a8f196945/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6a2bcb61342d09fe9acf55c9daf63961c8866cc0">
+        <dex dex="/Users/apple/Downloads/MixCook-app/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8db5b7c39113b42bf10e79c23d1d778a572bb943/classes.dex" />
+    </item>
+
+</items>

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">MixCook</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Tìm kiếm công thức</string>
+    <string name="slide_1_desc">Tìm kiếm các công thức nấu món ăn mà bạn yêu thích</string>
+
+    <string name="slide_2_title">Tạo công thức</string>
+    <string name="slide_2_desc">Tự tạo ra các công thức nấu ngon và chia sẻ với mọi người</string>
+
+    <string name="slide_3_title">Đi chợ</string>
+    <string name="slide_3_desc">Note các nguyên liệu cần cho bữa ăn và đi chợ ngay thôi!</string>
+
+    <string name="slide_4_title">Món ăn yêu thích</string>
+    <string name="slide_4_desc">Lưu những món ăn mà bạn yêu thích</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+
+    <string name="facebook_app_id">490161067984384</string>
+    <string name="fb_login_protocol_scheme">fb490161067984384</string>
+</resources>
