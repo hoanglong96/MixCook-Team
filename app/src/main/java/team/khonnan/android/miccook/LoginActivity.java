@@ -22,7 +22,12 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import team.khonnan.android.miccook.model.UserInfo;
+import team.khonnan.android.miccook.networks.CreateUser;
+import team.khonnan.android.miccook.networks.RetrofitFactory;
 
 import static java.lang.Integer.parseInt;
 
@@ -82,11 +87,27 @@ import static java.lang.Integer.parseInt;
                                     Log.d("hihi", "id : " + object.optString("id"));
                                     Log.d("hihi", "email : "  + object.optString("email"));
                                     userInfo  = new UserInfo();
-                                    userInfo.setName(object.optString("name"));
-                                    userInfo.setId(object.optInt("id"));
-                                    userInfo.setEmail(object.optString("email"));
-                                    userInfo.setAvatar("http://graph.facebook.com/" + object.optString("id")
+                                    userInfo.setNameFb(object.optString("name"));
+                                    userInfo.setIdFb(object.optString("id"));
+                                    userInfo.setEmailFb(object.optString("email"));
+                                    userInfo.setAvaFb("http://graph.facebook.com/" + object.optString("id")
                                             + "/picture?type=large");
+                                    userInfo.setRatePoint(0);
+                                    userInfo.setRateNum(0);
+
+                                    final CreateUser createUser = RetrofitFactory.getInstance().create(CreateUser.class);
+                                    Call<UserInfo> call = createUser.createUser(userInfo);
+                                    call.enqueue(new Callback<UserInfo>() {
+                                        @Override
+                                        public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<UserInfo> call, Throwable t) {
+
+                                        }
+                                    });
                                 }
                             });
                     Bundle parameters = new Bundle();

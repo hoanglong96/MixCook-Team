@@ -24,7 +24,7 @@
        <RelativeLayout
            android:layout_width="5dp"
            android:layout_height="match_parent"
-           android:layout_toRightOf="@id/tv_fb"
+           android:layout_toRightOf="@+id/tv_fb"
            android:id="@+id/tv_gach">
            <TextView
                android:layout_width="5dp"

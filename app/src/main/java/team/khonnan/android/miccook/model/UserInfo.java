@@ -1,47 +1,67 @@
 package team.khonnan.android.miccook.model;
 
+import android.util.Log;
+
 /**
  * Created by quyntg94 on 08/08/2017.
  */
 
 public class UserInfo {
-    private String name;
-    private int id;
-    private String avatar;
-    private String email;
+    private String nameFb;
+    private String idFb;
+    private String avaFb;
+    private String emailFb;
+    private int ratePoint;
+    private int rateNum;
+
+    public int getRatePoint() {
+        return ratePoint;
+    }
+
+    public void setRatePoint(int ratePoint) {
+        this.ratePoint = ratePoint;
+    }
+
+    public int getRateNum() {
+        return rateNum;
+    }
+
+    public void setRateNum(int rateNum) {
+        this.rateNum = rateNum;
+    }
 
     public UserInfo() {
     }
 
-    public String getName() {
-        return name;
+    public String getNameFb() {
+        return nameFb;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameFb(String name) {
+        this.nameFb = name;
     }
 
-    public int getId() {
-        return id;
+    public String getIdFb() {
+        return idFb;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdFb(String idFb) {
+        this.idFb = idFb;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getAvaFb() {
+        return avaFb;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvaFb(String avaFb) {
+        this.avaFb = avaFb;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailFb() {
+        return emailFb;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailFb(String emailFb) {
+        this.emailFb = emailFb;
     }
 }
