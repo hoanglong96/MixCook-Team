@@ -1,5 +1,7 @@
 package team.khonnan.android.miccook;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -109,7 +111,26 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.info_user) {
             ScreenManager.openFragment(getSupportFragmentManager(),new team.khonnan.android.miccook.fragment.FragmentProfileAccount(),R.id.drawer_layout);
-            toolbar.setTitle("Hoàng Long");
+        }else if(id == R.id.nav_anchinh){
+
+        }
+        else if(id==R.id.trangmieng){
+
+        }
+        else if(id == R.id.banh){
+
+        }
+        else if(id == R.id.douong){
+
+        }
+        else if(id == R.id.ansang){
+
+        }else if(id == R.id.dangxuat){
+            SharedPreferences preferences = getSharedPreferences("checkLogin", MODE_PRIVATE);
+            preferences.edit().remove("isLogin").commit();
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

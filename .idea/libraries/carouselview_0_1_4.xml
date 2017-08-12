@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="carouselview-0.1.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/2e67e06af4928cae76f7d1cb44908e4ea512e5e5/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/2e67e06af4928cae76f7d1cb44908e4ea512e5e5/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.synnapps/carouselview/0.1.4/f4ec0873b898cbdf53949d3e5771ab7254137e55/carouselview-0.1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

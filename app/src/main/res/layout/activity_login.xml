@@ -7,44 +7,44 @@
     tools:context="team.khonnan.android.miccook.LoginActivity"
     android:background="@drawable/background1">
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="50dp"
-       android:background="@drawable/mybutton"
-       android:layout_centerInParent="true"
-       android:layout_margin="16dp"
-       android:id="@+id/rl_login"
-     >
-       <ImageView
-           android:layout_width="60dp"
-           android:id="@+id/tv_fb"
-           android:scaleType="centerCrop"
-           android:src="@drawable/icons_fb"
-           android:layout_height="60dp" />
-       <RelativeLayout
-           android:layout_width="5dp"
-           android:layout_height="match_parent"
-           android:layout_toRightOf="@+id/tv_fb"
-           android:id="@+id/tv_gach">
-           <TextView
-               android:layout_width="5dp"
-               android:layout_height="match_parent"
-               android:text="|"
-               android:paddingBottom="10dp"
-               android:layout_centerVertical="true"
-               android:textSize="36dp"
-               android:textColor="#ffffff"
-               />
-       </RelativeLayout>
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_marginLeft="15dp"
-           android:layout_toRightOf="@+id/tv_gach"
-           android:text="Đăng nhập với Facebook"
-           android:textSize="22dp"
-           android:textColor="#ffffff"
-           android:layout_centerVertical="true"
-           android:layout_height="wrap_content" />
-   </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/mybutton"
+        android:layout_centerInParent="true"
+        android:layout_margin="16dp"
+        android:id="@+id/rl_login"
+        >
+        <ImageView
+            android:layout_width="60dp"
+            android:id="@+id/tv_fb"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icons_fb"
+            android:layout_height="60dp" />
+        <RelativeLayout
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv_fb"
+            android:id="@+id/tv_gach">
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:text="|"
+                android:paddingBottom="10dp"
+                android:layout_centerVertical="true"
+                android:textSize="36dp"
+                android:textColor="#ffffff"
+                />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/tv_gach"
+            android:text="Đăng nhập với Facebook"
+            android:textSize="22dp"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
 </RelativeLayout>

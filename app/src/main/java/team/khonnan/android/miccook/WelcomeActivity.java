@@ -2,6 +2,7 @@ package team.khonnan.android.miccook;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -122,8 +123,14 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-        finish();
+        SharedPreferences sharedPreferences = getSharedPreferences("checkLogin",MODE_PRIVATE);
+        boolean isLogin = sharedPreferences.getBoolean("isLogin",false);
+        if(isLogin){
+            startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+            finish();
+        }
+        else{startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        finish();}
     }
 
     //  viewpager change listener

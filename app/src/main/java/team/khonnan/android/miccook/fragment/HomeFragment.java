@@ -2,22 +2,21 @@ package team.khonnan.android.miccook.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
+import com.synnapps.carouselview.ViewListener;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -26,22 +25,36 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import team.khonnan.android.miccook.FoodApi;
 import team.khonnan.android.miccook.R;
-import team.khonnan.android.miccook.managers.EventReady;
 import team.khonnan.android.miccook.managers.RealmHandler;
+import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.model.Cook;
 import team.khonnan.android.miccook.model.Food;
 import team.khonnan.android.miccook.model.Material;
+import team.khonnan.android.miccook.networks.FoodModel;
+import team.khonnan.android.miccook.networks.GetFoodByType;
+import team.khonnan.android.miccook.networks.GetFoodRespondModel;
 import team.khonnan.android.miccook.networks.RetrofitFactory;
 
-public class HomeFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class HomeFragment extends Fragment{
 
     private RetrofitFactory retrofitFactory;
     private RealmHandler realmHandler;
     private Food food;
     private List<Food> foods = RealmHandler.getInstance().getFoodFromRealm();
-    private GridLayoutManager layoutManager;
+    CarouselView carouselView;
+    RecyclerView rvFoodType;
 
-    private SliderLayout mDemoSlider;
+    List<FoodModel> foodMonChinh = new ArrayList<>();
+    List<FoodModel> foodAnSang = new ArrayList<>();
+    List<FoodModel> foodAnVat = new ArrayList<>();
+    List<FoodModel> foodMonBanh = new ArrayList<>();
+    List<FoodModel> foodDoUong = new ArrayList<>();
+
+    CardView cvMonChinh,cvMonSang,cvMonAnVat,cvBanh,cvDoUong;
+
+
+    int[] sampleImages = {R.drawable.matcha, R.drawable.monbanh1, R.drawable.banhgao, R.drawable.bacon, R.drawable.thachphomai};
+    String[] sampleTitles = {"Matcha","Bánh Donut","Bánh gạo","Thịt rang cháy cạnh","Thạch phô mai"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,69 +68,71 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         realmHandler = RealmHandler.getInstance();
 
-        mDemoSlider = (SliderLayout)view.findViewById(R.id.slider);
-//        HashMap<String,String> url_maps = new HashMap<String, String>();
-//        url_maps.put("Hannibal", "https://www.cooky.vn/imgs/Ads/mam-ruoc-thai-nam-pla-wan.jpg");
-//        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-//        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-//        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+        carouselView = (CarouselView) view.findViewById(R.id.carouselView);
+        carouselView.setPageCount(sampleImages.length);
+        carouselView.setViewListener(viewListener);
 
-        HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Thạch pho mai",R.drawable.thachphomai);
-        file_maps.put("Cơm trộn bibibap",R.drawable.comtron);
-        file_maps.put("Bánh brownie chocolate đắng",R.drawable.banh_brownie_chocolate_dang);
-        file_maps.put("Bánh gạo xiên que", R.drawable.banhgao);
-        file_maps.put("Matcha latte",R.drawable.matcha);
+        //setup cardview
+        cvMonChinh = view.findViewById(R.id.cv_mon_chinh);
+        cvMonSang = view.findViewById(R.id.cv_mon_sang);
+        cvMonAnVat = view.findViewById(R.id.cv_mon_an_vat);
+        cvBanh = view.findViewById(R.id.cv_mon_banh);
+        cvDoUong = view.findViewById(R.id.cv_do_uong);
 
-        for(String name : file_maps.keySet()){
-            TextSliderView textSliderView = new TextSliderView(getContext());
-            // initialize a SliderLayout
-            textSliderView
-                    .description(name)
-                    .image(file_maps.get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
-
-            //add your extra information
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle()
-                    .putString("extra",name);
-
-            mDemoSlider.addSlider(textSliderView);
-        }
-        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
-        mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        mDemoSlider.setCustomAnimation(new DescriptionAnimation());
-        mDemoSlider.setDuration(4000);
-        mDemoSlider.addOnPageChangeListener(this);
         loadData();
+        setupUI();
+        onClick();
         return view;
     }
 
-    @Override
-    public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(getContext(),slider.getBundle().get("extra") + "",Toast.LENGTH_SHORT).show();
-    }
+    ViewListener viewListener = new ViewListener() {
+        @Override
+        public View setViewForPosition(int position) {
+            View customView = getActivity().getLayoutInflater().inflate(R.layout.view_custom, null);
+            TextView labelTextView = (TextView) customView.findViewById(R.id.labelTextView);
+            ImageView fruitImageView = (ImageView) customView.findViewById(R.id.iv_food_slide);
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            fruitImageView.setImageResource(sampleImages[position]);
+            labelTextView.setText(sampleTitles[position]);
+            return customView;
+        }
+    };
 
-    }
+    public void onClick(){
+        cvMonChinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScreenManager.openFragment(getFragmentManager(),new SeeMoreFragment(),R.id.drawer_layout,foodMonChinh,"Món chính");
+            }
+        });
 
-    @Override
-    public void onPageSelected(int position) {
+        cvMonSang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScreenManager.openFragment(getFragmentManager(),new SeeMoreFragment(),R.id.drawer_layout,foodAnSang,"Món sáng");
+            }
+        });
 
-    }
+        cvMonAnVat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScreenManager.openFragment(getFragmentManager(),new SeeMoreFragment(),R.id.drawer_layout,foodAnVat,"Món ăn vặt");
+            }
+        });
 
-    @Override
-    public void onPageScrollStateChanged(int state) {
+        cvBanh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScreenManager.openFragment(getFragmentManager(),new SeeMoreFragment(),R.id.drawer_layout,foodMonBanh,"Món bánh");
+            }
+        });
 
-    }
-
-    @Override
-    public void onStop() {
-        mDemoSlider.stopAutoCycle();
-        super.onStop();
+        cvDoUong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScreenManager.openFragment(getFragmentManager(),new SeeMoreFragment(),R.id.drawer_layout,foodDoUong,"Đồ uống");
+            }
+        });
     }
 
     private void loadData() {
@@ -130,7 +145,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 RealmHandler.getInstance().clearFoodInRealm();
                 List<FoodApi.FoodList> list = response.body().getFoodList();
 
-                for (int i = 0; i <  list.size(); i++){
+                for (int i = 0; i < list.size(); i++) {
                     Food food = new Food();
                     food.setName(list.get(i).getName());
                     food.setAuthor(list.get(i).getAuthor());
@@ -142,7 +157,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                     food.setRating(list.get(i).getRating());
                     List<FoodApi.Material> materials = list.get(i).getMaterials();
                     RealmList<Material> materialList = new RealmList<>();
-                    for (int j = 0; j < materials.size(); j ++){
+                    for (int j = 0; j < materials.size(); j++) {
                         Material material = new Material();
                         material.setMatName(materials.get(j).getMatName());
                         material.setMatQuantum(materials.get(j).getMatQuantum());
@@ -152,7 +167,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                     List<FoodApi.Cook> cooks = list.get(i).getCooks();
 
                     RealmList<Cook> cookList = new RealmList<>();
-                    for (int j = 0; j < cooks.size(); j ++){
+                    for (int j = 0; j < cooks.size(); j++) {
                         Cook cook = new Cook();
                         cook.setImage(cooks.get(j).getImage());
                         cook.setNote(cooks.get(j).getNote());
@@ -165,7 +180,6 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 }
 //                EventBus.getDefault().post(new EventReady());
 
-
             }
 
             @Override
@@ -176,4 +190,72 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         });
 
     }
+
+    public void setupUI(){
+        final GetFoodByType getFoodByType = RetrofitFactory.getInstance().create(GetFoodByType.class);
+        getFoodByType.getFoodByType("1").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodMonChinh = response.body().getFood();
+                Log.d("gaugau", "foodMonChinh: " + foodMonChinh);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+        getFoodByType.getFoodByType("2").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodAnSang = response.body().getFood();
+                Log.d("gaugau", "foodAnSang: " + foodAnSang);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+        getFoodByType.getFoodByType("3").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodAnVat = response.body().getFood();
+                Log.d("gaugau", "foodAnVat: " + foodAnVat);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+        getFoodByType.getFoodByType("4").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodMonBanh = response.body().getFood();
+                Log.d("gaugau", "foodMonBanh: " + foodMonBanh);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+        getFoodByType.getFoodByType("5").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodDoUong = response.body().getFood();
+                Log.d("gaugau", "foodDoUong: " + foodDoUong);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+
+
+    }
+
+
 }

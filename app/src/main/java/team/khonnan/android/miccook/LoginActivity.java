@@ -1,10 +1,12 @@
-    package team.khonnan.android.miccook;
+package team.khonnan.android.miccook;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.facebook.AccessToken;
@@ -15,6 +17,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.internal.Validate;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
@@ -31,11 +34,13 @@ import team.khonnan.android.miccook.networks.RetrofitFactory;
 
 import static java.lang.Integer.parseInt;
 
-    public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-        private UserInfo userInfo;
-        private CallbackManager callbackManager;
-        private FacebookCallback<LoginResult> loginResult;
+    private UserInfo userInfo;
+    private CallbackManager callbackManager;
+    private FacebookCallback<LoginResult> loginResult;
+    private SharedPreferences sharedPreferences;
+    private Boolean isLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,71 +66,85 @@ import static java.lang.Integer.parseInt;
         });
     }
 
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            callbackManager.onActivityResult(requestCode, resultCode, data);
-        }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
-        public void loginFaceBook() {
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends","email", "user_birthday"));
-        }
+    public void loginFaceBook() {
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends","email", "user_birthday"));
+    }
 
-        public void initFaceBook () {
-            loginResult = new FacebookCallback<LoginResult>() {
-                @Override
-                public void onSuccess(LoginResult loginResult) {
-                    //Login thành công xử lý tại đây
-                    GraphRequest request = GraphRequest.newMeRequest(
-                            AccessToken.getCurrentAccessToken(),
-                            new GraphRequest.GraphJSONObjectCallback() {
-                                @Override
-                                public void onCompleted(JSONObject object,
-                                                        GraphResponse response) {
-                                    // Application code
-                                    Log.d("hihi", "name : "  + object.optString("name"));
-                                    Log.d("hihi", "id : " + object.optString("id"));
-                                    Log.d("hihi", "email : "  + object.optString("email"));
-                                    userInfo  = new UserInfo();
-                                    userInfo.setNameFb(object.optString("name"));
-                                    userInfo.setIdFb(object.optString("id"));
-                                    userInfo.setEmailFb(object.optString("email"));
-                                    userInfo.setAvaFb("http://graph.facebook.com/" + object.optString("id")
-                                            + "/picture?type=large");
-                                    userInfo.setRatePoint(0);
-                                    userInfo.setRateNum(0);
+    public void initFaceBook () {
+        loginResult = new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                //Login thành công xử lý tại đây
+                GraphRequest request = GraphRequest.newMeRequest(
+                        AccessToken.getCurrentAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object,
+                                                    GraphResponse response) {
+                                // Application code
+                                Log.d("hihi", "name : "  + object.optString("name"));
+                                Log.d("hihi", "id : " + object.optString("id"));
+                                Log.d("hihi", "email : "  + object.optString("email"));
+                                userInfo  = new UserInfo();
+                                userInfo.setNameFb(object.optString("name"));
+                                userInfo.setIdFb(object.optString("id"));
+                                userInfo.setEmailFb(object.optString("email"));
+                                userInfo.setAvaFb("http://graph.facebook.com/" + object.optString("id")
+                                        + "/picture?type=large");
+                                userInfo.setRatePoint(0);
+                                userInfo.setRateNum(0);
 
-                                    final CreateUser createUser = RetrofitFactory.getInstance().create(CreateUser.class);
-                                    Call<UserInfo> call = createUser.createUser(userInfo);
-                                    call.enqueue(new Callback<UserInfo>() {
-                                        @Override
-                                        public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                                sharedPreferences = getSharedPreferences("info",MODE_PRIVATE);
+                                SharedPreferences.Editor editor1 = sharedPreferences.edit();
+                                editor1.putString("id",object.optString("id"));
 
-                                        }
+                                final CreateUser createUser = RetrofitFactory.getInstance().create(CreateUser.class);
+                                Call<UserInfo> call = createUser.createUser(userInfo);
+                                call.enqueue(new Callback<UserInfo>() {
+                                    @Override
+                                    public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
 
-                                        @Override
-                                        public void onFailure(Call<UserInfo> call, Throwable t) {
+                                    }
 
-                                        }
-                                    });
-                                }
-                            });
-                    Bundle parameters = new Bundle();
-                    parameters.putString("fields", "name,email,first_name");
-                    request.setParameters(parameters);
-                    request.executeAsync();
+                                    @Override
+                                    public void onFailure(Call<UserInfo> call, Throwable t) {
 
-                }
+                                    }
+                                });
+                            }
+                        });
+                isLogin = true;
 
-                @Override
-                public void onCancel() {
+                sharedPreferences = getSharedPreferences("checkLogin",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLogin",isLogin);
+                editor.commit();
 
-                }
 
-                @Override
-                public void onError(FacebookException error) {
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "name,email,first_name");
+                request.setParameters(parameters);
+                request.executeAsync();
 
-                }
-            };
-        }
+
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        };
+    }
 }
