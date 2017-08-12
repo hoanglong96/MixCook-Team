@@ -21,6 +21,7 @@ import com.facebook.internal.Validate;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -28,6 +29,7 @@ import java.util.Arrays;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import team.khonnan.android.miccook.event.EventUser;
 import team.khonnan.android.miccook.model.UserInfo;
 import team.khonnan.android.miccook.networks.CreateUser;
 import team.khonnan.android.miccook.networks.RetrofitFactory;
@@ -58,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginFaceBook();
 
                 if(userInfo != null){
+                    EventBus.getDefault().postSticky(new EventUser(userInfo));
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                 }
@@ -65,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -100,10 +105,16 @@ public class LoginActivity extends AppCompatActivity {
                                 userInfo.setRatePoint(0);
                                 userInfo.setRateNum(0);
 
-                                sharedPreferences = getSharedPreferences("info",MODE_PRIVATE);
+                                sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
                                 SharedPreferences.Editor editor1 = sharedPreferences.edit();
                                 editor1.putString("id",object.optString("id"));
+                                editor1.putString("name",object.optString("name"));
+                                editor1.putString("email",object.optString("email"));
+                                editor1.putString("avatar","http://graph.facebook.com/" + object.optString("id")
+                                        + "/picture?type=large");
+                                editor1.commit();
 
+                                Log.d("Share", "onCompleted: " + object.optString("id"));
                                 final CreateUser createUser = RetrofitFactory.getInstance().create(CreateUser.class);
                                 Call<UserInfo> call = createUser.createUser(userInfo);
                                 call.enqueue(new Callback<UserInfo>() {
@@ -125,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("isLogin",isLogin);
                 editor.commit();
+
 
 
                 Bundle parameters = new Bundle();

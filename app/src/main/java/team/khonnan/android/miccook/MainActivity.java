@@ -18,7 +18,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView avatarUser;
+    TextView tvName;
     Toolbar toolbar;
 
     @Override
@@ -56,8 +60,17 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+        String id = sharedPreferences.getString("id","");
+        String name = sharedPreferences.getString("name","");
+
         View headerView = navigationView.getHeaderView(0);
         avatarUser =headerView.findViewById(R.id.iv_avatar_user);
+        tvName = headerView.findViewById(R.id.tv_name_nav_header);
+
+        tvName.setText(name);
+        Picasso.with(getBaseContext()).load("http://graph.facebook.com/" + id
+                + "/picture?type=large").into(avatarUser);
         avatarUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
