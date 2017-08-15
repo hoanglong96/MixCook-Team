@@ -44,4 +44,5 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     testCompile 'junit:junit:4.12'
     compile 'com.synnapps:carouselview:0.1.4'
+    compile 'com.github.ome450901:SimpleRatingBar:1.2'
 }

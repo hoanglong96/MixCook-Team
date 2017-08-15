@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.FragmentProfileAccount"
     android:background="@color/colorPrimary"
     android:clickable="true"
@@ -15,126 +14,119 @@
         android:layout_margin="13dp"
         android:id="@+id/close"
         />
-    <LinearLayout
+    <RelativeLayout
+        android:layout_below="@+id/close"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="280dp"
         android:id="@+id/ln_info"
         android:orientation="vertical">
-        <ImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_margin="10dp"
+            android:layout_centerHorizontal="true"
             android:src="@drawable/account"
+            android:id="@+id/profile_image"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_name"
+            android:layout_below="@+id/profile_image"
+            android:text="Hoang Long"
+            android:textSize="25dp"
+            android:layout_marginTop="7dp"
+            android:textColor="@color/textPrimary"
+            android:textStyle="bold"
+            android:layout_marginLeft="13dp"
+            android:fontFamily="sans-serif-condensed"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hoàng Long"
-            android:layout_marginTop="10dp"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/textPrimary"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="serif"
-            android:id="@+id/txt_name"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_name"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="13dp"
+            android:text="fb.com/hoanglong96"
+            android:textSize="20dp"
             android:id="@+id/link_face"
             android:textColor="@color/textPrimary"
-            android:layout_marginTop="10dp"
-            android:fontFamily="serif"
-            android:textSize="15sp"
-            android:layout_gravity="center_horizontal"
-            android:text="facebook.com/1933984130174980"/>
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:rating="4"
-            android:id="@+id/rating"
+            android:fontFamily="sans-serif-condensed"
             />
-        <View
-            android:layout_width="240dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorAccent"/>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal">
-            <ImageView
+            android:layout_below="@+id/link_face"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="13dp">
+            <com.willy.ratingbar.ScaleRatingBar
+                xmlns:rb="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rating_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_favorite_black_24dp"
-                />
+                rb:numStars="5"
+                rb:rating="5"
+                rb:starPadding="15"
+                rb:touchable="true"
+                android:layout_marginTop="7dp"
+                >
+            </com.willy.ratingbar.ScaleRatingBar>
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/iv1"
+                android:text="("
+                android:layout_toRightOf="@+id/rating_user"
+                android:textSize="25dp"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/textPrimary"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_toRightOf="@+id/iv1"
                 android:id="@+id/number_of_vote"
-                android:text="200 đánh giá"
-                android:textSize="22dp"
-                android:fontFamily="serif"
-                android:textColor="@color/textPrimary"/>
-        </LinearLayout>
-    </LinearLayout>
+                android:text="25"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/textPrimary"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/number_of_vote"
+                android:textSize="25dp"
+                android:text="vote"
+                android:textColor="@color/textPrimary"
+                android:fontFamily="sans-serif-condensed"
+                android:id="@+id/tv2"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv2"
+                android:textSize="25dp"
+                android:text=")"
+                android:textColor="@color/textPrimary"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="5dp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
     <RelativeLayout
+        android:layout_weight="1"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_marginTop="15dp"
         android:layout_height="match_parent"
         android:layout_below="@+id/ln_info">
-        <android.support.v7.widget.CardView
-            android:layout_width="160dp"
-            android:layout_height="200dp"
-            app:cardCornerRadius="10dp"
-            android:id="@+id/cv1"
-            >
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/bacon"
-                android:scaleType="centerCrop"/>
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bacon" />
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_toRightOf="@+id/cv1"
-            android:id="@+id/cv2"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            app:cardCornerRadius="10dp"
-            >
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/beef_mince"
-                android:scaleType="centerCrop"/>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_toRightOf="@+id/cv2"
-            android:layout_height="150dp">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/banh_brownie_chocolate_dang"
-                android:scaleType="centerCrop"/>
-        </android.support.v7.widget.CardView>
+            android:layout_height="match_parent">
+
+        </ScrollView>
     </RelativeLayout>
 
 

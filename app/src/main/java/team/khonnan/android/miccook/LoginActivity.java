@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -18,6 +16,7 @@ import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
@@ -47,25 +46,108 @@ public class LoginActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         AppEventsLogger.activateApp(this);
-        initFaceBook();
-        LoginManager.getInstance().registerCallback(callbackManager, loginResult);
-        RelativeLayout relativeLayoutLogin = (RelativeLayout) findViewById(R.id.rl_login);
-        relativeLayoutLogin.setOnClickListener(new View.OnClickListener() {
+        LoginButton loginButton = (LoginButton) findViewById(R.id.rl_login);
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onClick(View view) {
-                loginFaceBook();
+            public void onSuccess(LoginResult loginResult) {
 
-                if(userInfo != null){
+
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+
+                GraphRequest request = GraphRequest.newMeRequest(
+                        AccessToken.getCurrentAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object,
+                                                    GraphResponse response) {
+                                // Application code
+                                Log.d("hihi", "name : "  + object.optString("name"));
+                                Log.d("hihi", "id : " + object.optString("id"));
+                                Log.d("hihi", "email : "  + object.optString("email"));
+                                userInfo  = new UserInfo();
+                                userInfo.setNameFb(object.optString("name"));
+                                userInfo.setIdFb(object.optString("id"));
+                                userInfo.setEmailFb(object.optString("email"));
+                                userInfo.setAvaFb("https://graph.facebook.com/" + object.optString("id")
+                                        + "/picture?type=large");
+                                userInfo.setRatePoint(0);
+                                userInfo.setRateNum(0);
+
+                                sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+                                SharedPreferences.Editor editor1 = sharedPreferences.edit();
+                                editor1.putString("id",object.optString("id"));
+                                editor1.putString("name",object.optString("name"));
+                                editor1.putString("email",object.optString("email"));
+                                editor1.putString("avatar","http://graph.facebook.com/" + object.optString("id")
+                                        + "/picture?type=large");
+                                editor1.commit();
+
+                                Log.d("Share", "onCompleted: " + object.optString("id"));
+                                final CreateUser createUser = RetrofitFactory.getInstance().create(CreateUser.class);
+                                Call<UserInfo> call = createUser.createUser(userInfo);
+                                call.enqueue(new Callback<UserInfo>() {
+                                    @Override
+                                    public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<UserInfo> call, Throwable t) {
+
+                                    }
+                                });
+                            }
+                        });
+                isLogin = true;
+
+                sharedPreferences = getSharedPreferences("checkLogin",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLogin",isLogin);
+                editor.commit();
+
+               if(userInfo != null){
                     EventBus.getDefault().postSticky(new EventUser(userInfo));
-
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    finish();
                 }
+
+
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "name,email,first_name");
+                request.setParameters(parameters);
+                request.executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
 
             }
         });
+        //initFaceBook();
+        //LoginManager.getInstance().registerCallback(callbackManager, loginResult);
+//        RelativeLayout relativeLayoutLogin = (RelativeLayout) findViewById(R.id.rl_login);
+//        relativeLayoutLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                loginFaceBook();
+//
+//                if(userInfo != null){
+//                    EventBus.getDefault().postSticky(new EventUser(userInfo));
+//
+//                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//
+//            }
+//        });
     }
 
 
