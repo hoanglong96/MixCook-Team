@@ -82,7 +82,7 @@ public class FragmentProfileAccount extends Fragment {
 
             Log.d("id", "setupUI: " + id);
 
-            Picasso.with(getContext()).load("http://graph.facebook.com/" + id
+            Picasso.with(getContext()).load("https://graph.facebook.com/" + id
                     + "/picture?type=large").into(ivProfileImage);
             tvName.setText(name);
             tvLink.setText("fb.com/" + id);

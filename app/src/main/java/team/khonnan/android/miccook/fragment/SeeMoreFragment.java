@@ -10,32 +10,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.RealmList;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import team.khonnan.android.miccook.FoodApi;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.FoodAdapter;
-import team.khonnan.android.miccook.event.OnClickFoodType;
-import team.khonnan.android.miccook.managers.RealmHandler;
-import team.khonnan.android.miccook.model.Cook;
-import team.khonnan.android.miccook.model.Food;
-import team.khonnan.android.miccook.model.Material;
 import team.khonnan.android.miccook.networks.FoodModel;
-import team.khonnan.android.miccook.networks.GetFoodByType;
-import team.khonnan.android.miccook.networks.GetFoodRespondModel;
-import team.khonnan.android.miccook.networks.RetrofitFactory;
 
 /**
  * Created by apple on 11/08/2017.
@@ -59,7 +41,7 @@ public class SeeMoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_see_more, container, false);
         ButterKnife.bind(this, view);
-        loaddata();
+        loadData();
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -84,7 +66,7 @@ public class SeeMoreFragment extends Fragment {
         getActivity().onBackPressed();
     }
 
-    public void loaddata(){
+    public void loadData(){
 
         ///Check type
 

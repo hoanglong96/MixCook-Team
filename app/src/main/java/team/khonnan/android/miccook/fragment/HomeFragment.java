@@ -1,10 +1,10 @@
 package team.khonnan.android.miccook.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
 import com.synnapps.carouselview.ViewListener;
 
 import java.util.ArrayList;
@@ -23,13 +22,13 @@ import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import team.khonnan.android.miccook.FoodApi;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.managers.RealmHandler;
 import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.model.Cook;
 import team.khonnan.android.miccook.model.Food;
 import team.khonnan.android.miccook.model.Material;
+import team.khonnan.android.miccook.networks.FoodApi;
 import team.khonnan.android.miccook.networks.FoodModel;
 import team.khonnan.android.miccook.networks.GetFoodByType;
 import team.khonnan.android.miccook.networks.GetFoodRespondModel;
@@ -68,16 +67,25 @@ public class HomeFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         realmHandler = RealmHandler.getInstance();
 
-        carouselView = (CarouselView) view.findViewById(R.id.carouselView);
+        carouselView = view.findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
         carouselView.setViewListener(viewListener);
 
-        //setup cardview
+        //setup cardView
         cvMonChinh = view.findViewById(R.id.cv_mon_chinh);
         cvMonSang = view.findViewById(R.id.cv_mon_sang);
         cvMonAnVat = view.findViewById(R.id.cv_mon_an_vat);
         cvBanh = view.findViewById(R.id.cv_mon_banh);
         cvDoUong = view.findViewById(R.id.cv_do_uong);
+
+        //fab add food
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               ScreenManager.openFragment(getFragmentManager(),new FragmentNewRecipes(),R.id.drawer_layout);
+            }
+        });
 
         loadData();
         setupUI();
@@ -89,8 +97,8 @@ public class HomeFragment extends Fragment{
         @Override
         public View setViewForPosition(int position) {
             View customView = getActivity().getLayoutInflater().inflate(R.layout.view_custom, null);
-            TextView labelTextView = (TextView) customView.findViewById(R.id.labelTextView);
-            ImageView fruitImageView = (ImageView) customView.findViewById(R.id.iv_food_slide);
+            TextView labelTextView = customView.findViewById(R.id.labelTextView);
+            ImageView fruitImageView = customView.findViewById(R.id.iv_food_slide);
 
             fruitImageView.setImageResource(sampleImages[position]);
             labelTextView.setText(sampleTitles[position]);

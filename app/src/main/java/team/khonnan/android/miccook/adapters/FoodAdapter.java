@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -61,7 +60,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         ImageView ivFood;
         TextView tvLevel,tvAuthor,tvNameFood;
         RatingBar ratingBar;
-        RelativeLayout rlPoint;
 
         public FoodViewHolder(View itemView) {
             super(itemView);
@@ -69,7 +67,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             tvLevel = itemView.findViewById(R.id.tv_level);
             tvAuthor = itemView.findViewById(R.id.tv_author);
             tvNameFood = itemView.findViewById(R.id.tv_name_food);
-            rlPoint = itemView.findViewById(R.id.point);
             ratingBar = itemView.findViewById(R.id.rating_bar);
         }
 
@@ -77,13 +74,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             if(foodModelList!= null){
                 Picasso.with(context).load(foodModel.getImageShow()).into(ivFood);
                 if(foodModel.getLevel().equals("Trung Bình")){
-                    rlPoint.setBackgroundColor(Color.BLUE);
                     tvLevel.setText("TB");
+                    tvLevel.setTextColor(Color.WHITE);
                 }else if(foodModel.getLevel().equals("Khó")){
-                    rlPoint.setBackgroundColor(Color.RED);
                     tvLevel.setText("Khó");
+                    tvLevel.setTextColor(Color.WHITE);
                 }else if(foodModel.getLevel().equals("Dễ")){
                     tvLevel.setText("Dễ");
+                    tvLevel.setTextColor(Color.WHITE);
                 }
 
                 tvAuthor.setText(foodModel.getAuthor());

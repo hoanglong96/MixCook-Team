@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF9D4B</color>
-    <color name="colorPrimaryDark">#FF7B0C</color>
-    <color name="colorAccent">#0097B2</color>
+    <color name="colorPrimary">#FF3B20</color>
+    <color name="colorPrimaryDark">#FF2102</color>
+    <color name="colorAccent">#00B25C</color>
     <color name="textPrimary">#FFFFFF</color>
+    <color name="blurImage">#41ffffff</color>
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
