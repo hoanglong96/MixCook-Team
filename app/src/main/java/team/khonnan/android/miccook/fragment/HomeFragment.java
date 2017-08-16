@@ -124,6 +124,7 @@ public class HomeFragment extends Fragment{
         cvMonAnVat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(foodAnVat.size() != 0)
                 ScreenManager.openFragment(getFragmentManager(),new SeeMoreFragment(),R.id.drawer_layout,foodAnVat,"Món ăn vặt");
             }
         });

@@ -12,20 +12,11 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/apple/.android/build-cache/d0c084397474c1a847c008ef83459c8157eac2a6/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="05ebf4c9a7ead6038e2f7ad1ddbf282f35cd009a">
-        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_41d7d47e78acac5ddc765fc4a4bf444c8f299574/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="d5606388f0f72d76e6e0075835c31a21a9e75845">
+        sha1="8a1bbf1f4e36de6554b76603c5b8c57e26e5392d">
         <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1748e70cf32d44592eb80de293ec0b126598185b/classes.dex" />
     </item>
 
