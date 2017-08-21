@@ -4,45 +4,17 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/home"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Trang chủ" />
         <item
             android:id="@+id/nav_favorites"
             android:icon="@drawable/ic_favorite_black_24dp"
             android:title="Món ăn yêu thích" />
         <item
-            android:id="@+id/nav_today_food"
-            android:icon="@drawable/ic_assignment_black_24dp"
-            android:title="Thực đơn hôm nay" />
-        <item
             android:id="@+id/nav_shop"
             android:icon="@drawable/ic_local_grocery_store_black_24dp"
             android:title="Đi chợ mua gì?" />
     </group>
-    <item android:title="Trang chủ">
-        <menu>
-            <item
-                android:id="@+id/nav_anchinh"
-                android:icon="@drawable/monchinh"
-                android:title="Món ăn chính" />
-            <item
-                android:id="@+id/trangmieng"
-                android:icon="@drawable/trangmieng"
-                android:title="Món tráng miệng" />
-            <item
-                android:id="@+id/banh"
-                android:icon="@drawable/banh"
-                android:title="Món bánh" />
-            <item
-                android:id="@+id/douong"
-                android:icon="@drawable/douong"
-                android:title="Đồ uống" />
-            <item
-                android:id="@+id/ansang"
-                android:icon="@drawable/ansang"
-                android:title="Món ăn sáng" />
-        </menu>
-    </item>
     <item android:title="Tài khoản">
         <menu>
             <item
@@ -51,7 +23,7 @@
                 android:title="Thông tin tài khoản" />
             <item
                 android:id="@+id/dangxuat"
-                android:icon="@drawable/dangxuat"
+                android:icon="@drawable/ic_reply_black_24dp"
                 android:title="Đăng xuất" />
         </menu>
     </item>

@@ -1,13 +1,12 @@
 package team.khonnan.android.miccook.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -17,6 +16,8 @@ import java.util.List;
 
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
+
+import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
  * Created by quyntg94 on 10/08/2017.
@@ -58,38 +59,28 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     public class FoodViewHolder extends RecyclerView.ViewHolder{
         ImageView ivFood;
-        TextView tvLevel,tvAuthor,tvNameFood;
-        RatingBar ratingBar;
+        TextView tvRating,tvAuthor,tvNameFood,tvLevel;
 
         public FoodViewHolder(View itemView) {
             super(itemView);
             ivFood = itemView.findViewById(R.id.iv_food);
-            tvLevel = itemView.findViewById(R.id.tv_level);
             tvAuthor = itemView.findViewById(R.id.tv_author);
             tvNameFood = itemView.findViewById(R.id.tv_name_food);
-            ratingBar = itemView.findViewById(R.id.rating_bar);
+            tvRating = itemView.findViewById(R.id.num_rate);
+            tvLevel = itemView.findViewById(R.id.tv_level);
         }
 
         public void setData(FoodModel foodModel){
             if(foodModelList!= null){
                 Picasso.with(context).load(foodModel.getImageShow()).into(ivFood);
-                if(foodModel.getLevel().equals("Trung Bình")){
-                    tvLevel.setText("TB");
-                    tvLevel.setTextColor(Color.WHITE);
-                }else if(foodModel.getLevel().equals("Khó")){
-                    tvLevel.setText("Khó");
-                    tvLevel.setTextColor(Color.WHITE);
-                }else if(foodModel.getLevel().equals("Dễ")){
-                    tvLevel.setText("Dễ");
-                    tvLevel.setTextColor(Color.WHITE);
-                }
-
                 tvAuthor.setText(foodModel.getAuthor());
                 tvNameFood.setText(foodModel.getName());
+                tvLevel.setText(foodModel.getLevel());
 
-                ratingBar.setRating(foodModel.getRating());
-                ratingBar.setIsIndicator(true);
+                String rating = String.valueOf(foodModel.getRating());
+                Log.d(TAG, "setData: " + rating);
 
+                tvRating.setText(rating);
             }
         }
     }

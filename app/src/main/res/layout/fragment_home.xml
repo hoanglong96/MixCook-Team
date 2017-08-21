@@ -1,222 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="team.khonnan.android.miccook.fragment.HomeFragment">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="team.khonnan.android.miccook.MainActivity"
+        android:background="#ecf5f2f2">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.synnapps.carouselview.CarouselView
-                android:id="@+id/carouselView"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:fillColor="#FFFFFFFF"
-                app:pageColor="#00000000"
-                app:radius="6dp"
-                app:slideInterval="3000"
-                app:strokeColor="#FF777777"
-                app:strokeWidth="1dp" />
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_mon_chinh"
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_below="@+id/carouselView"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
+                android:layout_height="300dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_top_food"
+                    android:text="Top Food"
+                    android:textColor="#584949"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18sp"/>
+                <android.support.v7.widget.CardView
+                    android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
+                    android:layout_height="match_parent"
+                    android:elevation="5dp"
+                    app:cardCornerRadius="7dp">
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/monchinh_home"
-                        android:scaleType="centerCrop" />
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/background4"/>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/gradient"
+                                android:layout_alignParentBottom="true">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_favorite_black_24dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="5dp"
+                                    android:id="@+id/icon_fav"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/icon_fav"
+                                    android:text="6789"
+                                    android:textColor="#ffff"
+                                    android:layout_centerVertical="true"/>
+                            </RelativeLayout>
+                        </RelativeLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:background="#a2ffffff"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="The Screst to a Perfectly Poached Egg"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="15dp"
+                                android:textColor="#584949"
+                                android:textStyle="bold"
+                                android:textSize="17sp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hoàng Long"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/custom_gradient_background">
-
-                        <TextView
-                            android:id="@+id/tv_mon_chinh"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_margin="10dp"
-                            android:fontFamily="serif"
-                            android:text="Món chính"
-                            android:textColor="#ffff"
-                            android:textSize="20sp" />
-                    </RelativeLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_mon_sang"
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_below="@+id/cv_mon_chinh"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="10dp">
-
+                android:layout_height="400dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/ansang_home"
-                        android:scaleType="centerCrop" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/custom_gradient_background">
-
-                        <TextView
-                            android:id="@+id/tv_mon_sang"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_margin="10dp"
-                            android:fontFamily="serif"
-                            android:text="Món sáng"
-                            android:textColor="#ffff"
-                            android:textSize="20sp" />
-                    </RelativeLayout>
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_new_recipe"
+                        android:text="New Recipes"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColor="#584949"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_see_more_new_recipes"
+                        android:text="SEE ALL"
+                        android:layout_alignParentRight="true"
+                        android:textColor="#ded415"
+                        android:layout_centerVertical="true"
+                        />
                 </RelativeLayout>
-            </android.support.v7.widget.CardView>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rv_new_recipes"/>
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_mon_an_vat"
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_below="@+id/cv_mon_sang"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="10dp">
-
+                android:layout_height="350dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/anvat"
-                        android:scaleType="centerCrop" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/custom_gradient_background">
-
-                        <TextView
-                            android:id="@+id/tv_mon_an_vat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_margin="10dp"
-                            android:fontFamily="serif"
-                            android:text="Món ăn vặt"
-                            android:textColor="#ffff"
-                            android:textSize="20sp" />
-                    </RelativeLayout>
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_catalog"
+                        android:text="What do you fancy?"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textColor="#584949"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
                 </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_mon_banh"
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_below="@+id/cv_mon_an_vat"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
+                <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/rv_catalog"
+                    />
+            </LinearLayout>
+        </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/monbanh"
-                        android:scaleType="centerCrop" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/custom_gradient_background">
-
-                        <TextView
-                            android:id="@+id/banh"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_margin="10dp"
-                            android:fontFamily="serif"
-                            android:text="Món bánh"
-                            android:textColor="#ffff"
-                            android:textSize="20sp" />
-                    </RelativeLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_do_uong"
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_below="@+id/cv_mon_banh"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/douong_home"
-                        android:scaleType="centerCrop" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/custom_gradient_background">
-
-                        <TextView
-                            android:id="@+id/tv_do_uong"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_margin="10dp"
-                            android:fontFamily="serif"
-                            android:text="Đồ uống"
-                            android:textColor="#ffff"
-                            android:textSize="20sp" />
-                    </RelativeLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-        </RelativeLayout>
-        <!-- TODO: Update blank fragment layout -->
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

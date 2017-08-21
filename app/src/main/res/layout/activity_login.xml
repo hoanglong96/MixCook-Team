@@ -1,58 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="team.khonnan.android.miccook.LoginActivity"
-    android:background="@drawable/splash1">
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:background="@drawable/mybutton"-->
-        <!--android:layout_marginTop="350dp"-->
-        <!--android:layout_marginLeft="30dp"-->
-        <!--android:layout_marginRight="30dp"-->
-        <!--android:id="@+id/rl_login"-->
-        <!--&gt;-->
-        <!--<ImageView-->
-            <!--android:layout_width="60dp"-->
-            <!--android:id="@+id/tv_fb"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@drawable/icons_fb"-->
-            <!--android:layout_height="60dp" />-->
-        <!--<RelativeLayout-->
-            <!--android:layout_width="5dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_toRightOf="@+id/tv_fb"-->
-            <!--android:id="@+id/tv_gach">-->
-            <!--<TextView-->
-                <!--android:layout_width="5dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:text="|"-->
-                <!--android:paddingBottom="10dp"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:textSize="36dp"-->
-                <!--android:textColor="#ffffff"-->
-                <!--/>-->
-        <!--</RelativeLayout>-->
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--android:layout_toRightOf="@+id/tv_gach"-->
-            <!--android:text="Đăng nhập với Facebook"-->
-            <!--android:textSize="22dp"-->
-            <!--android:textColor="#ffffff"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_height="wrap_content" />-->
-    <!--</RelativeLayout>-->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="team.khonnan.android.mixcook_fixui.LoginActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="#9d4d2a2a"
+        android:background="@drawable/background4"
+        />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="110dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_person_outline_black_24dp"
+        android:id="@+id/name_app"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To discover all our tastebud tickling recipes"
+        android:textSize="19sp"
+        android:gravity="center"
+        android:layout_below="@+id/name_app"
+        android:textColor="#ffffff"
+        android:id="@+id/text"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:text=" and features, please sign up"
+        android:textColor="#ffff"
+        android:textSize="19sp"
+        android:layout_below="@+id/text"
+        android:id="@+id/text2"/>
+    <View
+        android:layout_width="50dp"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text2"
+        android:background="#ffea2a"
+        android:id="@+id/view"
+        android:layout_marginTop="15dp"/>
     <com.facebook.login.widget.LoginButton
         android:layout_width="250dp"
         android:layout_height="100dp"
+        android:layout_marginTop="70dp"
         android:paddingTop="10dp"
         android:id="@+id/rl_login"
         android:paddingBottom="10dp"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_login"
+        android:gravity="center"
+        android:textColor="#ffff"
+        android:textSize="14sp"
+        android:text="By signing up I accept the terms of use and the data privacy policy"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>
+

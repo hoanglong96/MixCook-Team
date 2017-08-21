@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -99,12 +98,6 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -117,21 +110,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.info_user) {
             ScreenManager.openFragment(getSupportFragmentManager(),new team.khonnan.android.miccook.fragment.FragmentProfileAccount(),R.id.drawer_layout);
-        }else if(id == R.id.nav_anchinh){
-
-        }
-        else if(id==R.id.trangmieng){
-
-        }
-        else if(id == R.id.banh){
-
-        }
-        else if(id == R.id.douong){
-
-        }
-        else if(id == R.id.ansang){
-
-        }else if(id == R.id.dangxuat){
+        } else if(id == R.id.dangxuat){
             SharedPreferences preferences = getSharedPreferences("checkLogin", MODE_PRIVATE);
             preferences.edit().remove("isLogin").commit();
             LoginManager.getInstance().logOut();

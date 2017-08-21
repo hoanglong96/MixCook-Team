@@ -79,7 +79,7 @@ public class SeeMoreFragment extends Fragment {
             foodAdapter = new FoodAdapter(foodModelList,getContext());
             rvSeemore.setAdapter(foodAdapter);
             GridLayoutManager gridLayoutManager = new GridLayoutManager
-                    (getContext(), 1, GridLayoutManager.VERTICAL, false);
+                    (getContext(), 2, GridLayoutManager.VERTICAL, false);
 
             rvSeemore.setLayoutManager(gridLayoutManager);
         }

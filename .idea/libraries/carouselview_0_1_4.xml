@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="carouselview-0.1.4">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/f9a4a4c8a8156b55aa7ff27d7236fcfb72019060/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/f9a4a4c8a8156b55aa7ff27d7236fcfb72019060/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/2e67e06af4928cae76f7d1cb44908e4ea512e5e5/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/2e67e06af4928cae76f7d1cb44908e4ea512e5e5/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
