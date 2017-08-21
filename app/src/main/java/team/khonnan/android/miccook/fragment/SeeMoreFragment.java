@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.FoodAdapter;
-import team.khonnan.android.miccook.networks.FoodModel;
+import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
 /**
  * Created by apple on 11/08/2017.

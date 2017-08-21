@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import java.io.Serializable;
 import java.util.List;
 
-import team.khonnan.android.miccook.networks.FoodModel;
+import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
 /**
  * Created by Admins on 7/19/2017.

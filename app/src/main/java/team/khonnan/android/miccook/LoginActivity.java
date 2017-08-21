@@ -28,8 +28,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import team.khonnan.android.miccook.event.EventUser;
 import team.khonnan.android.miccook.model.UserInfo;
-import team.khonnan.android.miccook.networks.CreateUser;
-import team.khonnan.android.miccook.networks.RetrofitFactory;
+import team.khonnan.android.miccook.networks.apis.CreateUser;
+import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 
 public class LoginActivity extends AppCompatActivity {
 

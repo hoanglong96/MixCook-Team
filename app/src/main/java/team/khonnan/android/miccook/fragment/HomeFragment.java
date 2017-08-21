@@ -28,11 +28,11 @@ import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.model.Cook;
 import team.khonnan.android.miccook.model.Food;
 import team.khonnan.android.miccook.model.Material;
-import team.khonnan.android.miccook.networks.FoodApi;
-import team.khonnan.android.miccook.networks.FoodModel;
-import team.khonnan.android.miccook.networks.GetFoodByType;
-import team.khonnan.android.miccook.networks.GetFoodRespondModel;
-import team.khonnan.android.miccook.networks.RetrofitFactory;
+import team.khonnan.android.miccook.networks.apis.FoodApi;
+import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
+import team.khonnan.android.miccook.networks.apis.GetFoodByType;
+import team.khonnan.android.miccook.networks.getFoodModels.GetFoodRespondModel;
+import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 
 public class HomeFragment extends Fragment{
 

@@ -1,6 +1,6 @@
 package team.khonnan.android.miccook.event;
 
-import team.khonnan.android.miccook.networks.FoodModel;
+import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
 /**
  * Created by apple on 12/08/2017.

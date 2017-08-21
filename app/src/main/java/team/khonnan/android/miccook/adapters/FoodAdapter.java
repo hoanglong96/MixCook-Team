@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import team.khonnan.android.miccook.R;
-import team.khonnan.android.miccook.networks.FoodModel;
+import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
 /**
  * Created by quyntg94 on 10/08/2017.
