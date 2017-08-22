@@ -20,7 +20,7 @@
         android:scaleType="centerCrop"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/account"
+        android:src="@drawable/no_image"
         />
 
     <TextView

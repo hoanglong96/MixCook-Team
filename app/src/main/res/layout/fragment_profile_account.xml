@@ -26,7 +26,7 @@
             android:layout_height="120dp"
             android:layout_margin="10dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/account"
+            android:src="@drawable/no_image"
             android:id="@+id/profile_image"/>
         <TextView
             android:layout_width="wrap_content"

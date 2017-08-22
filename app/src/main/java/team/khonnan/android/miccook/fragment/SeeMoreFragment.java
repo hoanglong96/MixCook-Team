@@ -11,13 +11,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.FoodAdapter;
+import team.khonnan.android.miccook.event.OnClickFood;
+import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
+
+import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
  * Created by apple on 11/08/2017.
@@ -82,6 +88,16 @@ public class SeeMoreFragment extends Fragment {
                     (getContext(), 2, GridLayoutManager.VERTICAL, false);
 
             rvSeemore.setLayoutManager(gridLayoutManager);
+
+            foodAdapter.setOnItemClick(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FoodModel foodModel = (FoodModel) view.getTag();
+                    Log.d(TAG, "onClick: " + view.getTag());
+                    EventBus.getDefault().postSticky(new OnClickFood(foodModel));
+                    ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
+                }
+            });
         }
 
         toolbar.setTitleTextColor(Color.WHITE);

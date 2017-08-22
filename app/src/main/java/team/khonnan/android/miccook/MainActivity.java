@@ -34,16 +34,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        checkKeyHash();
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -53,9 +43,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
-        String id = sharedPreferences.getString("id","");
-        String name = sharedPreferences.getString("name","");
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String id = sharedPreferences.getString("id", "");
+        String name = sharedPreferences.getString("name", "");
 
         View headerView = navigationView.getHeaderView(0);
         avatarUser = headerView.findViewById(R.id.iv_avatar_user);
@@ -72,7 +62,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        ScreenManager.openFragment(getSupportFragmentManager(),new team.khonnan.android.miccook.fragment.HomeFragment(),R.id.content_main);
+        ScreenManager.openFragment(getSupportFragmentManager(), new team.khonnan.android.miccook.fragment.HomeFragment(), R.id.content_main);
 
 
     }
@@ -109,12 +99,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.info_user) {
-            ScreenManager.openFragment(getSupportFragmentManager(),new team.khonnan.android.miccook.fragment.FragmentProfileAccount(),R.id.drawer_layout);
-        } else if(id == R.id.dangxuat){
+            ScreenManager.openFragment(getSupportFragmentManager(), new team.khonnan.android.miccook.fragment.FragmentProfileAccount(), R.id.drawer_layout);
+        } else if (id == R.id.dangxuat) {
             SharedPreferences preferences = getSharedPreferences("checkLogin", MODE_PRIVATE);
             preferences.edit().remove("isLogin").commit();
             LoginManager.getInstance().logOut();
-            Intent intent = new Intent(this,LoginActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
@@ -124,24 +114,4 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-//    public void checkKeyHash(){
-//        //lấy keyhash để đăng ký fb dev
-//        try {
-//            PackageInfo packageInfo = null;
-//            try {
-//                packageInfo = getPackageManager().getPackageInfo("quyntg94.kaze.vn.testlogin", PackageManager.GET_SIGNATURES);
-//
-//            } catch (PackageManager.NameNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//            for (Signature signature : packageInfo.signatures) {
-//                MessageDigest md = MessageDigest.getInstance("SHA");
-//                md.update(signature.toByteArray());
-//                Log.d("ahih", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-//            }
-//        } catch (NoSuchAlgorithmException e){
-//
-//        }
-//    }
 }

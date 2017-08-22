@@ -186,7 +186,7 @@ public class HomeFragment extends Fragment {
 
     public void loadType(){
 
-        Type monBanh = new Type("Cake",R.drawable.monbanh);
+        Type monBanh = new Type("Cake",R.drawable.monbanh1);
         typeList.add(monBanh);
 
         Type douong = new Type("Drink",R.drawable.douong_home);

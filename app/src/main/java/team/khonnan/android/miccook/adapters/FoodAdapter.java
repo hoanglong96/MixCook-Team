@@ -60,6 +60,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public class FoodViewHolder extends RecyclerView.ViewHolder{
         ImageView ivFood;
         TextView tvRating,tvAuthor,tvNameFood,tvLevel;
+        View view;
 
         public FoodViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +69,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             tvNameFood = itemView.findViewById(R.id.tv_name_food);
             tvRating = itemView.findViewById(R.id.num_rate);
             tvLevel = itemView.findViewById(R.id.tv_level);
+
+            view = itemView;
         }
 
         public void setData(FoodModel foodModel){
@@ -82,6 +85,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
                 tvRating.setText(rating);
             }
+
+            view.setTag(foodModel);
         }
     }
 }

@@ -74,7 +74,7 @@ public class FragmentProfileAccount extends Fragment {
             tvLink.setText("fb.com/" + userInfo.getIdFb());
         }else{
 
-            //get sharepreference
+            //get sharePreference
             sharedPreferences = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
             name = sharedPreferences.getString("name","");
             id = sharedPreferences.getString("id","");
