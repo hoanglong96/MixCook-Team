@@ -2,6 +2,7 @@ package team.khonnan.android.miccook.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,8 @@ import java.util.List;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.NguyenLieuAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
+import team.khonnan.android.miccook.event.onClickAddToShop;
+import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 import team.khonnan.android.miccook.networks.getFoodModels.MaterialModel;
 
@@ -38,6 +41,7 @@ public class NguyenLieuFragment extends Fragment {
     private NguyenLieuAdapter nguyenLieuAdapter;
     private TextView tvSet;
     private Button btnShopping;
+    private List<FoodModel> listFoodInShop = new ArrayList<>();
 
     @Nullable
     @Override
@@ -80,8 +84,19 @@ public class NguyenLieuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Đăng ký events bus để chuyển dữ liệu sang màn shopping
+                EventBus.getDefault().postSticky(new onClickAddToShop(foodModel));
 
-                
+                //Snackbar
+                Snackbar snackbar = Snackbar
+                        .make(view, "Đã thêm món ăn vào đi chợ", Snackbar.LENGTH_LONG)
+                        .setAction("VIEW SHOP", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentShopping(),R.id.drawer_layout);
+                            }
+                        });
+
+                snackbar.show();
             }
         });
     }

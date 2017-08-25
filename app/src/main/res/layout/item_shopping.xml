@@ -10,8 +10,9 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp">
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/iv_shop_food"
             android:src="@drawable/background4"
             android:scaleType="centerCrop"/>
     </android.support.v7.widget.CardView>
@@ -20,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="5dp"
+        android:id="@+id/tv_name_shop_food"
         android:text="Slow-cook Filipno chicken adobo"
         android:textStyle="bold"
-        android:textSize="15sp"/>
+        android:textSize="18sp"/>
 </LinearLayout>
