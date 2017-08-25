@@ -1,13 +1,18 @@
 package team.khonnan.android.miccook.networks.getFoodModels;
 
+import io.realm.RealmModel;
+
 /**
  * Created by tungthanh.1497 on 08/11/2017.
  */
 
-public class CookModel {
+public class CookModel implements RealmModel {
     private String image;
     private String note;
     private String _id;
+
+    public CookModel() {
+    }
 
     @Override
     public String toString() {

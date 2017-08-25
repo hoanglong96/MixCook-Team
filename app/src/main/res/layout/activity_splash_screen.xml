@@ -13,7 +13,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/background4"
+            android:background="@drawable/abc_background"
             android:src="#9d4d2a2a"/>
         <TextView
             android:layout_width="wrap_content"

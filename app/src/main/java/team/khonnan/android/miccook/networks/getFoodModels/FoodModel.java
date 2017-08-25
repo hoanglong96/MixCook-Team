@@ -20,6 +20,10 @@ public class FoodModel {
     private List<CookModel> cook;
     private List<MaterialModel> material;
 
+
+    public FoodModel() {
+    }
+
     @Override
     public String toString() {
         return "FoodModel{" +

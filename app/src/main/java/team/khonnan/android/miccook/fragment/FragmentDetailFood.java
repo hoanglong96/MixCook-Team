@@ -2,18 +2,26 @@ package team.khonnan.android.miccook.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.event.OnClickFood;
@@ -27,11 +35,20 @@ import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 public class FragmentDetailFood extends Fragment {
 
-    private TextView tvNameFood , tvTypeFood, tvSet, tvLevel, tvNumIngredient, tvMin;
+    private TextView tvNameFood , tvTypeFood;
     private ImageView ivFood;
+    private LinearLayout lnRating;
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
 
     private FoodModel foodModel;
+    private int[] tabIcons = {
+            R.drawable.cart,
+            R.drawable.ic_favorite_black_24dp,
+            R.drawable.ic_chat_black_24dp
+    };
 
     @Nullable
     @Override
@@ -39,8 +56,7 @@ public class FragmentDetailFood extends Fragment {
         View view = inflater.inflate(R.layout.fragment_detail_food, container, false);
 
         setupUI(view);
-        loadData();
-
+        setupTabIcons();
         return view;
     }
 
@@ -57,10 +73,17 @@ public class FragmentDetailFood extends Fragment {
         tvNameFood = view.findViewById(R.id.toolbar_title);
         tvTypeFood = view.findViewById(R.id.type_food);
         ivFood = view.findViewById(R.id.header);
-        tvLevel = view.findViewById(R.id.tv_level);
-        tvSet = view.findViewById(R.id.tv_set);
-        tvNumIngredient = view.findViewById(R.id.tv_num_ingredients);
-        tvMin = view.findViewById(R.id.tv_time);
+//        lnRating = view.findViewById(R.id.rating_food);
+//
+//
+//        lnRating.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d(TAG, "onClick: abc");
+//                ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentRating(),R.id.drawer_layout );
+//            }
+//        });
+
 
         Log.d(TAG, "onCreateView: " + foodModel.getName());
         tvNameFood.setText(foodModel.getName());
@@ -79,17 +102,75 @@ public class FragmentDetailFood extends Fragment {
         }
 
         tvTypeFood.setText(type);
-
         Picasso.with(getContext()).load(foodModel.getImageShow()).into(ivFood);
 
-        tvLevel.setText(foodModel.getLevel());
-        String set = String.valueOf(foodModel.getSets());
-        tvSet.setText(set);
-        tvNumIngredient.setText(String.valueOf(foodModel.getMaterial().size()));
-        tvMin.setText(foodModel.getTime());
+
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout.setTabTextColors(
+                getResources().getColor(R.color.icon_unselected),
+                getResources().getColor(R.color.icon_selected)
+        );
+        tabLayout.setupWithViewPager(viewPager);
+
     }
 
-    public void loadData(){
+    private void setupTabIcons() {
 
+        TextView tabOne = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
+        tabOne.setText("Nguyên liệu");
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ingredients, 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        TextView tabTwo = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
+        tabTwo.setText("Cách làm");
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.cook, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+        TextView tabThree = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
+        tabThree.setText("Comment");
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_chat_black_24dp, 0, 0);
+        tabLayout.getTabAt(2).setCustomView(tabThree);
     }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new NguyenLieuFragment(), "Nguyên liệu");
+        adapter.addFragment(new CookFragment(), "Cách làm");
+        adapter.addFragment(new CommentFragment(), "Comment");
+        viewPager.setAdapter(adapter);
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+
+
 }

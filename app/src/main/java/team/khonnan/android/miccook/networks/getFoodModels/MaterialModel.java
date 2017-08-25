@@ -1,13 +1,18 @@
 package team.khonnan.android.miccook.networks.getFoodModels;
 
+import io.realm.RealmModel;
+
 /**
  * Created by tungthanh.1497 on 08/11/2017.
  */
 
-public class MaterialModel {
+public class MaterialModel implements RealmModel {
     private String matName;
     private String matQuantum;
     private String _id;
+
+    public MaterialModel() {
+    }
 
     public MaterialModel(String matName, String matQuantum, String _id) {
         this.matName = matName;

@@ -47,5 +47,7 @@ dependencies {
     compile 'com.github.ome450901:SimpleRatingBar:1.2'
     compile 'com.cloudinary:cloudinary-android:1.13.0'
     compile 'com.cloudinary:cloudinary-core:1.13.0'
+    compile "com.yuyakaido.android:card-stack-view:1.0.0-beta2"
+    compile 'com.github.baoyachi:StepView:1.9'
     compile files('libs/PhotoUtil.jar')
 }

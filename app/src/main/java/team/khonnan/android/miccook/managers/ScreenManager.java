@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import java.io.Serializable;
 import java.util.List;
 
+import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
 /**
@@ -32,6 +33,7 @@ public class ScreenManager {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(layoutID, fragment);
         fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_in_right);
         fragmentTransaction.commit();
     }
 }

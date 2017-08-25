@@ -9,159 +9,137 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="team.khonnan.android.miccook.MainActivity"
-        android:background="#ecf5f2f2">
+        android:background="#f1f5f2f2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:orientation="vertical">
+                android:layout_height="350dp"
+                android:orientation="vertical"
+                android:background="#ffff">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_top_food"
-                    android:text="Top Food"
-                    android:textColor="#584949"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Món ăn nổi bật"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-condensed"
                     android:textSize="18sp"/>
-                <android.support.v7.widget.CardView
-                    android:layout_marginTop="15dp"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:elevation="5dp"
-                    app:cardCornerRadius="7dp">
-                    <LinearLayout
+                    android:layout_height="match_parent">
+
+                    <com.yuyakaido.android.cardstackview.CardStackView
+                        android:id="@+id/activity_main_card_stack_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/background4"/>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/gradient"
-                                android:layout_alignParentBottom="true">
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_favorite_black_24dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_marginRight="5dp"
-                                    android:id="@+id/icon_fav"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_toRightOf="@+id/icon_fav"
-                                    android:text="6789"
-                                    android:textColor="#ffff"
-                                    android:layout_centerVertical="true"/>
-                            </RelativeLayout>
-                        </RelativeLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3"
-                            android:background="#a2ffffff"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="The Screst to a Perfectly Poached Egg"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginLeft="15dp"
-                                android:textColor="#584949"
-                                android:textStyle="bold"
-                                android:textSize="17sp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Hoàng Long"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginLeft="15dp"
-                                />
-                        </LinearLayout>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
+                        android:paddingTop="32dp"
+                        android:paddingBottom="12dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:clipToPadding="false"
+                        app:visibleCount="3"
+                        app:swipeThreshold="0.75"
+                        app:translationDiff="12"
+                        app:scaleDiff="0.02"
+                        app:stackFrom="top"
+                        app:elevationEnabled="true"
+                        app:swipeEnabled="true"
+                        app:swipeDirection="horizontal"
+                        app:leftOverlay="@layout/overlay_left"
+                        app:rightOverlay="@layout/overlay_right"/>
+
+                    <ProgressBar
+                        android:id="@+id/activity_main_progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#ffff"
+
+                >
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_new_recipe"
-                        android:text="New Recipes"
+                        android:text="Món ăn mới"
                         android:fontFamily="sans-serif-condensed"
-                        android:textColor="#584949"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
                         android:textSize="18sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_see_more_new_recipes"
-                        android:text="SEE ALL"
+                        android:text="Xem thêm"
+                        android:textSize="15sp"
                         android:layout_alignParentRight="true"
-                        android:textColor="#ded415"
+                        android:textColor="@color/colorAccent"
                         android:layout_centerVertical="true"
                         />
                 </RelativeLayout>
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     android:id="@+id/rv_new_recipes"/>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="15dp">
+                android:background="#ffff"
+                android:layout_marginBottom="10dp"
+                >
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="7dp"
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_catalog"
-                        android:text="What do you fancy?"
+                        android:text="Bạn thích món gì?"
                         android:fontFamily="sans-serif-condensed"
-                        android:textColor="#584949"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold"
                         android:textSize="18sp"/>
                 </RelativeLayout>
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:id="@+id/rv_catalog"
+                    app:stackFromEnd="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     />
             </LinearLayout>
         </LinearLayout>

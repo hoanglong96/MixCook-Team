@@ -1,6 +1,7 @@
 package team.khonnan.android.miccook.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+
+import com.yuyakaido.android.cardstackview.CardStackView;
+import com.yuyakaido.android.cardstackview.Quadrant;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +25,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import team.khonnan.android.miccook.R;
+import team.khonnan.android.miccook.StackCardView.TouristSpot;
+import team.khonnan.android.miccook.StackCardView.TouristSpotCardAdapter;
 import team.khonnan.android.miccook.adapters.CatalogAdapter;
 import team.khonnan.android.miccook.adapters.NewRecipesAdapter;
+import team.khonnan.android.miccook.event.OnClickFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
-import team.khonnan.android.miccook.model.Cook;
-import team.khonnan.android.miccook.model.Food;
-import team.khonnan.android.miccook.model.Material;
 import team.khonnan.android.miccook.model.Type;
 import team.khonnan.android.miccook.networks.apis.FoodApi;
 import team.khonnan.android.miccook.networks.apis.GetFoodByType;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
+import team.khonnan.android.miccook.networks.getFoodModels.CookModel;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 import team.khonnan.android.miccook.networks.getFoodModels.GetFoodRespondModel;
+import team.khonnan.android.miccook.networks.getFoodModels.MaterialModel;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
 import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
@@ -47,7 +57,7 @@ public class HomeFragment extends Fragment {
 
     //new recipes
     private NewRecipesAdapter newRecipesAdapter;
-    private List<Food> newRecipesList = new ArrayList<>();
+    private List<FoodModel> newRecipesList = new ArrayList<>();
 
     //catalog
     private CatalogAdapter catalogAdapter;
@@ -60,6 +70,11 @@ public class HomeFragment extends Fragment {
     List<FoodModel> foodMonBanh = new ArrayList<>();
     List<FoodModel> foodDoUong = new ArrayList<>();
 
+    //Stack card view
+    private ProgressBar progressBar;
+    private CardStackView cardStackView;
+    private TouristSpotCardAdapter adapter;
+
     public HomeFragment() {
     }
 
@@ -70,12 +85,19 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         setupUI(view);
         loadData();
+        setup(view);
+        reload();
 
 
-        catalogAdapter = new CatalogAdapter(typeList);
-        rvCatalog.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true));
+        catalogAdapter = new CatalogAdapter(typeList,getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true);
+        rvCatalog.setLayoutManager(linearLayoutManager);
         rvCatalog.setAdapter(catalogAdapter);
-        loadType();
+
+            catalogAdapter.notifyDataSetChanged();
+            loadType();
+
+
 
         catalogAdapter.setOnItemClick(new View.OnClickListener() {
             @Override
@@ -215,36 +237,40 @@ public class HomeFragment extends Fragment {
                 list = response.body().getFoodList();
 
                 for (int i = 0; i < list.size(); i++) {
-                    Food food = new Food();
+                    FoodModel food = new FoodModel();
                     food.setName(list.get(i).getName());
                     food.setAuthor(list.get(i).getAuthor());
                     food.setImageShow(list.get(i).getImageShow());
-                    food.setType(list.get(i).getType());
+                    food.setType(Integer.parseInt(list.get(i).getType()));
                     food.setTime(list.get(i).getTime());
                     food.setSets(list.get(i).getSets());
                     food.setLevel(list.get(i).getLevel());
                     food.setRating(list.get(i).getRating());
                     List<FoodApi.Material> materials = list.get(i).getMaterials();
-                    RealmList<Material> materialList = new RealmList<>();
+                    RealmList<MaterialModel> materialList = new RealmList<>();
                     for (int j = 0; j < materials.size(); j++) {
-                        Material material = new Material();
+                        MaterialModel material = new MaterialModel();
                         material.setMatName(materials.get(j).getMatName());
                         material.setMatQuantum(materials.get(j).getMatQuantum());
                         materialList.add(material);
                     }
+                    food.setMaterial(materialList);
 
                     List<FoodApi.Cook> cooks = list.get(i).getCooks();
 
-                    RealmList<Cook> cookList = new RealmList<>();
+                    RealmList<CookModel> cookList = new RealmList<>();
                     for (int j = 0; j < cooks.size(); j++) {
-                        Cook cook = new Cook();
+                        CookModel cook = new CookModel();
                         cook.setImage(cooks.get(j).getImage());
                         cook.setNote(cooks.get(j).getNote());
                         cookList.add(cook);
 
                     }
+
+                    food.setCook(cookList);
                     Log.d("ahihi", food.toString());
                     newRecipesList.add(food);
+                    newRecipesAdapter.notifyDataSetChanged();
                 }
 //                EventBus.getDefault().post(new EventReady());
                 Log.d(TAG, "onResponse: " + newRecipesList);
@@ -262,6 +288,96 @@ public class HomeFragment extends Fragment {
         rvNewRecipes.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true));
         rvNewRecipes.setAdapter(newRecipesAdapter);
 
+        newRecipesAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FoodModel foodModel = (FoodModel) view.getTag();
+                Log.d(TAG, "onClickNewRecipes: " + view.getTag());
+                EventBus.getDefault().postSticky(new OnClickFood(foodModel));
+                ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
+            }
+        });
+
+    }
+
+
+    //Stack card view
+    private List<TouristSpot> createTouristSpots() {
+        List<TouristSpot> spots = new ArrayList<>();
+        spots.add(new TouristSpot("Yasaka Shrine", "Kyoto", "https://source.unsplash.com/Xq1ntWruZQI/400x300"));
+        spots.add(new TouristSpot("Fushimi Inari Shrine", "Kyoto", "https://source.unsplash.com/NYyCqdBOKwc/400x300"));
+        spots.add(new TouristSpot("Bamboo Forest", "Kyoto", "https://source.unsplash.com/buF62ewDLcQ/400x300"));
+        spots.add(new TouristSpot("Brooklyn Bridge", "New York", "https://source.unsplash.com/THozNzxEP3g/400x300"));
+        spots.add(new TouristSpot("Empire State Building", "New York", "https://source.unsplash.com/USrZRcRS2Lw/400x300"));
+        spots.add(new TouristSpot("The statue of Liberty", "New York", "https://source.unsplash.com/PeFk7fzxTdk/400x300"));
+        spots.add(new TouristSpot("Louvre Museum", "Paris", "https://source.unsplash.com/LrMWHKqilUw/400x300"));
+        spots.add(new TouristSpot("Eiffel Tower", "Paris", "https://source.unsplash.com/HN-5Z6AmxrM/400x300"));
+        spots.add(new TouristSpot("Big Ben", "London", "https://source.unsplash.com/CdVAUADdqEc/400x300"));
+        spots.add(new TouristSpot("Great Wall of China", "China", "https://source.unsplash.com/AWh9C-QjhE4/400x300"));
+        return spots;
+    }
+
+    private TouristSpotCardAdapter createTouristSpotCardAdapter() {
+        final TouristSpotCardAdapter adapter = new TouristSpotCardAdapter(getApplicationContext());
+        adapter.addAll(createTouristSpots());
+        return adapter;
+    }
+
+    private void setup(View view) {
+        progressBar = (ProgressBar) view.findViewById(R.id.activity_main_progress_bar);
+
+        cardStackView = (CardStackView) view.findViewById(R.id.activity_main_card_stack_view);
+        cardStackView.setCardEventListener(new CardStackView.CardEventListener() {
+            @Override
+            public void onCardDragging(float percentX, float percentY) {
+                Log.d("CardStackView", "onCardDragging");
+            }
+
+            @Override
+            public void onCardSwiped(Quadrant quadrant) {
+                Log.d("CardStackView", "onCardSwiped: " + quadrant.toString());
+                Log.d("CardStackView", "topIndex: " + cardStackView.getTopIndex());
+                if (cardStackView.getTopIndex() == adapter.getCount() - 5) {
+                    Log.d("CardStackView", "Paginate: " + cardStackView.getTopIndex());
+                    paginate();
+                }
+            }
+
+            @Override
+            public void onCardReversed() {
+                Log.d("CardStackView", "onCardReversed");
+            }
+
+            @Override
+            public void onCardMovedToOrigin() {
+                Log.d("CardStackView", "onCardMovedToOrigin");
+            }
+
+            @Override
+            public void onCardClicked(int index) {
+                Log.d("CardStackView", "onCardClicked: " + index);
+            }
+        });
+    }
+
+    private void reload() {
+        cardStackView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter = createTouristSpotCardAdapter();
+                cardStackView.setAdapter(adapter);
+                cardStackView.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+            }
+        }, 1000);
+    }
+
+    private void paginate() {
+        cardStackView.setPaginationReserved();
+        adapter.addAll(createTouristSpots());
+        adapter.notifyDataSetChanged();
     }
 
 

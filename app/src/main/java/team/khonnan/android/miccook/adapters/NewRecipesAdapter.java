@@ -14,17 +14,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import team.khonnan.android.miccook.R;
-import team.khonnan.android.miccook.model.Food;
+import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
 /**
  * Created by apple on 8/21/17.
  */
 
 public class NewRecipesAdapter extends RecyclerView.Adapter<NewRecipesAdapter.NewRecipesViewHolder> {
-    private List<Food> foodList = new ArrayList<>();
+    private List<FoodModel> foodList = new ArrayList<>();
     private Context context;
+    private View.OnClickListener onClickListener;
 
-    public NewRecipesAdapter(List<Food> foodList, Context context) {
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+    public NewRecipesAdapter(List<FoodModel> foodList, Context context) {
         this.foodList = foodList;
         this.context = context;
     }
@@ -34,6 +39,7 @@ public class NewRecipesAdapter extends RecyclerView.Adapter<NewRecipesAdapter.Ne
     public NewRecipesViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
         View view = layoutInflater.inflate(R.layout.item_new_recipes, viewGroup, false);
+        view.setOnClickListener(onClickListener);
 
         return new NewRecipesViewHolder(view);
     }
@@ -50,21 +56,21 @@ public class NewRecipesAdapter extends RecyclerView.Adapter<NewRecipesAdapter.Ne
 
     public class NewRecipesViewHolder extends RecyclerView.ViewHolder{
         ImageView ivNewRecipes;
-        TextView tvRating,tvAuthor,tvName;
+        TextView tvName;
+        View view;
 
         public NewRecipesViewHolder(View itemView) {
             super(itemView);
             ivNewRecipes = itemView.findViewById(R.id.iv_new_recipes);
-            tvAuthor = itemView.findViewById(R.id.tv_author_new_recipes);
             tvName = itemView.findViewById(R.id.tv_name_new_recipes);
-            tvRating = itemView.findViewById(R.id.rating_number);
+
+            view = itemView;
         }
 
-        public void setData(Food foodModel){
-            Picasso.with(context).load(foodModel.getImageShow()).into(ivNewRecipes);
-            tvAuthor.setText(foodModel.getAuthor());
+        public void setData(FoodModel foodModel){
+            Picasso.with(context).load(foodModel.getImageShow()).resize(150,150).into(ivNewRecipes);
             tvName.setText(foodModel.getName());
-            tvRating.setText(foodModel.getRating());
+            view.setTag(foodModel);
         }
     }
 }
