@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,6 +37,7 @@ public class NguyenLieuFragment extends Fragment {
     private RecyclerView rvNguyenLieu;
     private NguyenLieuAdapter nguyenLieuAdapter;
     private TextView tvSet;
+    private Button btnShopping;
 
     @Nullable
     @Override
@@ -72,5 +74,15 @@ public class NguyenLieuFragment extends Fragment {
         rvNguyenLieu.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,true));
         rvNguyenLieu.setAdapter(nguyenLieuAdapter);
         nguyenLieuAdapter.notifyDataSetChanged();
+
+        btnShopping = view.findViewById(R.id.btn_shopping);
+        btnShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Đăng ký events bus để chuyển dữ liệu sang màn shopping
+
+                
+            }
+        });
     }
 }

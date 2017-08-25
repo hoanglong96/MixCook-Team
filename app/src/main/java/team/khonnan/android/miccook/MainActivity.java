@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity
         avatarUser = headerView.findViewById(R.id.iv_avatar_user);
         tvName = headerView.findViewById(R.id.tv_name_nav_header);
 
+
+
         tvName.setText(name);
         Picasso.with(getBaseContext()).load("https://graph.facebook.com/" + id
                 + "/picture?type=large").into(avatarUser);

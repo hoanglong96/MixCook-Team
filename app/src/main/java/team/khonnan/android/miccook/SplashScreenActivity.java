@@ -26,5 +26,5 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }
         ,splashInterval);
-    };
+    }
 }
