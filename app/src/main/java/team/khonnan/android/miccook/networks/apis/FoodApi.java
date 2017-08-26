@@ -24,6 +24,8 @@ public interface FoodApi {
     }
 
     class FoodList {
+        @SerializedName("_id")
+        private String _id;
         @SerializedName("name")
         private String name;
         @SerializedName("author")
@@ -39,11 +41,21 @@ public interface FoodApi {
         @SerializedName("level")
         private String level;
         @SerializedName("rating")
-        private int rating;
+        private float rating;
+        @SerializedName("rateNum")
+        private int rateNum;
         @SerializedName("material")
         private List<Material> materials;
         @SerializedName("cook")
         private List<Cook> cooks;
+
+        public String get_id() {
+            return _id;
+        }
+
+        public int getRateNum() {
+            return rateNum;
+        }
 
         public String getName() {
             return name;
@@ -73,9 +85,10 @@ public interface FoodApi {
             return level;
         }
 
-        public int getRating() {
+        public float getRating() {
             return rating;
         }
+
 
         public List<Material> getMaterials() {
             return materials;

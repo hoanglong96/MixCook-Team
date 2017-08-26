@@ -58,8 +58,14 @@ public class NguyenLieuFragment extends Fragment {
         Log.d(TAG, "onEventOneFragment: " + foodModel);
     }
 
+
+
+    boolean isFirstTime = true;
     public void setupUI(View view){
-        EventBus.getDefault().register(this);
+        if(isFirstTime) {
+            EventBus.getDefault().register(this);
+            isFirstTime=false;
+        }
         rvNguyenLieu = view.findViewById(R.id.rv_nguyen_lieu);
         tvSet = view.findViewById(R.id.tv_set);
 

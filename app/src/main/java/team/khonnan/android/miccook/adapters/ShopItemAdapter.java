@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -69,9 +70,12 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopVi
         }
 
         public void setData(FoodModel foodModel) {
+            if(foodModel != null){
             Picasso.with(context).load(foodModel.getImageShow()).resize(80,80).into(ivFoodShop);
             tvFoodShop.setText(foodModel.getName());
-            view.setTag(foodModel);
+            view.setTag(foodModel);}else{
+                Toast.makeText(context, "Bạn chưa thêm món nào vào mục đi chợ", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

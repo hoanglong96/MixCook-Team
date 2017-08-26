@@ -15,7 +15,7 @@ public class CreateFoodRequestModel {
     private String time;
     private int sets;
     private String level;
-    private int rating;
+    private float rating;
     private int rateNum;
     List<MaterialModel> material;
     List<CookModel> cook;
@@ -37,7 +37,7 @@ public class CreateFoodRequestModel {
                 '}';
     }
 
-    public CreateFoodRequestModel(String name, String author, String imageShow, int type, String time, int sets, String level, int rating, int rateNum, List<MaterialModel> material, List<CookModel> cook) {
+    public CreateFoodRequestModel(String name, String author, String imageShow, int type, String time, int sets, String level, float rating, int rateNum, List<MaterialModel> material, List<CookModel> cook) {
         this.name = name;
         this.author = author;
         this.imageShow = imageShow;
@@ -107,11 +107,11 @@ public class CreateFoodRequestModel {
         this.level = level;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

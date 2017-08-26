@@ -18,7 +18,7 @@ public class Food extends RealmObject{
     private String time;
     private int sets;
     private String level;
-    private int rating;
+    private float rating;
     private RealmList<Material> materials;
     private RealmList<Cook> cooks;
 
@@ -82,11 +82,11 @@ public class Food extends RealmObject{
         this.level = level;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

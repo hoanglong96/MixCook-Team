@@ -16,26 +16,8 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="7db57f2ee0e97545e34cb331ee865c4741f3d466">
+        sha1="d3a0dc1bee5ebb96bcdf490f5a94eb95d2442d4e">
         <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1748e70cf32d44592eb80de293ec0b126598185b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/apple/.android/build-cache/3c5d24a2983b61f6b1f5aba8c153d14b7ab00800/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="e09663005d70dcedff0bb77211b9ac52d8b69421">
-        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fd3197be7b2772baf17312c7504ce372fc820cb1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.0/73c49077166faa4c3c0059c5f583d1d7bd1475fe/core-3.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
-        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10/core-3.3.0_fe4a9bcc28d5a035ed515915d30ad66c49377767/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -45,15 +27,6 @@
         revision="26.0.1"
         sha1="caf49e92eae4ca2805d530a92cb4777c1ef53f53">
         <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/2/PhotoUtil_cabf660d8bd83499aa9cd8af5681b5188e076b41/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/apple/.android/build-cache/4fcc1e37ac2d4101516de21a165656923b10e2c5/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="999ee339ca57cc5da45251a0a2c03f0ce8e83f63">
-        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fa61f5fa99b2403d5a5f2f3f8e405faf20b2eb03/classes.dex" />
     </item>
 
 </items>

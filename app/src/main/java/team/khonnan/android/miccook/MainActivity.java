@@ -19,7 +19,9 @@ import android.widget.Toast;
 import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 
+import team.khonnan.android.miccook.fragment.FragmentFavorites;
 import team.khonnan.android.miccook.fragment.FragmentShopping;
+import team.khonnan.android.miccook.fragment.HomeFragment;
 import team.khonnan.android.miccook.managers.ScreenManager;
 
 public class MainActivity extends AppCompatActivity
@@ -113,6 +115,10 @@ public class MainActivity extends AppCompatActivity
             finish();
         }else if(id == R.id.nav_shop){
             ScreenManager.openFragment(getSupportFragmentManager(),new FragmentShopping(),R.id.drawer_layout);
+        }else if(id == R.id.nav_home){
+            ScreenManager.openFragment(getSupportFragmentManager(),new HomeFragment(),R.id.content_main);
+        }else if(id == R.id.nav_favorites){
+            ScreenManager.openFragment(getSupportFragmentManager(),new FragmentFavorites(),R.id.drawer_layout);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

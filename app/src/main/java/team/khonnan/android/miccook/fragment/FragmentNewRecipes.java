@@ -262,7 +262,7 @@ public class FragmentNewRecipes extends Fragment {
         String time = etTime.getText().toString() + " phút";
         int sets = Integer.parseInt(etSets.getText().toString());
         String level = spinnerLevel.getSelectedItem().toString();
-        int rating = 0;
+        float rating = 0;
         int rateNum = 0;
 
         List<MaterialModel> material = new ArrayList<MaterialModel>();

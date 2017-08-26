@@ -6,13 +6,9 @@
     android:clickable="true">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:id="@+id/toolbar_see_more"
+        android:id="@+id/toolbar_rating"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back_black_24dp"/>
     </android.support.v7.widget.Toolbar>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,13 +38,17 @@
                 android:fontFamily="sans-serif"
                 android:layout_marginTop="10dp"/>
             <RatingBar
+                android:id="@+id/rb_rating_bar"
+                android:isIndicator="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
+                android:stepSize="1"
                 />
             <Button
+                android:id="@+id/bt_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
@@ -86,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/rating_five"
                 >
                 <RatingBar
                     android:layout_width="wrap_content"
@@ -111,6 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/rating_four"
                 >
                 <RatingBar
                     android:layout_width="wrap_content"
@@ -136,6 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/rating_three"
                 >
                 <RatingBar
                     android:layout_width="wrap_content"
@@ -161,6 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/rating_two"
                 >
                 <RatingBar
                     android:layout_width="wrap_content"
@@ -186,6 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/rating_one"
                 >
                 <RatingBar
                     android:layout_width="wrap_content"

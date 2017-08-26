@@ -238,6 +238,7 @@ public class HomeFragment extends Fragment {
 
                 for (int i = 0; i < list.size(); i++) {
                     FoodModel food = new FoodModel();
+                    food.set_id(list.get(i).get_id());
                     food.setName(list.get(i).getName());
                     food.setAuthor(list.get(i).getAuthor());
                     food.setImageShow(list.get(i).getImageShow());
@@ -246,6 +247,7 @@ public class HomeFragment extends Fragment {
                     food.setSets(list.get(i).getSets());
                     food.setLevel(list.get(i).getLevel());
                     food.setRating(list.get(i).getRating());
+                    food.setRateNum(list.get(i).getRateNum());
                     List<FoodApi.Material> materials = list.get(i).getMaterials();
                     RealmList<MaterialModel> materialList = new RealmList<>();
                     for (int j = 0; j < materials.size(); j++) {
@@ -299,6 +301,7 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
 
 
     //Stack card view

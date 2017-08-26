@@ -52,9 +52,14 @@ public class CookFragment extends Fragment {
         Log.d(TAG, "onEventOneFragment: " + foodModel);
     }
 
+    boolean isFirstTime = true;
     public void setup(View view)
     {
-        EventBus.getDefault().register(this);
+
+        if(isFirstTime) {
+            EventBus.getDefault().register(this);
+            isFirstTime=false;
+        }
 //        mSetpview0 = view.findViewById(R.id.step_view0);
 
         List<CookModel> food = new ArrayList<>();
