@@ -3,12 +3,14 @@ package team.khonnan.android.miccook;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,20 +18,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 import team.khonnan.android.miccook.fragment.FragmentFavorites;
-import team.khonnan.android.miccook.fragment.FragmentShopping;
-import team.khonnan.android.miccook.fragment.HomeFragment;
+import team.khonnan.android.miccook.fragment.HomeFragment.HomeFragment;
+import team.khonnan.android.miccook.fragment.NewRecipes.FragmentNewRecipes;
+import team.khonnan.android.miccook.fragment.Shop.FragmentShopping;
+import team.khonnan.android.miccook.fragment.profile.FragmentProfileAccount;
 import team.khonnan.android.miccook.managers.ScreenManager;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     ImageView avatarUser;
     TextView tvName;
     Toolbar toolbar;
+
+    private SliderLayout mDemoSlider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +80,52 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        ScreenManager.openFragment(getSupportFragmentManager(), new team.khonnan.android.miccook.fragment.HomeFragment(), R.id.content_main);
+        ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.content_main);
 
+        //Slider
+        mDemoSlider = (SliderLayout)findViewById(R.id.slider);
 
+        HashMap<String,String> url_maps = new HashMap<String, String>();
+        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
+        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
+        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
+        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+
+        HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
+        file_maps.put("Hannibal",R.drawable.mainfood);
+        file_maps.put("Big Bang Theory",R.drawable.breakfast);
+        file_maps.put("House of Cards",R.drawable.snack);
+        file_maps.put("Game of Thrones", R.drawable.cake);
+        file_maps.put("Đồ uống",R.drawable.drink);
+
+        for(String idname : file_maps.keySet()){
+            TextSliderView textSliderView = new TextSliderView(this);
+            // initialize a SliderLayout
+            textSliderView
+                    .image(file_maps.get(idname))
+                    .setScaleType(BaseSliderView.ScaleType.CenterCrop)
+                    .setOnSliderClickListener(this);
+
+            //add your extra information
+            textSliderView.bundle(new Bundle());
+            textSliderView.getBundle()
+                    .putString("extra",name);
+
+            mDemoSlider.addSlider(textSliderView);
+        }
+        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        mDemoSlider.setCustomAnimation(new DescriptionAnimation());
+        mDemoSlider.setDuration(4000);
+        mDemoSlider.addOnPageChangeListener(this);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScreenManager.openFragment(getSupportFragmentManager(),new FragmentNewRecipes(),R.id.drawer_layout);
+            }
+        });
     }
 
     @Override
@@ -104,7 +160,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.info_user) {
-            ScreenManager.openFragment(getSupportFragmentManager(), new team.khonnan.android.miccook.fragment.FragmentProfileAccount(), R.id.drawer_layout);
+            ScreenManager.openFragment(getSupportFragmentManager(), new FragmentProfileAccount(), R.id.drawer_layout);
         } else if (id == R.id.dangxuat) {
             SharedPreferences preferences = getSharedPreferences("checkLogin", MODE_PRIVATE);
             preferences.edit().remove("isLogin").commit();
@@ -125,4 +181,27 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    @Override
+    protected void onStop() {
+        // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
+        mDemoSlider.stopAutoCycle();
+        super.onStop();
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+        Toast.makeText(this,slider.getBundle().get("extra") + "",Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.d("Slider Demo", "Page Changed: " + position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {}
 }

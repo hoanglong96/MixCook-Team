@@ -56,6 +56,7 @@ public class NewRecipesAdapter extends RecyclerView.Adapter<NewRecipesAdapter.Ne
 
     public class NewRecipesViewHolder extends RecyclerView.ViewHolder{
         ImageView ivNewRecipes;
+        TextView tvTimeCook;
         TextView tvName;
         View view;
 
@@ -63,13 +64,15 @@ public class NewRecipesAdapter extends RecyclerView.Adapter<NewRecipesAdapter.Ne
             super(itemView);
             ivNewRecipes = itemView.findViewById(R.id.iv_new_recipes);
             tvName = itemView.findViewById(R.id.tv_name_new_recipes);
+            tvTimeCook = itemView.findViewById(R.id.time_cook);
 
             view = itemView;
         }
 
         public void setData(FoodModel foodModel){
-            Picasso.with(context).load(foodModel.getImageShow()).resize(150,150).into(ivNewRecipes);
+            Picasso.with(context).load(foodModel.getImageShow()).resize(500,500).into(ivNewRecipes);
             tvName.setText(foodModel.getName());
+            tvTimeCook.setText(foodModel.getTime());
             view.setTag(foodModel);
         }
     }

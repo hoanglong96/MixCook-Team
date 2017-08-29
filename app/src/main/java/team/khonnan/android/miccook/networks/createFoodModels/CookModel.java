@@ -8,6 +8,10 @@ public class CookModel {
     private String image;
     private String note;
 
+    public CookModel(String note) {
+        this.note = note;
+    }
+
     public CookModel(String image, String note) {
         this.image = image;
         this.note = note;

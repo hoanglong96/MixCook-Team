@@ -1,120 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffff"
-    android:clickable="true">
-    <ImageView
+    android:fitsSystemWindows="true"
+    android:background="#ffffff"
+    android:clickable="true"
+   >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_detail_food"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:background="@drawable/nav"
-        android:src="#99251d1d"
-        android:id="@+id/cover_profile"/>
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/background4"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#b9b5b5"
-        android:layout_marginTop="140dp"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_back_black_24dp"
-        android:layout_margin="15dp"
-        android:id="@+id/close"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/profile_image"
-        android:layout_marginTop="180dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/txt_name"
-        android:text="Hoàng Long"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#ffff"/>
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/cover_profile"
-        android:layout_marginTop="40dp">
-        <LinearLayout
+        android:layout_height="350dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="10dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_detail_food"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
+            app:titleEnabled="false"
             >
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="15dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorAccent"
-                        android:text="4,8"
-                        android:textSize="23sp"/>
-                    <android.support.v7.widget.AppCompatRatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:id="@+id/rating_user"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    ><ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cake"
+                    android:scaleType="centerCrop"
+                    />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#5a1d1717"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/mainfood"
+                        android:layout_centerInParent="true"
                         android:layout_marginLeft="10dp"
-                        android:rating="4.8"
-                        android:layout_marginTop="5dp"
-                        style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
+                        android:layout_marginBottom="10dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#b9b5b5"
+                        android:layout_marginTop="140dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="(20 đánh giá)"
-                        android:textSize="18sp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="- Link facebook :"
-                        android:textSize="18sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:textSize="18sp"
-                        android:text="hoanglong96"
-                        android:id="@+id/link_face"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="- Số món ăn yêu thích : 15"
-                    android:textSize="18sp"/><TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="- Số món ăn đã tạo : 5"
-                android:textSize="18sp"
-                />
+                        android:layout_below="@+id/profile_image"
+                        android:text="Hoàng Long"
+                        android:id="@+id/name_user"
+                        android:textSize="22sp"
+                        android:textColor="#ffffff"
+                        android:layout_centerHorizontal="true"
+                        />
+                </RelativeLayout>
             </LinearLayout>
-            <include layout="@layout/content_main_profile"/>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-</RelativeLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_profile" />
+
+</android.support.design.widget.CoordinatorLayout>

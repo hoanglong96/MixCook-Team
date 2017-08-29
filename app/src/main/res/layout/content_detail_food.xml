@@ -18,9 +18,9 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_below="@+id/ln"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             app:tabMode="fixed"
             app:tabGravity="fill"
             app:tabTextColor="@color/icon_unselected"

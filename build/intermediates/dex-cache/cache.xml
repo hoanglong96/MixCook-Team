@@ -12,12 +12,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/apple/Downloads/MixCook-Team/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/apple/Downloads/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_20920ea86219a16f4e6199f1ea2664090059185f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Downloads/MixCook-Team/app/libs/PhotoUtil.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="caf49e92eae4ca2805d530a92cb4777c1ef53f53">
+        <dex dex="/Users/apple/Downloads/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/2/PhotoUtil_71c86961445a2ab0211db01ccfd0fb9e0d953860/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="d3a0dc1bee5ebb96bcdf490f5a94eb95d2442d4e">
+        sha1="71458eaef0aab60d6663f001a0468835b1236e95">
         <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1748e70cf32d44592eb80de293ec0b126598185b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Downloads/MixCook-Team/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="0f9c3c2ce2eea5716912d46f06c9f1cc81d5bbc3">
+        <dex dex="/Users/apple/Downloads/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_44da6813e868320cbaa9bcb508755e9eb7bcbfe0/classes.dex" />
     </item>
     <item
         is-multidex="true"

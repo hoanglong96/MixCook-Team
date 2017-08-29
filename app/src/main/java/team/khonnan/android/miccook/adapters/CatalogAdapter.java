@@ -48,7 +48,7 @@ public class CatalogAdapter extends RecyclerView.Adapter<CatalogAdapter.CatalogV
         Type type = catalogList.get(position);
         holder.tvType.setText(type.getType());
         //holder.ivType.setBackgroundResource(type.getUrlImage());
-        Picasso.with(context).load(type.getUrlImage()).resize(150,150).into(holder.ivType);
+        Picasso.with(context).load(type.getUrlImage()).resize(500,500).into(holder.ivType);
         holder.view.setTag(type);
     }
 
