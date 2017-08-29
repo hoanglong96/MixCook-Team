@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:clickable="true"
-    >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        >
+        android:layout_height="80dp">
+
         <LinearLayout
+            android:id="@+id/ln_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:orientation="vertical"
-            android:id="@+id/ln_rating">
+            android:orientation="vertical">
+
             <RatingBar
                 android:id="@+id/rb_inner"
+                style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.RatingBar.Small"/>
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="To few rating"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:text="To few rating" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -35,42 +37,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="5">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_user"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/background4"
                     android:layout_gravity="center"
-                    />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/background4" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hoàng Long"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="dsgjdskgdsghdjsghjsddgjdshgdsjgds"/>
+                        android:text="dsgjdskgdsghdjsghjsddgjdshgdsjgds" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1 giây"/>
+                        android:text="1 giây" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -82,37 +90,40 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#a39999"
-            android:layout_above="@+id/ln"/>
+            android:layout_above="@+id/ln"
+            android:background="#a39999" />
+
         <LinearLayout
+            android:elevation="10dp"
+            android:id="@+id/ln"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:orientation="horizontal"
-            android:id="@+id/ln"
             android:layout_marginLeft="10dp"
-            >
+            android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/et_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:hint="Thêm bình luận..."
                 android:layout_gravity="center"
+                android:layout_weight="6"
                 android:background="@android:color/transparent"
-                />
+                android:hint="Thêm bình luận..." />
+
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#a39999"/>
+                android:background="#a39999" />
+
             <ImageView
+                android:id="@+id/iv_send_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:rotation="-25"
-                android:focusableInTouchMode="true"
-                android:src="@drawable/ic_send_black_24dp"
                 android:layout_gravity="center"
-                />
-    </LinearLayout>
+                android:layout_margin="10dp"
+                android:focusableInTouchMode="true"
+                android:rotation="-25"
+                android:src="@drawable/ic_send_black_24dp" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

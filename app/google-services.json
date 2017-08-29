@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "212803609834",
+    "firebase_url": "https://mixcook-team.firebaseio.com",
+    "project_id": "mixcook-team",
+    "storage_bucket": "mixcook-team.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212803609834:android:ed5619f9caccd536",
+        "android_client_info": {
+          "package_name": "team.khonnan.android.miccook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212803609834-t87kss3hase09naod3bo5dvrc13clj7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team.khonnan.android.miccook",
+            "certificate_hash": "48072734b832cf09ecf83852c271f84fe2014f60"
+          }
+        },
+        {
+          "client_id": "212803609834-5u15mshjr3dims7ko4m0lpkng7rhtq0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVF1sFvpd15tVITGjnS9qQCjT1wiEjbws"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212803609834-5u15mshjr3dims7ko4m0lpkng7rhtq0r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
