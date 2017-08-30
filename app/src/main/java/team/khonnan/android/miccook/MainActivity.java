@@ -31,24 +31,35 @@ import java.util.HashMap;
 import team.khonnan.android.miccook.fragment.FragmentFavorites;
 import team.khonnan.android.miccook.fragment.HomeFragment.HomeFragment;
 import team.khonnan.android.miccook.fragment.NewRecipes.FragmentNewRecipes;
+import team.khonnan.android.miccook.fragment.SearchFragment;
 import team.khonnan.android.miccook.fragment.Shop.FragmentShopping;
 import team.khonnan.android.miccook.fragment.profile.FragmentProfileAccount;
 import team.khonnan.android.miccook.managers.ScreenManager;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     ImageView avatarUser;
     TextView tvName;
     Toolbar toolbar;
+    ImageView ivSearch;
 
     private SliderLayout mDemoSlider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ivSearch = toolbar.findViewById(R.id.iv_search);
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "get highhhhhhh", Toast.LENGTH_SHORT).show();
+                ScreenManager.openFragment(getSupportFragmentManager(),new SearchFragment(),R.id.drawer_layout);
+            }
+        });
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -69,7 +80,6 @@ public class MainActivity extends AppCompatActivity
         tvName = headerView.findViewById(R.id.tv_name_nav_header);
 
 
-
         tvName.setText(name);
         Picasso.with(getBaseContext()).load("https://graph.facebook.com/" + id
                 + "/picture?type=large").into(avatarUser);
@@ -84,22 +94,22 @@ public class MainActivity extends AppCompatActivity
         ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.content_main);
 
         //Slider
-        mDemoSlider = (SliderLayout)findViewById(R.id.slider);
+        mDemoSlider = (SliderLayout) findViewById(R.id.slider);
 
-        HashMap<String,String> url_maps = new HashMap<String, String>();
+        HashMap<String, String> url_maps = new HashMap<String, String>();
         url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
         url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
         url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
-        HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal",R.drawable.mainfood);
-        file_maps.put("Big Bang Theory",R.drawable.breakfast);
-        file_maps.put("House of Cards",R.drawable.snack);
+        HashMap<String, Integer> file_maps = new HashMap<String, Integer>();
+        file_maps.put("Hannibal", R.drawable.mainfood);
+        file_maps.put("Big Bang Theory", R.drawable.breakfast);
+        file_maps.put("House of Cards", R.drawable.snack);
         file_maps.put("Game of Thrones", R.drawable.cake);
-        file_maps.put("Đồ uống",R.drawable.drink);
+        file_maps.put("Đồ uống", R.drawable.drink);
 
-        for(String idname : file_maps.keySet()){
+        for (String idname : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
             // initialize a SliderLayout
             textSliderView
@@ -110,7 +120,7 @@ public class MainActivity extends AppCompatActivity
             //add your extra information
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle()
-                    .putString("extra",name);
+                    .putString("extra", name);
 
             mDemoSlider.addSlider(textSliderView);
         }
@@ -124,7 +134,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ScreenManager.openFragment(getSupportFragmentManager(),new FragmentNewRecipes(),R.id.drawer_layout);
+                ScreenManager.openFragment(getSupportFragmentManager(), new FragmentNewRecipes(), R.id.drawer_layout);
             }
         });
     }
@@ -141,7 +151,27 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+//         Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.search, menu);
+//        Toast.makeText(getBaseContext(), "get here", Toast.LENGTH_SHORT).show();
+//        MenuItem menuItem = menu.findItem(R.id.search);
+//        SearchView searchView = (SearchView) menuItem.getActionView();
+//
+//        RxSearchView.queryTextChanges(searchView)
+//                .debounce(500, TimeUnit.MILLISECONDS)
+//                .filter(new Predicate<CharSequence>() {
+//                    @Override
+//                    public boolean test(CharSequence charSequence) throws Exception {
+//                        return true;
+//                    }
+//                })
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<CharSequence>() {
+//                    @Override
+//                    public void accept(CharSequence charSequence) throws Exception {
+//                        Log.d("charSequence", "accept: " + charSequence);
+//                    }
+//                });
         return true;
     }
 
@@ -170,18 +200,19 @@ public class MainActivity extends AppCompatActivity
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
-        }else if(id == R.id.nav_shop){
-            ScreenManager.openFragment(getSupportFragmentManager(),new FragmentShopping(),R.id.drawer_layout);
-        }else if(id == R.id.nav_home){
-            ScreenManager.openFragment(getSupportFragmentManager(),new HomeFragment(),R.id.content_main);
-        }else if(id == R.id.nav_favorites){
-            ScreenManager.openFragment(getSupportFragmentManager(),new FragmentFavorites(),R.id.drawer_layout);
+        } else if (id == R.id.nav_shop) {
+            ScreenManager.openFragment(getSupportFragmentManager(), new FragmentShopping(), R.id.drawer_layout);
+        } else if (id == R.id.nav_home) {
+            ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.content_main);
+        } else if (id == R.id.nav_favorites) {
+            ScreenManager.openFragment(getSupportFragmentManager(), new FragmentFavorites(), R.id.drawer_layout);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     protected void onStop() {
         // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
@@ -191,12 +222,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(this,slider.getBundle().get("extra") + "",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
     }
 
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
 
     @Override
     public void onPageSelected(int position) {
@@ -204,5 +236,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {}
+    public void onPageScrollStateChanged(int state) {
+    }
 }

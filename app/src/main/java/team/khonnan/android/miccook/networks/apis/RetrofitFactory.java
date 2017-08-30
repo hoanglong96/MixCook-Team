@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitFactory {
     private Retrofit retrofit;
 
-    private static RetrofitFactory instance = new RetrofitFactory("http://mixcookteam.herokuapp.com/");
+    private static RetrofitFactory instance = new RetrofitFactory("http://cookmix.herokuapp.com/");
     public static RetrofitFactory getInstance(){
         return instance;
     }

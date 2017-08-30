@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="Slow-cooker Filipino chicken adobo"
                 android:id="@+id/tv_name_item"
+                android:textColor="#333"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:textSize="18dp"
@@ -61,6 +62,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="10dp"
                 android:textAllCaps="false"
+                android:textColor="#333"
                 android:layout_gravity="center_horizontal"
                 android:elevation="5dp" />
         </LinearLayout>

@@ -79,7 +79,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="6"
             android:background="@android:color/transparent"
-            android:hint="Thêm bình luận..." />
+            android:hint="Add comment..." />
 
         <LinearLayout
             android:id="@+id/send"

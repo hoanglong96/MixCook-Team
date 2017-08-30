@@ -22,6 +22,7 @@
             app:tabSelectedTextColor="#ffffff"
             app:tabMode="fixed"
             app:tabGravity="center"
+            app:tabIndicatorColor="@color/textPrimary"
             />
 
         <android.support.v4.view.ViewPager

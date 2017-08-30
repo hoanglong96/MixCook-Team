@@ -120,12 +120,12 @@ public class FragmentDetailFood extends Fragment {
     private void setupTabIcons() {
 
         TextView tabOne = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
-        tabOne.setText("Nguyên liệu");
+        tabOne.setText("Ingredients");
         tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ingredients_detail_food, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
         TextView tabTwo = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
-        tabTwo.setText("Cách làm");
+        tabTwo.setText("How");
         tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.cook, 0, 0);
         tabLayout.getTabAt(1).setCustomView(tabTwo);
 

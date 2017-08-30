@@ -5,26 +5,26 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Trang chủ" />
+            android:title="Home" />
         <item
             android:id="@+id/nav_favorites"
             android:icon="@drawable/ic_favorite_black_24dp"
-            android:title="Món ăn yêu thích" />
+            android:title="Favorites food" />
         <item
             android:id="@+id/nav_shop"
             android:icon="@drawable/ic_local_grocery_store_black_24dp"
-            android:title="Đi chợ mua gì?" />
+            android:title="What your buy?" />
     </group>
-    <item android:title="Tài khoản">
+    <item android:title="User">
         <menu>
             <item
                 android:id="@+id/info_user"
                 android:icon="@drawable/ic_assignment_ind_black_24dp"
-                android:title="Thông tin tài khoản" />
+                android:title="Account Information" />
             <item
                 android:id="@+id/dangxuat"
                 android:icon="@drawable/ic_reply_black_24dp"
-                android:title="Đăng xuất" />
+                android:title="Log out" />
         </menu>
     </item>
 

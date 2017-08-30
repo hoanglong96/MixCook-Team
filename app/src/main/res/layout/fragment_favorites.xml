@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:textColor="#333"
             android:text="Bạn chưa có món ăn yêu thích"
             android:layout_centerInParent="true"
             android:textSize="20sp"

@@ -15,11 +15,11 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_avatar_user"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:scaleType="centerCrop"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/no_image"
         />
 
@@ -30,9 +30,8 @@
         android:layout_gravity="left"
         android:layout_below="@id/iv_avatar_user"
         android:layout_marginTop="7dp"
-        android:textSize="23sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingTop="10dp"
         android:fontFamily="sans-serif"
         android:textColor="#ffffff"
         android:layout_marginLeft="20dp"

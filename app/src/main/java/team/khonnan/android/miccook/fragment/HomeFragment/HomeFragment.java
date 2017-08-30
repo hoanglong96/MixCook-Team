@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment{
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new RecentFoodFragment(), "TOP FOOD");
+        adapter.addFragment(new TopFoodFragment(), "TOP FOOD");
         adapter.addFragment(new RecentFoodFragment(), "RECENT");
         adapter.addFragment(new CategoriesFragment(), "CATEGORIES");
         viewPager.setAdapter(adapter);

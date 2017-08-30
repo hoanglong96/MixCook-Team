@@ -50,6 +50,8 @@ import retrofit2.Response;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.HowAdapter;
 import team.khonnan.android.miccook.adapters.IngredientsAdapter;
+import team.khonnan.android.miccook.fragment.HomeFragment.HomeFragment;
+import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.apis.CreateNewFood;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.createFoodModels.CookModel;
@@ -393,6 +395,9 @@ public class FragmentNewRecipes extends Fragment {
 
         if (createSuccessful = false) {
             Toast.makeText(getContext(), "Create fail", Toast.LENGTH_SHORT).show();
+        }else{
+            Log.d("asf", "createNewFood: ");
+            ScreenManager.openFragment(getFragmentManager(),new HomeFragment(),R.id.drawer_layout);
         }
     }
 

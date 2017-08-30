@@ -1,7 +1,6 @@
 package team.khonnan.android.miccook.fragment.HomeFragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,9 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,10 +24,11 @@ import team.khonnan.android.miccook.adapters.NewRecipesAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
 import team.khonnan.android.miccook.fragment.DetailFood.FragmentDetailFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
-import team.khonnan.android.miccook.networks.apis.FoodApi;
+import team.khonnan.android.miccook.networks.apis.GetRecentFood;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.getFoodModels.CookModel;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
+import team.khonnan.android.miccook.networks.getFoodModels.GetFoodRespondModel;
 import team.khonnan.android.miccook.networks.getFoodModels.MaterialModel;
 
 import static com.facebook.login.widget.ProfilePictureView.TAG;
@@ -39,7 +42,7 @@ public class RecentFoodFragment extends Fragment {
     private RecyclerView rvRecentFood;
     private NewRecipesAdapter newRecipesAdapter;
 
-    List<FoodApi.FoodList> list = new ArrayList<>();
+    List<FoodModel> list = new ArrayList<>();
     List<FoodModel> recentFoods = new ArrayList<>();
 
     @Nullable
@@ -56,13 +59,12 @@ public class RecentFoodFragment extends Fragment {
     }
 
     private void loadData() {
-        RetrofitFactory retrofitFactory = new RetrofitFactory("http://mixcookteam.herokuapp.com/getFood/");
-        FoodApi service = retrofitFactory.create(FoodApi.class);
-        Call<FoodApi.Food> call = service.callFood();
-        call.enqueue(new Callback<FoodApi.Food>() {
+        final GetRecentFood getRecentFood = RetrofitFactory.getInstance().create(GetRecentFood.class);
+        getRecentFood.getRecentFood().enqueue(new Callback<GetFoodRespondModel>() {
+
             @Override
-            public void onResponse(@NonNull Call<FoodApi.Food> call, @NonNull Response<FoodApi.Food> response) {
-                list = response.body().getFoodList();
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                list = response.body().getFood();
 
                 for (int i = 0; i < list.size(); i++) {
                     FoodModel food = new FoodModel();
@@ -70,13 +72,13 @@ public class RecentFoodFragment extends Fragment {
                     food.setName(list.get(i).getName());
                     food.setAuthor(list.get(i).getAuthor());
                     food.setImageShow(list.get(i).getImageShow());
-                    food.setType(Integer.parseInt(list.get(i).getType()));
+                    food.setType(list.get(i).getType());
                     food.setTime(list.get(i).getTime());
                     food.setSets(list.get(i).getSets());
                     food.setLevel(list.get(i).getLevel());
                     food.setRating(list.get(i).getRating());
                     food.setRateNum(list.get(i).getRateNum());
-                    List<FoodApi.Material> materials = list.get(i).getMaterials();
+                    List<MaterialModel> materials = list.get(i).getMaterial();
                     RealmList<MaterialModel> materialList = new RealmList<>();
                     for (int j = 0; j < materials.size(); j++) {
                         MaterialModel material = new MaterialModel();
@@ -86,7 +88,7 @@ public class RecentFoodFragment extends Fragment {
                     }
                     food.setMaterial(materialList);
 
-                    List<FoodApi.Cook> cooks = list.get(i).getCooks();
+                    List<CookModel> cooks = list.get(i).getCook();
 
                     RealmList<CookModel> cookList = new RealmList<>();
                     for (int j = 0; j < cooks.size(); j++) {
@@ -98,18 +100,14 @@ public class RecentFoodFragment extends Fragment {
                     }
 
                     food.setCook(cookList);
-                    Log.d("ahihi", food.toString());
+                    Log.d("ahihi top food", food.toString());
                     recentFoods.add(food);
                     newRecipesAdapter.notifyDataSetChanged();
                 }
-//                EventBus.getDefault().post(new EventReady());
-                Log.d(TAG, "onResponse: " + recentFoods);
-
             }
 
             @Override
-            public void onFailure(@NonNull Call<FoodApi.Food> call, Throwable t) {
-                Log.d("No No ", t.toString());
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
 
             }
         });

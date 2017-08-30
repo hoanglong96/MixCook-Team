@@ -48,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name of the recipes"
+            android:textColorHint="#d2bfbf"
             android:id="@+id/et_name"
             android:layout_marginLeft="10dp"
             android:textSize="17sp"
@@ -164,6 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Main food"
+                    android:textColor="#333"
                     android:layout_gravity="center"
                     android:textSize="17sp"/>
             </LinearLayout>
@@ -182,6 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Breakfast"
+                    android:textColor="#333"
                     android:layout_gravity="center"
                     android:textSize="17sp"/>
             </LinearLayout>
@@ -208,6 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Snacks"
+                    android:textColor="#333"
                     android:layout_gravity="center"
                     android:textSize="17sp"/>
             </LinearLayout>
@@ -226,6 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cake"
+                    android:textColor="#333"
                     android:layout_gravity="center"
                     android:textSize="17sp"/>
             </LinearLayout>
@@ -247,6 +252,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Drink"
+                android:textColor="#333"
                 android:layout_gravity="center"
                 android:textSize="17sp"/>
         </LinearLayout>
@@ -287,6 +293,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="4"
+                android:textColor="#333"
                 android:id="@+id/tv_set"
                 android:textSize="40sp"/>
             <TextView
@@ -391,6 +398,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:textSize="17dp"
+                android:textColor="#333"
                 android:textStyle="bold"
                 android:text="Hard"/>
         </RelativeLayout>
@@ -588,8 +596,8 @@
             android:text="SEND RECIPE"
             android:id="@+id/btn_send_recipes"
             android:layout_gravity="center"
-            android:background="#68cc16"
-            android:textColor="@color/colorAccent"/>
+            android:background="@color/colorPrimary"
+            android:textColor="@color/textPrimary"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
 

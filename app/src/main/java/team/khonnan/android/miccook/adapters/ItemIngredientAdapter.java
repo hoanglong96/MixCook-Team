@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -56,34 +55,18 @@ public class ItemIngredientAdapter extends RecyclerView.Adapter<ItemIngredientAd
     public class IngredientViewHolder extends RecyclerView.ViewHolder {
         TextView soLuongNguyenLieu,tenNguyenLieu;
         View view;
-        private ImageView ivCheck;
-        private boolean isCheck;
 
         public IngredientViewHolder(View itemView) {
             super(itemView);
 
             soLuongNguyenLieu = itemView.findViewById(R.id.so_luong_nguyen_lieu);
             tenNguyenLieu = itemView.findViewById(R.id.name_nguyen_lieu);
-            ivCheck = itemView.findViewById(R.id.iv_check);
             view = itemView;
         }
 
         public void setData(MaterialModel materialModel) {
             soLuongNguyenLieu.setText(materialModel.getMatQuantum());
             tenNguyenLieu.setText(materialModel.getMatName());
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(isCheck){
-                        ivCheck.setImageResource(R.drawable.ic_check_black_24dp);
-                        isCheck = false;
-                    }else{
-                        ivCheck.setImageResource(R.drawable.ic_check);
-                        isCheck = true;
-                    }
-
-                }
-            });
         }
     }
 }
