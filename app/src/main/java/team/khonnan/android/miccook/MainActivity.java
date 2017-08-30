@@ -61,8 +61,9 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         String id = sharedPreferences.getString("id", "");
+        Log.d("MainActivityABCD", "onCreate: " + id);
         String name = sharedPreferences.getString("name", "");
-
+        Log.d("MainActivityABCD", "onCreate: " + name);
         View headerView = navigationView.getHeaderView(0);
         avatarUser = headerView.findViewById(R.id.iv_avatar_user);
         tvName = headerView.findViewById(R.id.tv_name_nav_header);

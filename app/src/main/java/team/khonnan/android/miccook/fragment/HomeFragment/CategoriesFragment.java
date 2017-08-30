@@ -89,19 +89,19 @@ public class CategoriesFragment extends Fragment {
 
     public void loadType(){
 
-        Type monBanh = new Type("Cake",R.drawable.monbanh1);
+        Type monBanh = new Type("Cake",R.drawable.cake);
         typeList.add(monBanh);
 
-        Type douong = new Type("Drink",R.drawable.douong_home);
+        Type douong = new Type("Drink",R.drawable.drink);
         typeList.add(douong);
 
-        Type monanvat = new Type("Snacks",R.drawable.anvat_home);
+        Type monanvat = new Type("Snacks",R.drawable.snack);
         typeList.add(monanvat);
 
-        Type monsang = new Type("Breakfast",R.drawable.ansang_home);
+        Type monsang = new Type("Breakfast",R.drawable.breakfast);
         typeList.add(monsang);
 
-        Type monchinh = new Type("Main dishes",R.drawable.monchinh_home);
+        Type monchinh = new Type("Main dishes",R.drawable.mainfood);
         typeList.add(monchinh);
 
     }

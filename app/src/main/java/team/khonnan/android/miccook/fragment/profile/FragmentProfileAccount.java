@@ -74,7 +74,7 @@ public class FragmentProfileAccount extends Fragment {
         ivProfileImage = view.findViewById(R.id.profile_image);
 
         if(userInfo != null) {
-            Picasso.with(getContext()).load("http://graph.facebook.com/" + userInfo.getIdFb()
+            Picasso.with(getContext()).load("https://graph.facebook.com/" + userInfo.getIdFb()
                     + "/picture?type=large").into(ivProfileImage);
             tvName.setText(userInfo.getNameFb());
             //tvLink.setText("fb.com/" + userInfo.getIdFb());

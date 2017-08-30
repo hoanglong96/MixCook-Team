@@ -2,6 +2,7 @@ package team.khonnan.android.miccook.fragment.NewRecipes;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -56,6 +57,7 @@ import team.khonnan.android.miccook.networks.createFoodModels.CreateFoodRequestM
 import team.khonnan.android.miccook.networks.createFoodModels.MaterialModel;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -64,7 +66,9 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class FragmentNewRecipes extends Fragment {
 
-    private String idFbUser = "1497";
+    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", MODE_PRIVATE);
+    String id = sharedPreferences.getString("id", "");
+    private String idFbUser = id;
 
     TextView tvSet,tvLevel,tvCategories;
     ImageView ivRecipes,ivEasy,ivMedium,ivHard,btnAddIngredients,btnAddHow;
@@ -118,6 +122,8 @@ public class FragmentNewRecipes extends Fragment {
             }
         });
 
+        Log.d("new recipes", "onCreateView: " + idFbUser);
+
         setupUI(view);
         seekBar();
         checkBox();
@@ -138,6 +144,7 @@ public class FragmentNewRecipes extends Fragment {
                 adapterIngredients.notifyDataSetChanged();
 
                 etIngredients.setText("");
+                etQuantum.setText("");
             }
         });
 
@@ -479,9 +486,9 @@ public class FragmentNewRecipes extends Fragment {
         Date currentTime = Calendar.getInstance().getTime();
         String time = calendar.get(Calendar.YEAR) + "" + calendar.get(Calendar.MONTH) + "" + calendar.get(Calendar.DATE)
                 + "" + currentTime.getHours() + "" + currentTime.getMinutes() + "" + currentTime.getSeconds();
-        nameOfImage = "1497" + time;
+        nameOfImage = idFbUser + time;
         cloudinary.url()
-                .transformation(new Transformation().width(100).height(150).crop("fill"))
+                .transformation(new Transformation().width(500).height(500).crop("fill"))
                 .generate(nameOfImage + ".jpg");
         try {
 //                InputStream inputStream = getContentResolver().openInputStream(path);

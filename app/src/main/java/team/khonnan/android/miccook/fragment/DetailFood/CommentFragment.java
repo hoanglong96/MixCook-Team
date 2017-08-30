@@ -1,8 +1,11 @@
 package team.khonnan.android.miccook.fragment.DetailFood;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +26,14 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import team.khonnan.android.miccook.R;
+import team.khonnan.android.miccook.adapters.CommentAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
 import team.khonnan.android.miccook.firebases.CommentModel;
 import team.khonnan.android.miccook.firebases.DataModel;
@@ -38,6 +45,8 @@ import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.facebook.FacebookSdk.getApplicationContext;
 import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
@@ -49,12 +58,23 @@ public class CommentFragment extends Fragment {
     LinearLayout lnRating;
     EditText etComment;
     ImageView ivSend;
+    LinearLayout lnSend;
+    List<CommentModel> commentModelList = new ArrayList<>();
+    List<CommentModel> comments = new ArrayList<>();
 
+    RecyclerView rvComment ;
+    CommentAdapter commentAdapter;
 
     private FirebaseDatabase firebaseDatabase;
     private FirebaseMessaging firebaseMessaging;
 
-    String userID = "790895201087922";
+
+    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", MODE_PRIVATE);
+    String id = sharedPreferences.getString("id", "");
+    String name = sharedPreferences.getString("name", "");
+    String userID = id;
+    String userName = name;
+
 
     @Nullable
     @Override
@@ -91,13 +111,15 @@ public class CommentFragment extends Fragment {
 
         etComment = view.findViewById(R.id.et_comment);
         ivSend = view.findViewById(R.id.iv_send_comment);
-        ivSend.setOnClickListener(new View.OnClickListener() {
+        lnSend = view.findViewById(R.id.send);
+        lnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendChat();
             }
         });
         lnRating = view.findViewById(R.id.ln_rating);
+        rvComment = view.findViewById(R.id.rv_comment);
         RatingBar ratingBar = lnRating.findViewById(R.id.rb_inner);
         ratingBar.setRating(foodModel.getRating());
         lnRating.setOnClickListener(new View.OnClickListener() {
@@ -107,16 +129,19 @@ public class CommentFragment extends Fragment {
                 Log.d(TAG, "onClick: Click rating");
             }
         });
+
+        Log.d(TAG, "setupUI: " + comments);
     }
 
 
     private void sendChat() {
-        CommentModel commentModel = new CommentModel(etComment.getText().toString(), userID);
+        CommentModel commentModel = new CommentModel(etComment.getText().toString(), userID,userName);
+        etComment.setText("");
         DatabaseReference databaseReference = firebaseDatabase.getReference(foodModel.get_id());
         databaseReference.push().setValue(commentModel);
 
         DataModel dataModel = new DataModel("/tungthanh.1497");
-        NotificationModel notificationModel = new NotificationModel(userID);
+        NotificationModel notificationModel = new NotificationModel(userName);
         NotiRequestModel notiRequestModel = new NotiRequestModel(foodModel.get_id(),
                 notificationModel, dataModel);
 
@@ -142,16 +167,30 @@ public class CommentFragment extends Fragment {
     }
 
     public void getLogs() {
+        final CommentModel[] commentModel = new CommentModel[1];
         DatabaseReference databaseReference = firebaseDatabase.getReference(foodModel.get_id());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
-                    CommentModel commentModel = recipeSnapshot.getValue(CommentModel.class);
+                     commentModel[0] = recipeSnapshot.getValue(CommentModel.class);
                     //TODO: Moi vong lap la 1 comment
-                    Log.d(TAG, "onDataChange: " + commentModel);
+                    Log.d(TAG, "onDataChange: " + commentModel[0]);
+                    commentModelList.add(commentModel[0]);
                 }
                 Log.d(TAG, "onDataChange: ===============================================");
+                Log.d(TAG, "onDataChange: " + commentModelList);
+
+
+                commentAdapter = new CommentAdapter(commentModelList,getContext());
+                GridLayoutManager gridLayoutManager = new GridLayoutManager
+                        (getContext(), 1, GridLayoutManager.VERTICAL, false);
+                rvComment.setLayoutManager(gridLayoutManager);
+                rvComment.hasFixedSize();
+                rvComment.setAdapter(commentAdapter);
+                commentAdapter.notifyDataSetChanged();
+
+
             }
 
             @Override

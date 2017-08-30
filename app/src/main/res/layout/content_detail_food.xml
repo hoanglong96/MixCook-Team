@@ -24,7 +24,8 @@
             app:tabMode="fixed"
             app:tabGravity="fill"
             app:tabTextColor="@color/icon_unselected"
-            app:tabSelectedTextColor="@color/icon_selected"/>
+            app:tabSelectedTextColor="@color/icon_selected"
+            app:tabIndicatorColor="@color/textPrimary"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"

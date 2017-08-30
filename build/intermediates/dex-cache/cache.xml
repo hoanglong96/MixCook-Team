@@ -3,30 +3,30 @@
 
     <item
         is-multidex="true"
-        jar="E:\Documents\Github\Android9-Hackathon3\MixCook-Team\app\libs\PhotoUtil.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="caf49e92eae4ca2805d530a92cb4777c1ef53f53">
-        <dex dex="E:\Documents\Github\Android9-Hackathon3\MixCook-Team\app\build\intermediates\transforms\dex\debug\folders\1000\2\PhotoUtil_8914cdde5a5943df2d81924f093394593a5dc746\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\Documents\Github\Android9-Hackathon3\MixCook-Team\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="cacfa9a0a25f6c9e3bab22feb47f799671d1afb8">
-        <dex dex="E:\Documents\Github\Android9-Hackathon3\MixCook-Team\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_6fbd3e95c0bbee2641981b4288e65ad92f000958\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\Documents\Github\Android9-Hackathon3\MixCook-Team\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="E:\Documents\Github\Android9-Hackathon3\MixCook-Team\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3ae71a70e0db56de27a915883a1ef401f8260b95\classes.dex" />
+        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0203bfec7a4d4d80be3a9e03dba6f2e09c7ed3fb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="29c6c24ec74524c6514d1c81efc3e5469ce1048b">
+        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1748e70cf32d44592eb80de293ec0b126598185b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/GitHub/MixCook-Team/app/libs/PhotoUtil.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="caf49e92eae4ca2805d530a92cb4777c1ef53f53">
+        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/2/PhotoUtil_cabf660d8bd83499aa9cd8af5681b5188e076b41/classes.dex" />
     </item>
 
 </items>
