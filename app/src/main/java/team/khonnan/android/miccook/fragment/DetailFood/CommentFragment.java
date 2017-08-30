@@ -172,6 +172,7 @@ public class CommentFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                commentModelList = new ArrayList<CommentModel>();
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                      commentModel[0] = recipeSnapshot.getValue(CommentModel.class);
                     //TODO: Moi vong lap la 1 comment

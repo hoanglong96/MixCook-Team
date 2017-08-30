@@ -52,10 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
 
 
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+
 
                 GraphRequest request = GraphRequest.newMeRequest(
                         AccessToken.getCurrentAccessToken(),
@@ -64,10 +61,10 @@ public class LoginActivity extends AppCompatActivity {
                             public void onCompleted(JSONObject object,
                                                     GraphResponse response) {
                                 // Application code
-                                Log.d("hihi", "name : "  + object.optString("name"));
+                                Log.d("hihi", "name : " + object.optString("name"));
                                 Log.d("hihi", "id : " + object.optString("id"));
-                                Log.d("hihi", "email : "  + object.optString("email"));
-                                userInfo  = new UserInfo();
+                                Log.d("hihi", "email : " + object.optString("email"));
+                                userInfo = new UserInfo();
                                 userInfo.setNameFb(object.optString("name"));
                                 userInfo.setIdFb(object.optString("id"));
                                 userInfo.setEmailFb(object.optString("email"));
@@ -76,14 +73,19 @@ public class LoginActivity extends AppCompatActivity {
                                 userInfo.setRatePoint(0);
                                 userInfo.setRateNum(0);
 
-                                sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+                                sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
                                 SharedPreferences.Editor editor1 = sharedPreferences.edit();
-                                editor1.putString("id",object.optString("id"));
-                                editor1.putString("name",object.optString("name"));
-                                editor1.putString("email",object.optString("email"));
-                                editor1.putString("avatar","http://graph.facebook.com/" + object.optString("id")
+                                editor1.putString("id", object.optString("id"));
+                                editor1.putString("name", object.optString("name"));
+                                editor1.putString("email", object.optString("email"));
+                                editor1.putString("avatar", "http://graph.facebook.com/" + object.optString("id")
                                         + "/picture?type=large");
                                 editor1.commit();
+
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                finish();
 
                                 Log.d("Share", "onCompleted: " + object.optString("id"));
                                 final CreateUser createUser = RetrofitFactory.getInstance().create(CreateUser.class);
@@ -103,14 +105,16 @@ public class LoginActivity extends AppCompatActivity {
                         });
                 isLogin = true;
 
-                sharedPreferences = getSharedPreferences("checkLogin",MODE_PRIVATE);
+                sharedPreferences = getSharedPreferences("checkLogin", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("isLogin",isLogin);
+                editor.putBoolean("isLogin", isLogin);
                 editor.commit();
 
-               if(userInfo != null){
+                if (userInfo != null) {
                     EventBus.getDefault().postSticky(new EventUser(userInfo));
                 }
+
+
 
 
                 Bundle parameters = new Bundle();
@@ -151,7 +155,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,10 +162,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginFaceBook() {
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends","email", "user_birthday"));
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends", "email", "user_birthday"));
     }
 
-    public void initFaceBook () {
+    public void initFaceBook() {
         loginResult = new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -174,10 +177,10 @@ public class LoginActivity extends AppCompatActivity {
                             public void onCompleted(JSONObject object,
                                                     GraphResponse response) {
                                 // Application code
-                                Log.d("hihi", "name : "  + object.optString("name"));
+                                Log.d("hihi", "name : " + object.optString("name"));
                                 Log.d("hihi", "id : " + object.optString("id"));
-                                Log.d("hihi", "email : "  + object.optString("email"));
-                                userInfo  = new UserInfo();
+                                Log.d("hihi", "email : " + object.optString("email"));
+                                userInfo = new UserInfo();
                                 userInfo.setNameFb(object.optString("name"));
                                 userInfo.setIdFb(object.optString("id"));
                                 userInfo.setEmailFb(object.optString("email"));
@@ -186,12 +189,12 @@ public class LoginActivity extends AppCompatActivity {
                                 userInfo.setRatePoint(0);
                                 userInfo.setRateNum(0);
 
-                                sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+                                sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
                                 SharedPreferences.Editor editor1 = sharedPreferences.edit();
-                                editor1.putString("id",object.optString("id"));
-                                editor1.putString("name",object.optString("name"));
-                                editor1.putString("email",object.optString("email"));
-                                editor1.putString("avatar","http://graph.facebook.com/" + object.optString("id")
+                                editor1.putString("id", object.optString("id"));
+                                editor1.putString("name", object.optString("name"));
+                                editor1.putString("email", object.optString("email"));
+                                editor1.putString("avatar", "http://graph.facebook.com/" + object.optString("id")
                                         + "/picture?type=large");
                                 editor1.commit();
 
@@ -213,18 +216,16 @@ public class LoginActivity extends AppCompatActivity {
                         });
                 isLogin = true;
 
-                sharedPreferences = getSharedPreferences("checkLogin",MODE_PRIVATE);
+                sharedPreferences = getSharedPreferences("checkLogin", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("isLogin",isLogin);
+                editor.putBoolean("isLogin", isLogin);
                 editor.commit();
-
 
 
                 Bundle parameters = new Bundle();
                 parameters.putString("fields", "name,email,first_name");
                 request.setParameters(parameters);
                 request.executeAsync();
-
 
 
             }
