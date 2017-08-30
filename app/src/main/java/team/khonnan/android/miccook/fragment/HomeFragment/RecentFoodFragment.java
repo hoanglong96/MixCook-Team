@@ -56,7 +56,7 @@ public class RecentFoodFragment extends Fragment {
     }
 
     private void loadData() {
-        RetrofitFactory retrofitFactory = new RetrofitFactory("http://cookmix.herokuapp.com/getFood/");
+        RetrofitFactory retrofitFactory = new RetrofitFactory("http://mixcookteam.herokuapp.com/getFood/");
         FoodApi service = retrofitFactory.create(FoodApi.class);
         Call<FoodApi.Food> call = service.callFood();
         call.enqueue(new Callback<FoodApi.Food>() {

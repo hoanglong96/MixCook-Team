@@ -2,8 +2,12 @@ package team.khonnan.android.miccook;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 
 import com.facebook.AccessToken;
@@ -21,6 +25,8 @@ import com.facebook.login.widget.LoginButton;
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import retrofit2.Call;
@@ -46,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         AppEventsLogger.activateApp(this);
+        checkKeyhash();
         LoginButton loginButton = (LoginButton) findViewById(R.id.rl_login);
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -240,5 +247,23 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         };
+    }
+    public void checkKeyhash(){
+        try {
+            PackageInfo packageInfo = null;
+            try {
+                packageInfo = getPackageManager().getPackageInfo("team.khonnan.android.miccook", PackageManager.GET_SIGNATURES);
+
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            for (Signature signature : packageInfo.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("ahih", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (NoSuchAlgorithmException e){
+
+        }
     }
 }

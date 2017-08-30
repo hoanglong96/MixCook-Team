@@ -12,7 +12,7 @@ import retrofit2.http.GET;
  */
 
 public interface FoodApi {
-    @GET("http://cookmix.herokuapp.com/getFood")
+    @GET("/getFood")
     Call<Food> callFood();
     class Food{
         @SerializedName("food")

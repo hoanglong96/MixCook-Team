@@ -366,7 +366,7 @@ public class FragmentNewRecipes extends Fragment {
         new UploadImage().execute();
         while (!success) {
         }
-        String imageShow = "http://res.cloudinary.com/ddrpge3lm/image/upload/" + nameOfImage + ".jpg";
+        String imageShow = "http://res.cloudinary.com/ddrpge3lm/image/upload/w_300,c_scale/" + nameOfImage + ".jpg";
         if (name.length() == 0 || author.length() == 0 || imageShow.length() == 0
                 || time.equals(" phút") || sets <= 0 || listIngredients.size() == 0 || listHow.size() == 0)
             createSuccessful = false;
@@ -488,7 +488,7 @@ public class FragmentNewRecipes extends Fragment {
                 + "" + currentTime.getHours() + "" + currentTime.getMinutes() + "" + currentTime.getSeconds();
         nameOfImage = idFbUser + time;
         cloudinary.url()
-                .transformation(new Transformation().width(500).height(500).crop("fill"))
+                .transformation(new Transformation().width(300).crop("fill"))
                 .generate(nameOfImage + ".jpg");
         try {
 //                InputStream inputStream = getContentResolver().openInputStream(path);
