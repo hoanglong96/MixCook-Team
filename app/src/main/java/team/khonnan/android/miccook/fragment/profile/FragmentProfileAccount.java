@@ -22,9 +22,17 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.event.EventUser;
 import team.khonnan.android.miccook.model.UserInfo;
+import team.khonnan.android.miccook.networks.apis.GetFoodByUser;
+import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
+import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
+import team.khonnan.android.miccook.networks.getFoodModels.GetFoodRespondModel;
 
 import static com.facebook.login.widget.ProfilePictureView.TAG;
 
@@ -35,7 +43,7 @@ public class FragmentProfileAccount extends Fragment {
 
 
     SharedPreferences sharedPreferences;
-    String name,link,avatar,id;
+    String name, link, avatar, id;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -54,8 +62,8 @@ public class FragmentProfileAccount extends Fragment {
     }
 
     @Subscribe(sticky = true)
-    public void receiveInfo(EventUser eventUser){
-            this.userInfo = eventUser.getUserInfo();
+    public void receiveInfo(EventUser eventUser) {
+        this.userInfo = eventUser.getUserInfo();
     }
 
     @Override
@@ -65,6 +73,7 @@ public class FragmentProfileAccount extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_account, container, false);
         EventBus.getDefault().register(this);
         setupUI(view);
+        getUserFood();
         return view;
     }
 
@@ -73,18 +82,18 @@ public class FragmentProfileAccount extends Fragment {
         tvName = view.findViewById(R.id.name_user);
         ivProfileImage = view.findViewById(R.id.profile_image);
 
-        if(userInfo != null) {
+        if (userInfo != null) {
             Picasso.with(getContext()).load("https://graph.facebook.com/" + userInfo.getIdFb()
                     + "/picture?type=large").into(ivProfileImage);
             tvName.setText(userInfo.getNameFb());
             //tvLink.setText("fb.com/" + userInfo.getIdFb());
-        }else{
+        } else {
 
             //get sharePreference
             sharedPreferences = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-            name = sharedPreferences.getString("name","");
-            id = sharedPreferences.getString("id","");
-            avatar = sharedPreferences.getString("avatar","");
+            name = sharedPreferences.getString("name", "");
+            id = sharedPreferences.getString("id", "");
+            avatar = sharedPreferences.getString("avatar", "");
 
             Log.d("id", "setupUI: " + id);
 
@@ -149,5 +158,30 @@ public class FragmentProfileAccount extends Fragment {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+
+    List<FoodModel> foodModelList;
+    private static final String TAG = "FragmentProfileAccount";
+    void getUserFood() {
+        foodModelList = new ArrayList<>();
+        final GetFoodByUser getFoodByUser = RetrofitFactory.getInstance().create(GetFoodByUser.class);
+        getFoodByUser.getFoodByUser(sharedPreferences.getString("id", "")).enqueue(new Callback<GetFoodRespondModel>() {
+
+
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                List<FoodModel> list = response.body().getFood();
+                for (FoodModel foodModel : list) {
+                    foodModelList.add(foodModel);
+                }
+                Log.d(TAG, "foodModelList: "+foodModelList);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+
+            }
+        });
     }
 }

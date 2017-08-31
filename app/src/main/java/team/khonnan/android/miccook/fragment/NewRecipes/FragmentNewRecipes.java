@@ -72,13 +72,13 @@ public class FragmentNewRecipes extends Fragment {
     String id = sharedPreferences.getString("id", "");
     private String idFbUser = id;
 
-    TextView tvSet,tvLevel,tvCategories;
-    ImageView ivRecipes,ivEasy,ivMedium,ivHard,btnAddIngredients,btnAddHow;
+    TextView tvSet, tvLevel, tvCategories;
+    ImageView ivRecipes, ivEasy, ivMedium, ivHard, btnAddIngredients, btnAddHow;
     ImageView ivChooseImage;
-    CheckBox cbMainFood,cbBreakfast,cbSnacks,cbCake,cbDrink;
+    CheckBox cbMainFood, cbBreakfast, cbSnacks, cbCake, cbDrink;
     SeekBar sbSet;
     SeekBar sbLevel;
-    EditText etNameRecipes,etIngredients,etTimeCook,etHow,etQuantum;
+    EditText etNameRecipes, etIngredients, etTimeCook, etHow, etQuantum;
     Button btnSendRecipes;
 
     List<MaterialModel> listIngredients = new ArrayList<>();
@@ -131,8 +131,8 @@ public class FragmentNewRecipes extends Fragment {
         checkBox();
 
         //RecycleView Ingredients
-        adapterIngredients = new IngredientsAdapter(listIngredients,getApplicationContext());
-        rvIngredients.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,true));
+        adapterIngredients = new IngredientsAdapter(listIngredients, getApplicationContext());
+        rvIngredients.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, true));
         rvIngredients.setAdapter(adapterIngredients);
         adapterIngredients.notifyDataSetChanged();
 
@@ -140,7 +140,7 @@ public class FragmentNewRecipes extends Fragment {
         btnAddIngredients.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ingredientsModel = new MaterialModel(etIngredients.getText().toString(),etQuantum.getText().toString());
+                ingredientsModel = new MaterialModel(etIngredients.getText().toString(), etQuantum.getText().toString());
                 listIngredients.add(ingredientsModel);
                 Log.d("abc", "onClick: " + ingredientsModel);
                 adapterIngredients.notifyDataSetChanged();
@@ -151,8 +151,8 @@ public class FragmentNewRecipes extends Fragment {
         });
 
         //RecycleView How
-        howAdapter = new HowAdapter(listHow,getApplicationContext());
-        rvHow.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,true));
+        howAdapter = new HowAdapter(listHow, getApplicationContext());
+        rvHow.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, true));
         rvHow.setAdapter(howAdapter);
         howAdapter.notifyDataSetChanged();
 
@@ -185,7 +185,7 @@ public class FragmentNewRecipes extends Fragment {
         return view;
     }
 
-    public void setupUI(View view){
+    public void setupUI(View view) {
         tvSet = (TextView) view.findViewById(R.id.tv_set);
         tvLevel = (TextView) view.findViewById(R.id.tv_level);
         tvCategories = (TextView) view.findViewById(R.id.tv_categories);
@@ -201,7 +201,7 @@ public class FragmentNewRecipes extends Fragment {
         ivChooseImage = (ImageView) view.findViewById(R.id.choose_image);
 
         cbMainFood = (CheckBox) view.findViewById(R.id.cb_mainfood);
-        cbBreakfast= (CheckBox) view.findViewById(R.id.cb_breakfast);
+        cbBreakfast = (CheckBox) view.findViewById(R.id.cb_breakfast);
         cbSnacks = (CheckBox) view.findViewById(R.id.cb_snack);
         cbCake = (CheckBox) view.findViewById(R.id.cb_cake);
         cbDrink = (CheckBox) view.findViewById(R.id.cb_drink);
@@ -221,7 +221,7 @@ public class FragmentNewRecipes extends Fragment {
         rvHow = (RecyclerView) view.findViewById(R.id.lv_how);
     }
 
-    public void seekBar(){
+    public void seekBar() {
 
         //seekbar set
         sbSet.setMax(12);
@@ -263,15 +263,15 @@ public class FragmentNewRecipes extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if(progressLevel[0] == 1){
+                if (progressLevel[0] == 1) {
                     tvLevel.setText("Easy");
                     ivMedium.setVisibility(View.GONE);
                     ivHard.setVisibility(View.GONE);
-                }else if(progressLevel[0] == 2){
+                } else if (progressLevel[0] == 2) {
                     tvLevel.setText("Medium");
                     ivHard.setVisibility(View.GONE);
                     ivMedium.setVisibility(View.VISIBLE);
-                }else if(progressLevel[0] == 3 ){
+                } else if (progressLevel[0] == 3) {
                     tvLevel.setText("Hard");
                     ivHard.setVisibility(View.VISIBLE);
                 }
@@ -279,12 +279,12 @@ public class FragmentNewRecipes extends Fragment {
         });
     }
 
-    public void checkBox(){
+    public void checkBox() {
 
         cbMainFood.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isCheck) {
-                if(isCheck){
+                if (isCheck) {
                     Toast.makeText(getApplicationContext(), "Main Food", Toast.LENGTH_SHORT).show();
                     tvCategories.setText("Main Food");
                 }
@@ -294,7 +294,7 @@ public class FragmentNewRecipes extends Fragment {
         cbBreakfast.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isCheck) {
-                if(isCheck){
+                if (isCheck) {
                     Toast.makeText(getApplicationContext(), "Breakfast", Toast.LENGTH_SHORT).show();
                     tvCategories.setText("Breakfast");
                 }
@@ -304,7 +304,7 @@ public class FragmentNewRecipes extends Fragment {
         cbSnacks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isCheck) {
-                if(isCheck){
+                if (isCheck) {
                     Toast.makeText(getApplicationContext(), "Snacks", Toast.LENGTH_SHORT).show();
                     tvCategories.setText("Snacks");
                 }
@@ -314,7 +314,7 @@ public class FragmentNewRecipes extends Fragment {
         cbDrink.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isCheck) {
-                if(isCheck){
+                if (isCheck) {
                     Toast.makeText(getApplicationContext(), "Drink", Toast.LENGTH_SHORT).show();
                     tvCategories.setText("Drink");
                 }
@@ -324,7 +324,7 @@ public class FragmentNewRecipes extends Fragment {
         cbCake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isCheck) {
-                if(isCheck){
+                if (isCheck) {
                     Toast.makeText(getApplicationContext(), "Cake", Toast.LENGTH_SHORT).show();
                     tvCategories.setText("Cake");
                 }
@@ -332,8 +332,6 @@ public class FragmentNewRecipes extends Fragment {
         });
 
     }
-
-
 
 
     private void createNewFood() {
@@ -346,15 +344,15 @@ public class FragmentNewRecipes extends Fragment {
         String categories = tvCategories.getText().toString();
         int type = 0;
 
-        if(categories.equals("Main Food")){
+        if (categories.equals("Main Food")) {
             type = 1;
-        }else if(categories.equals("Breakfast")){
+        } else if (categories.equals("Breakfast")) {
             type = 2;
-        }else if(categories.equals("Snacks")){
+        } else if (categories.equals("Snacks")) {
             type = 3;
-        }else if(categories.equals("Cake")){
+        } else if (categories.equals("Cake")) {
             type = 4;
-        }else if(categories.equals("Drink")){
+        } else if (categories.equals("Drink")) {
             type = 5;
         }
 
@@ -395,9 +393,9 @@ public class FragmentNewRecipes extends Fragment {
 
         if (createSuccessful = false) {
             Toast.makeText(getContext(), "Create fail", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Log.d("asf", "createNewFood: ");
-            ScreenManager.openFragment(getFragmentManager(),new HomeFragment(),R.id.drawer_layout);
+            ScreenManager.openFragment(getFragmentManager(), new HomeFragment(), R.id.drawer_layout);
         }
     }
 
