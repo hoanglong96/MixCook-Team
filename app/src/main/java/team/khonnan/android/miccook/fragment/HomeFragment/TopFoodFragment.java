@@ -22,7 +22,7 @@ import retrofit2.Response;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.NewRecipesAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
-import team.khonnan.android.miccook.fragment.DetailFood.FragmentDetailFood;
+import team.khonnan.android.miccook.fragment.DetailFoodFragment.FragmentDetailFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.apis.GetTopFood;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;

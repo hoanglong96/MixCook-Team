@@ -22,7 +22,7 @@ import retrofit2.Response;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.NewRecipesAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
-import team.khonnan.android.miccook.fragment.DetailFood.FragmentDetailFood;
+import team.khonnan.android.miccook.fragment.DetailFoodFragment.FragmentDetailFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.apis.GetRecentFood;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
@@ -44,6 +44,7 @@ public class RecentFoodFragment extends Fragment {
 
     List<FoodModel> list = new ArrayList<>();
     List<FoodModel> recentFoods = new ArrayList<>();
+    List<FoodModel> lastFood = new ArrayList<>();
 
     @Nullable
     @Override
@@ -66,7 +67,7 @@ public class RecentFoodFragment extends Fragment {
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 list = response.body().getFood();
 
-                for (int i = 0; i < list.size(); i++) {
+                for (int i = list.size()-1; i >= 0; i--) {
                     FoodModel food = new FoodModel();
                     food.set_id(list.get(i).get_id());
                     food.setName(list.get(i).getName());
@@ -100,7 +101,7 @@ public class RecentFoodFragment extends Fragment {
                     }
 
                     food.setCook(cookList);
-                    Log.d("ahihi top food", food.toString());
+                    Log.d("ahihi recent food", food.toString());
                     recentFoods.add(food);
                     newRecipesAdapter.notifyDataSetChanged();
                 }
@@ -112,7 +113,6 @@ public class RecentFoodFragment extends Fragment {
             }
         });
 
-        Log.d(TAG, "loadDataABC: " + recentFoods);
 
         newRecipesAdapter = new NewRecipesAdapter(recentFoods,getContext());
         GridLayoutManager gridLayoutManager = new GridLayoutManager

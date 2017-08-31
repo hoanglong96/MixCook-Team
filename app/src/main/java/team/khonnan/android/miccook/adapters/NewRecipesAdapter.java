@@ -72,7 +72,10 @@ public class NewRecipesAdapter extends RecyclerView.Adapter<NewRecipesAdapter.Ne
         public void setData(FoodModel foodModel){
             Picasso.with(context).load(foodModel.getImageShow()).resize(500,500).into(ivNewRecipes);
             tvName.setText(foodModel.getName());
-            tvTimeCook.setText(foodModel.getTime());
+
+            String[] time = foodModel.getTime().split(" ");
+
+            tvTimeCook.setText(time[0] + " min");
             view.setTag(foodModel);
         }
     }

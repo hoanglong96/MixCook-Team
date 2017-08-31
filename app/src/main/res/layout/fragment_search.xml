@@ -10,22 +10,6 @@
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
         android:layout_height="50dp"/>
-    <!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="50dp">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/tv_title"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="Search by name of Foods"-->
-            <!--android:textColor="#fff"-->
-            <!--android:textSize="24sp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:paddingLeft="16dp"-->
-            <!--android:layout_centerVertical="true"/>-->
-    <!--</RelativeLayout>-->
     <android.support.v7.widget.SearchView
         android:id="@+id/sv_search"
         android:layout_width="match_parent"
@@ -34,13 +18,13 @@
         android:layout_alignParentRight="true"
         app:theme="@style/AppTheme.Toolbar"
         android:gravity="right"
-        android:iconifiedByDefault="true"></android.support.v7.widget.SearchView>
-
-    <TextView
-        android:id="@+id/tv_text"
-        android:layout_width="wrap_content"
+        app:iconifiedByDefault="false"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/sv_search"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="What you search will be here"
-        android:textColor="#fff" />
+        android:id="@+id/rv_result_search"/>
+
 </RelativeLayout>

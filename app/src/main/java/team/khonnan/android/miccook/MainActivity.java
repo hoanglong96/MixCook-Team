@@ -30,10 +30,10 @@ import java.util.HashMap;
 
 import team.khonnan.android.miccook.fragment.FragmentFavorites;
 import team.khonnan.android.miccook.fragment.HomeFragment.HomeFragment;
-import team.khonnan.android.miccook.fragment.NewRecipes.FragmentNewRecipes;
+import team.khonnan.android.miccook.fragment.NewRecipesFragment.FragmentNewRecipes;
 import team.khonnan.android.miccook.fragment.SearchFragment;
-import team.khonnan.android.miccook.fragment.Shop.FragmentShopping;
-import team.khonnan.android.miccook.fragment.profile.FragmentProfileAccount;
+import team.khonnan.android.miccook.fragment.ShopFragment.FragmentShopping;
+import team.khonnan.android.miccook.fragment.ProfileFragment.FragmentProfileAccount;
 import team.khonnan.android.miccook.managers.ScreenManager;
 
 public class MainActivity extends AppCompatActivity

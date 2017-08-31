@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.FoodAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
-import team.khonnan.android.miccook.fragment.DetailFood.FragmentDetailFood;
+import team.khonnan.android.miccook.fragment.DetailFoodFragment.FragmentDetailFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
