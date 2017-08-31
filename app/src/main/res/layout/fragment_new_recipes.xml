@@ -292,7 +292,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="4"
+                android:text="1"
                 android:textColor="#333"
                 android:id="@+id/tv_set"
                 android:textSize="40sp"/>
@@ -381,10 +381,12 @@
                     android:layout_height="24dp"
                     android:src="@drawable/level"
                     android:id="@+id/iv_medium"
+                    android:visibility="gone"
                     android:layout_gravity="center"/>
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:visibility="gone"
                     android:id="@+id/iv_hard"
                     android:src="@drawable/level"
                     android:layout_gravity="center"/>
@@ -400,7 +402,7 @@
                 android:textSize="17dp"
                 android:textColor="#333"
                 android:textStyle="bold"
-                android:text="Hard"/>
+                android:text="Easy"/>
         </RelativeLayout>
         <SeekBar
             android:layout_width="match_parent"
@@ -448,7 +450,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_black_24dp"
+                android:src="@drawable/ic_check_black_24dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/add_list_ingredients"/>
             <EditText
@@ -561,7 +563,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_black_24dp"
+                android:src="@drawable/ic_check_black_24dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/add_list_how"/>
             <EditText

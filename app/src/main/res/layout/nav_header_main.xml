@@ -10,7 +10,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="#a4604343"
         android:background="@drawable/nav"/>
 
     <de.hdodenhof.circleimageview.CircleImageView

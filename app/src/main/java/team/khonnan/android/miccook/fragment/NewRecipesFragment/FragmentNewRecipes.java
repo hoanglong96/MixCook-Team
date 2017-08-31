@@ -224,13 +224,14 @@ public class FragmentNewRecipes extends Fragment {
     public void seekBar() {
 
         //seekbar set
-        sbSet.setMax(12);
-        final int min = 0;
+        sbSet.setMax(11);
+        final int min = 1;
         final int[] progress = new int[1];
         sbSet.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 progress[0] = min + i;
+                tvSet.setText(String.valueOf(progress[0]));
             }
 
             @Override
@@ -240,14 +241,14 @@ public class FragmentNewRecipes extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                tvSet.setText(String.valueOf(progress[0]));
+//                tvSet.setText(String.valueOf(progress[0]));
                 Log.d("abc", "onProgressChanged: " + sbSet.getProgress());
                 Log.d("abc", "onStopTrackingTouch: " + progress[0]);
             }
         });
 
         //seekbar level
-        sbLevel.setMax(3);
+        sbLevel.setMax(2);
         final int minLevel = 0;
         final int[] progressLevel = new int[1];
         sbLevel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -263,15 +264,15 @@ public class FragmentNewRecipes extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if (progressLevel[0] == 1) {
+                if (progressLevel[0] == 0) {
                     tvLevel.setText("Easy");
                     ivMedium.setVisibility(View.GONE);
                     ivHard.setVisibility(View.GONE);
-                } else if (progressLevel[0] == 2) {
+                } else if (progressLevel[0] == 1) {
                     tvLevel.setText("Medium");
                     ivHard.setVisibility(View.GONE);
                     ivMedium.setVisibility(View.VISIBLE);
-                } else if (progressLevel[0] == 3) {
+                } else if (progressLevel[0] == 2) {
                     tvLevel.setText("Hard");
                     ivHard.setVisibility(View.VISIBLE);
                 }
