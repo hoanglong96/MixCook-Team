@@ -1,6 +1,5 @@
 package team.khonnan.android.miccook.networks.getFoodModels;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +10,7 @@ public class FoodModel {
     private String _id;
     private String name;
     private String author;
+    private String authorName;
     private String imageShow;
     private int type;
     private String time;
@@ -24,23 +24,13 @@ public class FoodModel {
 
     private List<String> listRate;
 
-    public List<String> getListRate() {
-        return listRate;
-    }
-
-    public void setListRate(List<String> listRate) {
-        this.listRate = listRate;
-    }
-
-    public FoodModel() {
-    }
-
     @Override
     public String toString() {
         return "FoodModel{" +
                 "_id='" + _id + '\'' +
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
+                ", authorName='" + authorName + '\'' +
                 ", imageShow='" + imageShow + '\'' +
                 ", type=" + type +
                 ", time='" + time + '\'' +
@@ -50,23 +40,8 @@ public class FoodModel {
                 ", rateNum=" + rateNum +
                 ", cook=" + cook +
                 ", material=" + material +
+                ", listRate=" + listRate +
                 '}';
-    }
-
-
-    public FoodModel(String _id, String name, String author, String imageShow, int type, String time, int sets, String level, float rating, int rateNum, List<CookModel> cook, List<MaterialModel> material) {
-        this._id = _id;
-        this.name = name;
-        this.author = author;
-        this.imageShow = imageShow;
-        this.type = type;
-        this.time = time;
-        this.sets = sets;
-        this.level = level;
-        this.rating = rating;
-        this.rateNum = rateNum;
-        this.cook = cook;
-        this.material = material;
     }
 
     public String get_id() {
@@ -91,6 +66,14 @@ public class FoodModel {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public String getImageShow() {
@@ -163,5 +146,35 @@ public class FoodModel {
 
     public void setMaterial(List<MaterialModel> material) {
         this.material = material;
+    }
+
+    public List<String> getListRate() {
+        return listRate;
+    }
+
+    public void setListRate(List<String> listRate) {
+        this.listRate = listRate;
+    }
+
+    public FoodModel(String _id, String name, String author, String authorName, String imageShow, int type, String time, int sets, String level, float rating, int rateNum, List<CookModel> cook, List<MaterialModel> material, List<String> listRate) {
+
+        this._id = _id;
+        this.name = name;
+        this.author = author;
+        this.authorName = authorName;
+        this.imageShow = imageShow;
+        this.type = type;
+        this.time = time;
+        this.sets = sets;
+        this.level = level;
+        this.rating = rating;
+        this.rateNum = rateNum;
+        this.cook = cook;
+        this.material = material;
+        this.listRate = listRate;
+    }
+
+    public FoodModel() {
+
     }
 }

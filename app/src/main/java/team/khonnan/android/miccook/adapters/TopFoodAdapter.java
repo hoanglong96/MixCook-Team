@@ -67,6 +67,7 @@ public class TopFoodAdapter extends RecyclerView.Adapter<TopFoodAdapter.TopViewH
             ivFood = itemView.findViewById(R.id.iv_top_food);
             tvNameFood = itemView.findViewById(R.id.tv_name_top_food);
             tvNameUser = itemView.findViewById(R.id.tv_user_name_top_food);
+            rtFood = itemView.findViewById(R.id.rating_top);
 
             view = itemView;
         }
@@ -74,7 +75,8 @@ public class TopFoodAdapter extends RecyclerView.Adapter<TopFoodAdapter.TopViewH
         public void setData(FoodModel foodModel) {
             Picasso.with(context).load(foodModel.getImageShow()).resize(500,500).into(ivFood);
             tvNameFood.setText(foodModel.getName());
-            tvNameUser.setText(foodModel.getAuthor());
+            tvNameUser.setText(foodModel.getAuthorName());
+            rtFood.setRating(foodModel.getRating());
             view.setTag(foodModel);
         }
     }

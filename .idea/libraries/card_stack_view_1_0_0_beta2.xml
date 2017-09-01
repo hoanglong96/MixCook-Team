@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="card-stack-view-1.0.0-beta2">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/0670ee185ff923f1501c4661e15617db5d474be3/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/0670ee185ff923f1501c4661e15617db5d474be3/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/8768ae6ac530a6128463afd6cf422369c1109612/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/8768ae6ac530a6128463afd6cf422369c1109612/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

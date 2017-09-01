@@ -12,7 +12,9 @@
     </android.support.v7.widget.Toolbar>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/rl_fav"
+        android:visibility="gone">
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -32,4 +34,9 @@
             android:id="@+id/tv_fav"
             />
     </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:id="@+id/rv_fav"/>
 </LinearLayout>

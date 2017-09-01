@@ -55,11 +55,6 @@ public class FragmentDetailFood extends Fragment {
 
 
     private FoodModel foodModel;
-    private int[] tabIcons = {
-            R.drawable.cart,
-            R.drawable.ic_favorite_black_24dp,
-            R.drawable.ic_chat_black_24dp
-    };
 
     @Nullable
     @Override

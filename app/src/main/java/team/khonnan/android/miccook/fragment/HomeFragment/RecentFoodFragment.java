@@ -1,6 +1,8 @@
 package team.khonnan.android.miccook.fragment.HomeFragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -41,6 +44,7 @@ public class RecentFoodFragment extends Fragment {
 
     private RecyclerView rvRecentFood;
     private NewRecipesAdapter newRecipesAdapter;
+    private ProgressBar progressBar;
 
     List<FoodModel> recentFoods = new ArrayList<>();
     List<FoodModel> lastFood = new ArrayList<>();
@@ -56,6 +60,7 @@ public class RecentFoodFragment extends Fragment {
 
     private void setupUI(View view) {
         rvRecentFood = view.findViewById(R.id.rv_recent_food);
+        progressBar = view.findViewById(R.id.progress_bar_recent_food);
     }
 
     private void loadData() {
@@ -72,6 +77,7 @@ public class RecentFoodFragment extends Fragment {
                     FoodModel food = new FoodModel();
                     food.set_id(list.get(i).get_id());
                     food.setName(list.get(i).getName());
+                    food.setAuthorName(list.get(i).getAuthorName());
                     food.setAuthor(list.get(i).getAuthor());
                     food.setImageShow(list.get(i).getImageShow());
                     food.setType(list.get(i).getType());
@@ -114,6 +120,20 @@ public class RecentFoodFragment extends Fragment {
 
             }
         });
+
+        rvRecentFood.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.getProgressDrawable().setColorFilter(
+                Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rvRecentFood.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+            }
+        }, 1000);
+
 
 
         newRecipesAdapter = new NewRecipesAdapter(recentFoods,getContext());

@@ -1,72 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:clickable="true">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cart"
-            android:layout_centerVertical="true"
-            android:id="@+id/icon"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="You need"
-            android:textStyle="bold"
-            android:textColor="#333"
-            android:layout_toRightOf="@+id/icon"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:textSize="16sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:layout_centerVertical="true">
-            <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
+                android:background="@drawable/cart"
+                android:layout_centerVertical="true"
+                android:id="@+id/icon"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You need"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:layout_toRightOf="@+id/icon"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_centerVertical="true">
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sets: "
-                    android:textColor="#333"
-                    android:layout_marginLeft="5dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5"
-                    android:textColor="#333"
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/tv_set"
-                    android:textStyle="bold"/>
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/rice"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    />
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sets: "
+                        android:textColor="#333"
+                        android:layout_marginLeft="5dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textColor="#333"
+                        android:layout_marginRight="5dp"
+                        android:id="@+id/tv_set"
+                        android:textStyle="bold"/>
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/rice"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -83,14 +87,16 @@
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add to shopping list"
-        android:id="@+id/btn_shopping"
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/textPrimary"
-        android:padding="10dp"
-        android:background="@color/colorPrimaryDark"/>
-</LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Add to shopping list"
+            android:id="@+id/btn_shopping"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/textPrimary"
+            android:padding="10dp"
+            android:background="@color/colorPrimaryDark"/>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

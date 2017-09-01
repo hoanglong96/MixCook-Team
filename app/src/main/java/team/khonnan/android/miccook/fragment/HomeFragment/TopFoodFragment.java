@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -41,6 +42,7 @@ public class TopFoodFragment extends Fragment {
 
     private RecyclerView rvTopFood;
     private TopFoodAdapter topFoodAdapter;
+    private ProgressBar progressBar;
 
     List<FoodModel> topFoods = new ArrayList<>();
 
@@ -72,6 +74,7 @@ public class TopFoodFragment extends Fragment {
                     food.set_id(list.get(i).get_id());
                     food.setName(list.get(i).getName());
                     food.setAuthor(list.get(i).getAuthor());
+                    food.setAuthorName(list.get(i).getAuthorName());
                     food.setImageShow(list.get(i).getImageShow());
                     food.setType(list.get(i).getType());
                     food.setTime(list.get(i).getTime());
@@ -79,6 +82,7 @@ public class TopFoodFragment extends Fragment {
                     food.setLevel(list.get(i).getLevel());
                     food.setRating(list.get(i).getRating());
                     food.setRateNum(list.get(i).getRateNum());
+                    food.setListRate(list.get(i).getListRate());
                     List<MaterialModel> materials = list.get(i).getMaterial();
                     RealmList<MaterialModel> materialList = new RealmList<>();
                     for (int j = 0; j < materials.size(); j++) {
@@ -114,6 +118,19 @@ public class TopFoodFragment extends Fragment {
         });
 
         Log.d(TAG, "loadDataABC: " + topFoods);
+
+//        rvTopFood.setVisibility(View.GONE);
+//        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.getProgressDrawable().setColorFilter(
+//                Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+//
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                rvTopFood.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.GONE);
+//            }
+//        }, 1000);
 
         topFoodAdapter = new TopFoodAdapter(topFoods,getContext());
         GridLayoutManager gridLayoutManager = new GridLayoutManager

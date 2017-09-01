@@ -76,7 +76,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         public void setData(FoodModel foodModel){
             if(foodModelList!= null){
                 Picasso.with(context).load(foodModel.getImageShow()).resize(500,500).into(ivFood);
-                tvAuthor.setText(foodModel.getAuthor());
+                tvAuthor.setText(foodModel.getAuthorName());
                 tvNameFood.setText(foodModel.getName());
                 String level = foodModel.getLevel();
                 if(level.equals("Dễ")){

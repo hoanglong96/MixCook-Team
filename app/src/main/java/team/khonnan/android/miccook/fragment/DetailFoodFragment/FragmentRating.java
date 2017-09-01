@@ -115,12 +115,14 @@ public class FragmentRating extends Fragment implements View.OnClickListener {
 
     void somethingCool(){
         final GetFoodByIdFood getFoodByIdFood = RetrofitFactory.getInstance().create(GetFoodByIdFood.class);
+        Log.d(TAG, "somethingCool: "+foodModel.get_id());
         Call<FoodModel> call2 = getFoodByIdFood.getFoodByIdFood(foodModel.get_id());
         call2.enqueue(new Callback<FoodModel>() {
 
             @Override
             public void onResponse(Call<FoodModel> call, Response<FoodModel> response) {
                 EventBus.getDefault().postSticky(new OnClickFood(response.body()));
+                Log.d(TAG, "onResponse: "+response.body());
                 ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
             }
 

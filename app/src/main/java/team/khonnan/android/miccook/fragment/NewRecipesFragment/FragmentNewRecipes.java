@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -31,6 +32,7 @@ import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import com.kosalgeek.android.photoutil.CameraPhoto;
 import com.kosalgeek.android.photoutil.ImageLoader;
+import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -51,8 +53,6 @@ import team.khonnan.android.miccook.MainActivity;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.HowAdapter;
 import team.khonnan.android.miccook.adapters.IngredientsAdapter;
-import team.khonnan.android.miccook.fragment.HomeFragment.HomeFragment;
-import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.apis.CreateNewFood;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.createFoodModels.CookModel;
@@ -68,6 +68,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
  */
 
 public class FragmentNewRecipes extends Fragment {
+    CatLoadingView mView;
 
     SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", MODE_PRIVATE);
     String id = sharedPreferences.getString("id", "");
@@ -338,67 +339,79 @@ public class FragmentNewRecipes extends Fragment {
 
     private void createNewFood() {
 
-        boolean createSuccessful = true;
+        mView = new CatLoadingView();
+        mView.show(getChildFragmentManager(), "");
 
-        String name = etNameRecipes.getText().toString();
-        String author = MainActivity.userProfileModel.getNameFb();
-
-        String categories = tvCategories.getText().toString();
-        int type = 0;
-
-        if (categories.equals("Main Food")) {
-            type = 1;
-        } else if (categories.equals("Breakfast")) {
-            type = 2;
-        } else if (categories.equals("Snacks")) {
-            type = 3;
-        } else if (categories.equals("Cake")) {
-            type = 4;
-        } else if (categories.equals("Drink")) {
-            type = 5;
-        }
-
-
-        String time = etTimeCook.getText().toString() + " phút";
-        int sets = Integer.parseInt(tvSet.getText().toString());
-        String level = tvLevel.getText().toString();
-        float rating = 0;
-        int rateNum = 0;
-
-        new UploadImage().execute();
-        while (!success) {
-        }
-        String imageShow = "http://res.cloudinary.com/ddrpge3lm/image/upload/w_300,c_scale/" + nameOfImage + ".jpg";
-        if (name.length() == 0 || author.length() == 0 || imageShow.length() == 0
-                || time.equals(" phút") || sets <= 0 || listIngredients.size() == 0 || listHow.size() == 0)
-            createSuccessful = false;
-
-
-        CreateFoodRequestModel createFoodRequestModel = new CreateFoodRequestModel(name, author, imageShow, type, time, sets, level, rating, rateNum, listIngredients, listHow);
-
-        final CreateNewFood createNewFood = RetrofitFactory.getInstance().create(CreateNewFood.class);
-        Call<CreateFoodRequestModel> call = createNewFood.createNewFood(createFoodRequestModel);
-        call.enqueue(new Callback<CreateFoodRequestModel>() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onResponse(Call<CreateFoodRequestModel> call, Response<CreateFoodRequestModel> response) {
+            public void run() {
+                boolean createSuccessful = true;
 
-                Toast.makeText(getContext(), "Create successful", Toast.LENGTH_SHORT).show();
+                String name = etNameRecipes.getText().toString();
+                String author = id;
+                String authorName = MainActivity.userProfileModel.getNameFb();
+                String categories = tvCategories.getText().toString();
+                int type = 0;
+
+                if (categories.equals("Main Food")) {
+                    type = 1;
+                } else if (categories.equals("Breakfast")) {
+                    type = 2;
+                } else if (categories.equals("Snacks")) {
+                    type = 3;
+                } else if (categories.equals("Cake")) {
+                    type = 4;
+                } else if (categories.equals("Drink")) {
+                    type = 5;
+                }
+
+
+                String time = etTimeCook.getText().toString() + " phút";
+                int sets = Integer.parseInt(tvSet.getText().toString());
+                String level = tvLevel.getText().toString();
+                float rating = 0;
+                int rateNum = 0;
+
+                new UploadImage().execute();
+                while (!success) {
+                }
+                String imageShow = "http://res.cloudinary.com/ddrpge3lm/image/upload/w_300,c_scale/" + nameOfImage + ".jpg";
+                if (name.length() == 0 || author.length() == 0 || imageShow.length() == 0
+                        || time.equals(" phút") || sets <= 0 || listIngredients.size() == 0 || listHow.size() == 0)
+                    createSuccessful = false;
+
+
+                CreateFoodRequestModel createFoodRequestModel = new CreateFoodRequestModel(name, author, authorName, imageShow, type, time, sets, level, rating, rateNum, listIngredients, listHow);
+
+                final CreateNewFood createNewFood = RetrofitFactory.getInstance().create(CreateNewFood.class);
+                Call<CreateFoodRequestModel> call = createNewFood.createNewFood(createFoodRequestModel);
+                call.enqueue(new Callback<CreateFoodRequestModel>() {
+                    @Override
+                    public void onResponse(Call<CreateFoodRequestModel> call, Response<CreateFoodRequestModel> response) {
+
+                        mView.onDestroyView();
+                        Toast.makeText(getContext(), "Create successful", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<CreateFoodRequestModel> call, Throwable t) {
+
+                        mView.onDestroyView();
+                        Toast.makeText(getContext(), "Connect fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                if (createSuccessful = false) {
+                    Toast.makeText(getContext(), "Create fail", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("asf", "createNewFood: ");
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
+        }, 3000);
 
-            @Override
-            public void onFailure(Call<CreateFoodRequestModel> call, Throwable t) {
-
-                Toast.makeText(getContext(), "Connect fail", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        if (createSuccessful = false) {
-            Toast.makeText(getContext(), "Create fail", Toast.LENGTH_SHORT).show();
-        } else {
-            Log.d("asf", "createNewFood: ");
-            ScreenManager.openFragment(getFragmentManager(), new HomeFragment(), R.id.drawer_layout);
-        }
     }
 
     @Override

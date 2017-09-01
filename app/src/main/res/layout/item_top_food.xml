@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:id="@+id/rating"
+                    android:id="@+id/rating_top"
                     style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
             </LinearLayout>
         </LinearLayout>

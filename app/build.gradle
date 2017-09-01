@@ -54,6 +54,7 @@ dependencies {
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
     compile 'com.github.pwittchen:reactivenetwork-rx2:0.11.0'
+    compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.0'
 }

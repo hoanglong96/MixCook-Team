@@ -10,6 +10,7 @@ import java.util.List;
 public class CreateFoodRequestModel {
     private String name;
     private String author;
+    private String authorName;
     private String imageShow;
     private int type;
     private String time;
@@ -25,6 +26,7 @@ public class CreateFoodRequestModel {
         return "CreateFoodRequestModel{" +
                 "name='" + name + '\'' +
                 ", author='" + author + '\'' +
+                ", authorName='" + authorName + '\'' +
                 ", imageShow='" + imageShow + '\'' +
                 ", type=" + type +
                 ", time='" + time + '\'' +
@@ -35,20 +37,6 @@ public class CreateFoodRequestModel {
                 ", material=" + material +
                 ", cook=" + cook +
                 '}';
-    }
-
-    public CreateFoodRequestModel(String name, String author, String imageShow, int type, String time, int sets, String level, float rating, int rateNum, List<MaterialModel> material, List<CookModel> cook) {
-        this.name = name;
-        this.author = author;
-        this.imageShow = imageShow;
-        this.type = type;
-        this.time = time;
-        this.sets = sets;
-        this.level = level;
-        this.rating = rating;
-        this.rateNum = rateNum;
-        this.material = material;
-        this.cook = cook;
     }
 
     public String getName() {
@@ -65,6 +53,14 @@ public class CreateFoodRequestModel {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public String getImageShow() {
@@ -137,5 +133,25 @@ public class CreateFoodRequestModel {
 
     public void setCook(List<CookModel> cook) {
         this.cook = cook;
+    }
+
+    public CreateFoodRequestModel(String name, String author, String authorName, String imageShow, int type, String time, int sets, String level, float rating, int rateNum, List<MaterialModel> material, List<CookModel> cook) {
+
+        this.name = name;
+        this.author = author;
+        this.authorName = authorName;
+        this.imageShow = imageShow;
+        this.type = type;
+        this.time = time;
+        this.sets = sets;
+        this.level = level;
+        this.rating = rating;
+        this.rateNum = rateNum;
+        this.material = material;
+        this.cook = cook;
+    }
+
+    public CreateFoodRequestModel() {
+
     }
 }
