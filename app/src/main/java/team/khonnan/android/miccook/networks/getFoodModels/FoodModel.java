@@ -1,5 +1,6 @@
 package team.khonnan.android.miccook.networks.getFoodModels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +18,19 @@ public class FoodModel {
     private String level;
     private float rating;
     private int rateNum;
+
     private List<CookModel> cook;
     private List<MaterialModel> material;
 
+    private List<String> listRate;
+
+    public List<String> getListRate() {
+        return listRate;
+    }
+
+    public void setListRate(List<String> listRate) {
+        this.listRate = listRate;
+    }
 
     public FoodModel() {
     }
@@ -41,6 +52,7 @@ public class FoodModel {
                 ", material=" + material +
                 '}';
     }
+
 
     public FoodModel(String _id, String name, String author, String imageShow, int type, String time, int sets, String level, float rating, int rateNum, List<CookModel> cook, List<MaterialModel> material) {
         this._id = _id;

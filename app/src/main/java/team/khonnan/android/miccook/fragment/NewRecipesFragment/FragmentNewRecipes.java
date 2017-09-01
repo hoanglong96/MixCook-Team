@@ -47,6 +47,7 @@ import java.util.TimeZone;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import team.khonnan.android.miccook.MainActivity;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.HowAdapter;
 import team.khonnan.android.miccook.adapters.IngredientsAdapter;
@@ -340,7 +341,7 @@ public class FragmentNewRecipes extends Fragment {
         boolean createSuccessful = true;
 
         String name = etNameRecipes.getText().toString();
-        String author = idFbUser;
+        String author = MainActivity.userProfileModel.getNameFb();
 
         String categories = tvCategories.getText().toString();
         int type = 0;

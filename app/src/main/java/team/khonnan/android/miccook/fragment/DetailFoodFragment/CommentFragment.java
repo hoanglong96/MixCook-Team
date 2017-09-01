@@ -32,6 +32,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import team.khonnan.android.miccook.MainActivity;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.CommentAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
@@ -122,13 +123,26 @@ public class CommentFragment extends Fragment {
         rvComment = view.findViewById(R.id.rv_comment);
         RatingBar ratingBar = lnRating.findViewById(R.id.rb_inner);
         ratingBar.setRating(foodModel.getRating());
-        lnRating.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentRating(),R.id.drawer_layout);
-                Log.d(TAG, "onClick: Click rating");
+        boolean isRated=false;
+        if(foodModel.getListRate().size()>0) {
+            for (String s : foodModel.getListRate()) {
+                if (s.equals(MainActivity.userProfileModel.getIdFb())) {
+                    isRated = true;
+                    break;
+                }
             }
-        });
+        }
+
+        if(!isRated){
+            lnRating.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentRating(),R.id.drawer_layout);
+                    Log.d(TAG, "onClick: Click rating");
+                }
+            });
+        }
+
 
         Log.d(TAG, "setupUI: " + comments);
     }

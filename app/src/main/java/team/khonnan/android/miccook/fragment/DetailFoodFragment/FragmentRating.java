@@ -22,6 +22,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.event.OnClickFood;
+import team.khonnan.android.miccook.managers.ScreenManager;
+import team.khonnan.android.miccook.networks.apis.GetFoodByIdFood;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.apis.UpdateRating;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
@@ -111,6 +113,24 @@ public class FragmentRating extends Fragment implements View.OnClickListener {
         Log.d(TAG, "onEventOneFragment: " + foodModel);
     }
 
+    void somethingCool(){
+        final GetFoodByIdFood getFoodByIdFood = RetrofitFactory.getInstance().create(GetFoodByIdFood.class);
+        Call<FoodModel> call2 = getFoodByIdFood.getFoodByIdFood(foodModel.get_id());
+        call2.enqueue(new Callback<FoodModel>() {
+
+            @Override
+            public void onResponse(Call<FoodModel> call, Response<FoodModel> response) {
+                EventBus.getDefault().postSticky(new OnClickFood(response.body()));
+                ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
+            }
+
+            @Override
+            public void onFailure(Call<FoodModel> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
 
@@ -124,6 +144,7 @@ public class FragmentRating extends Fragment implements View.OnClickListener {
                     call.enqueue(new Callback<UpdateRatingModel>() {
                         @Override
                         public void onResponse(Call<UpdateRatingModel> call, Response<UpdateRatingModel> response) {
+                            somethingCool();
                             Toast.makeText(getContext(), "RATE SUCCESSFUL", Toast.LENGTH_SHORT).show();
                         }
 

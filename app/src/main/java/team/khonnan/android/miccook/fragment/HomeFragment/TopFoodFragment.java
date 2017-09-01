@@ -42,7 +42,6 @@ public class TopFoodFragment extends Fragment {
     private RecyclerView rvTopFood;
     private TopFoodAdapter topFoodAdapter;
 
-    List<FoodModel> list = new ArrayList<>();
     List<FoodModel> topFoods = new ArrayList<>();
 
     @Nullable
@@ -64,7 +63,9 @@ public class TopFoodFragment extends Fragment {
 
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
-                list = response.body().getFood();
+                List<FoodModel> list = response.body().getFood();
+//                topFoods = response.body().getFood();
+                Log.d(TAG, "onResponsexxx: "+topFoods);
 
                 for (int i = 0; i < list.size(); i++) {
                     FoodModel food = new FoodModel();
@@ -102,8 +103,8 @@ public class TopFoodFragment extends Fragment {
                     food.setCook(cookList);
                     Log.d("ahihi top food", food.toString());
                     topFoods.add(food);
-                    topFoodAdapter.notifyDataSetChanged();
                 }
+                topFoodAdapter.notifyDataSetChanged();
             }
 
             @Override

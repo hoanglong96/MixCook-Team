@@ -42,7 +42,6 @@ public class RecentFoodFragment extends Fragment {
     private RecyclerView rvRecentFood;
     private NewRecipesAdapter newRecipesAdapter;
 
-    List<FoodModel> list = new ArrayList<>();
     List<FoodModel> recentFoods = new ArrayList<>();
     List<FoodModel> lastFood = new ArrayList<>();
 
@@ -65,7 +64,9 @@ public class RecentFoodFragment extends Fragment {
 
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
-                list = response.body().getFood();
+                List<FoodModel> list = response.body().getFood();
+//                recentFoods = response.body().getFood();
+                Log.d(TAG, "onResponsexxx: "+recentFoods);
 
                 for (int i = list.size()-1; i >= 0; i--) {
                     FoodModel food = new FoodModel();
@@ -79,6 +80,7 @@ public class RecentFoodFragment extends Fragment {
                     food.setLevel(list.get(i).getLevel());
                     food.setRating(list.get(i).getRating());
                     food.setRateNum(list.get(i).getRateNum());
+                    food.setListRate(list.get(i).getListRate());
                     List<MaterialModel> materials = list.get(i).getMaterial();
                     RealmList<MaterialModel> materialList = new RealmList<>();
                     for (int j = 0; j < materials.size(); j++) {
@@ -103,8 +105,8 @@ public class RecentFoodFragment extends Fragment {
                     food.setCook(cookList);
                     Log.d("ahihi recent food", food.toString());
                     recentFoods.add(food);
-                    newRecipesAdapter.notifyDataSetChanged();
                 }
+                newRecipesAdapter.notifyDataSetChanged();
             }
 
             @Override

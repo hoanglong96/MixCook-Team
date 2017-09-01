@@ -22,4 +22,6 @@ public class SearchModel {
     public SearchModel(String keySearch) {
         this.keySearch = keySearch;
     }
+
+
 }

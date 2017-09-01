@@ -68,11 +68,11 @@ public class RecipesUserFragment extends Fragment {
 
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
-                List<FoodModel> list = response.body().getFood();
-                for (FoodModel foodModel : list) {
-                    foodModelList.add(foodModel);
-                    //adapterFoodUser.notifyDataSetChanged();
-                }
+                foodModelList = response.body().getFood();
+//                for (FoodModel foodModel : list) {
+//                    foodModelList.add(foodModel);
+//                    //adapterFoodUser.notifyDataSetChanged();
+//                }
                 Log.d(TAG, "getUserFoodA: " + foodModelList);
                 adapterFoodUser = new FoodUserAdapter(foodModelList,getContext());
                 GridLayoutManager gridLayoutManager = new GridLayoutManager

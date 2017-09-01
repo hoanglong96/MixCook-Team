@@ -42,9 +42,11 @@ import team.khonnan.android.miccook.fragment.SeeMoreFragment;
 import team.khonnan.android.miccook.fragment.ShopFragment.FragmentShopping;
 import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.apis.GetFoodByType;
+import team.khonnan.android.miccook.networks.apis.GetUserProfile;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 import team.khonnan.android.miccook.networks.getFoodModels.GetFoodRespondModel;
+import team.khonnan.android.miccook.networks.getUserProfileModels.UserProfileModel;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity
     List<FoodModel> foodMonBanh = new ArrayList<>();
     List<FoodModel> foodDoUong = new ArrayList<>();
     private SliderLayout mDemoSlider;
-
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "get highhhhhhh", Toast.LENGTH_SHORT).show();
-                ScreenManager.openFragment(getSupportFragmentManager(),new SearchFragment(),R.id.drawer_layout);
+                ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.drawer_layout);
             }
         });
         setSupportActionBar(toolbar);
@@ -84,7 +86,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        getCurrentUserProfile();
         String id = sharedPreferences.getString("id", "");
         Log.d("MainActivityABCD", "onCreate: " + id);
         String name = sharedPreferences.getString("name", "");
@@ -296,21 +299,21 @@ public class MainActivity extends AppCompatActivity
     public void onSliderClick(BaseSliderView slider) {
         String nameType = (String) slider.getBundle().get("extra");
         Toast.makeText(this, slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
-        if(nameType.equals("Main dishes")){
+        if (nameType.equals("Main dishes")) {
             ScreenManager.openFragment(getSupportFragmentManager(),
-                    new SeeMoreFragment(), R.id.drawer_layout,foodMonChinh,"Main dishes");
-        }else if(nameType.equals("Breakfast")){
+                    new SeeMoreFragment(), R.id.drawer_layout, foodMonChinh, "Main dishes");
+        } else if (nameType.equals("Breakfast")) {
             ScreenManager.openFragment(getSupportFragmentManager(),
-                    new SeeMoreFragment(), R.id.drawer_layout,foodAnSang,"Breakfast");
-        }else if(nameType.equals("Snacks")){
+                    new SeeMoreFragment(), R.id.drawer_layout, foodAnSang, "Breakfast");
+        } else if (nameType.equals("Snacks")) {
             ScreenManager.openFragment(getSupportFragmentManager(),
-                    new SeeMoreFragment(), R.id.drawer_layout,foodAnVat,"Snacks");
-        }else if(nameType.equals("Drink")){
+                    new SeeMoreFragment(), R.id.drawer_layout, foodAnVat, "Snacks");
+        } else if (nameType.equals("Drink")) {
             ScreenManager.openFragment(getSupportFragmentManager(),
-                    new SeeMoreFragment(), R.id.drawer_layout,foodDoUong,"Drink");
-        }else if(nameType.equals("Cake")){
+                    new SeeMoreFragment(), R.id.drawer_layout, foodDoUong, "Drink");
+        } else if (nameType.equals("Cake")) {
             ScreenManager.openFragment(getSupportFragmentManager(),
-                    new SeeMoreFragment(), R.id.drawer_layout,foodMonBanh,"Cake");
+                    new SeeMoreFragment(), R.id.drawer_layout, foodMonBanh, "Cake");
         }
     }
 
@@ -326,5 +329,22 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPageScrollStateChanged(int state) {
+    }
+
+    public static UserProfileModel userProfileModel;
+
+    void getCurrentUserProfile() {
+        final GetUserProfile getUserProfile = RetrofitFactory.getInstance().create(GetUserProfile.class);
+        getUserProfile.getUserProfile(sharedPreferences.getString("id", "")).enqueue(new Callback<UserProfileModel>() {
+            @Override
+            public void onResponse(Call<UserProfileModel> call, Response<UserProfileModel> response) {
+                userProfileModel = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<UserProfileModel> call, Throwable t) {
+
+            }
+        });
     }
 }

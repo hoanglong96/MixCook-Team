@@ -22,11 +22,20 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import team.khonnan.android.miccook.MainActivity;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.event.OnClickFood;
+import team.khonnan.android.miccook.networks.UpdateFavoriteModel;
+import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
+import team.khonnan.android.miccook.networks.apis.UpdateFavorite;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
+import team.khonnan.android.miccook.networks.getUserProfileModels.UserProfileModel;
 
 import static com.facebook.login.widget.ProfilePictureView.TAG;
 
@@ -36,14 +45,13 @@ import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 public class FragmentDetailFood extends Fragment {
 
-    private TextView tvNameFood , tvTypeFood;
-    private ImageView ivFood;
+    private TextView tvNameFood, tvTypeFood;
+    private ImageView ivFood, ivFavorite;
     private LinearLayout lnRating;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Toolbar toolbar;
-
 
 
     private FoodModel foodModel;
@@ -70,12 +78,69 @@ public class FragmentDetailFood extends Fragment {
         Log.d(TAG, "onEvent: " + foodModel);
     }
 
-    public void setupUI(View view){
+
+    List<String> listeFavorite = new ArrayList<>();
+    boolean isFavorited = false;
+
+    public void setupUI(View view) {
         EventBus.getDefault().register(this);
 
         tvNameFood = view.findViewById(R.id.toolbar_title);
         tvTypeFood = view.findViewById(R.id.type_food);
         ivFood = view.findViewById(R.id.header);
+
+        ivFavorite = view.findViewById(R.id.iv_favorite_button);
+        Log.d(TAG, "setupUI: userProfileModel" + MainActivity.userProfileModel);
+        listeFavorite = MainActivity.userProfileModel.getListFavorite();
+        for (int i = 0; i < listeFavorite.size(); i++) {
+            if (listeFavorite.get(i).equals(foodModel.get_id())) {
+                isFavorited = true;
+                ivFavorite.setImageResource(R.drawable.ic_favorite_black_24dp);
+                break;
+            }
+        }
+
+
+        ivFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isFavorited) {
+                    Iterator<String> i = listeFavorite.iterator();
+                    while (i.hasNext()) {
+                        String s = i.next();
+                        if (s.equals(foodModel.get_id())) {
+                            i.remove();
+                            break;
+                        }
+                    }
+                    ivFavorite.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                    isFavorited = false;
+                } else {
+                    listeFavorite.add(foodModel.get_id());
+                    ivFavorite.setImageResource(R.drawable.ic_favorite_black_24dp);
+                    isFavorited = true;
+                }
+
+                UpdateFavoriteModel updateFavoriteModel = new UpdateFavoriteModel(listeFavorite);
+                final UpdateFavorite updateFavorite = RetrofitFactory.getInstance().create(UpdateFavorite.class);
+                Call<UserProfileModel> call = updateFavorite.updateFavorite(MainActivity.userProfileModel.getIdFb(), updateFavoriteModel);
+                call.enqueue(new Callback<UserProfileModel>() {
+
+                    @Override
+                    public void onResponse(Call<UserProfileModel> call, Response<UserProfileModel> response) {
+                        MainActivity.userProfileModel = response.body();
+                        Log.d(TAG, "onResponse: favorite change"+response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserProfileModel> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+
+
         toolbar = view.findViewById(R.id.toolbar_detail);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -100,15 +165,15 @@ public class FragmentDetailFood extends Fragment {
         tvNameFood.setText(foodModel.getName());
         int typeNumber = foodModel.getType();
         String type = null;
-        if(typeNumber == 1){
+        if (typeNumber == 1) {
             type = "Main dishes";
-        }else if(typeNumber == 2){
+        } else if (typeNumber == 2) {
             type = "Breakfast";
-        }else if(typeNumber == 3){
+        } else if (typeNumber == 3) {
             type = "Snacks";
-        }else if(typeNumber == 4){
+        } else if (typeNumber == 4) {
             type = "Cake";
-        }else if(typeNumber == 5){
+        } else if (typeNumber == 5) {
             type = "Drink";
         }
 
