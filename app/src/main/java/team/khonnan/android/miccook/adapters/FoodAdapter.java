@@ -78,8 +78,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 Picasso.with(context).load(foodModel.getImageShow()).resize(500,500).into(ivFood);
                 tvAuthor.setText(foodModel.getAuthor());
                 tvNameFood.setText(foodModel.getName());
-                tvLevel.setText(foodModel.getLevel());
-
+                String level = foodModel.getLevel();
+                if(level.equals("Dễ")){
+                    tvLevel.setText("Easy");
+                }else if(level.equals("Trung bình")){
+                    tvLevel.setText("Medium");
+                }else if(level.equals("Khó")){
+                    tvLevel.setText("Hard");
+                }else {
+                    tvLevel.setText(foodModel.getLevel());
+                }
                 String rating = String.valueOf(foodModel.getRating());
                 Log.d(TAG, "setData: " + rating);
 

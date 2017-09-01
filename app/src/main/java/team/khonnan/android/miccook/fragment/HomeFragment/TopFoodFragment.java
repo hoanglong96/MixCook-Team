@@ -20,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import team.khonnan.android.miccook.R;
-import team.khonnan.android.miccook.adapters.NewRecipesAdapter;
+import team.khonnan.android.miccook.adapters.TopFoodAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
 import team.khonnan.android.miccook.fragment.DetailFoodFragment.FragmentDetailFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
@@ -40,7 +40,7 @@ import static com.facebook.login.widget.ProfilePictureView.TAG;
 public class TopFoodFragment extends Fragment {
 
     private RecyclerView rvTopFood;
-    private NewRecipesAdapter newRecipesAdapter;
+    private TopFoodAdapter topFoodAdapter;
 
     List<FoodModel> list = new ArrayList<>();
     List<FoodModel> topFoods = new ArrayList<>();
@@ -102,7 +102,7 @@ public class TopFoodFragment extends Fragment {
                     food.setCook(cookList);
                     Log.d("ahihi top food", food.toString());
                     topFoods.add(food);
-                    newRecipesAdapter.notifyDataSetChanged();
+                    topFoodAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -114,14 +114,14 @@ public class TopFoodFragment extends Fragment {
 
         Log.d(TAG, "loadDataABC: " + topFoods);
 
-        newRecipesAdapter = new NewRecipesAdapter(topFoods,getContext());
+        topFoodAdapter = new TopFoodAdapter(topFoods,getContext());
         GridLayoutManager gridLayoutManager = new GridLayoutManager
                 (getContext(), 2, GridLayoutManager.VERTICAL, false);
         rvTopFood.setLayoutManager(gridLayoutManager);
         rvTopFood.hasFixedSize();
-        rvTopFood.setAdapter(newRecipesAdapter);
+        rvTopFood.setAdapter(topFoodAdapter);
 
-        newRecipesAdapter.setOnClickListener(new View.OnClickListener() {
+        topFoodAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FoodModel foodModel = (FoodModel) view.getTag();

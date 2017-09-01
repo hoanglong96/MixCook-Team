@@ -96,16 +96,26 @@
                         android:textSize="16sp"
                         />
                 </RelativeLayout>
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hoàng Long"
-                    android:textColor="#333"
-                    android:id="@+id/tv_author"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    />
+                    android:layout_weight="2.5"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#333"
+                        android:text="by "
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hoàng Long"
+                        android:textColor="#333"
+                        android:id="@+id/tv_author"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

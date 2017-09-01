@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,8 @@ public class FragmentDetailFood extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Toolbar toolbar;
+
 
 
     private FoodModel foodModel;
@@ -73,6 +76,14 @@ public class FragmentDetailFood extends Fragment {
         tvNameFood = view.findViewById(R.id.toolbar_title);
         tvTypeFood = view.findViewById(R.id.type_food);
         ivFood = view.findViewById(R.id.header);
+        toolbar = view.findViewById(R.id.toolbar_detail);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 //        lnRating = view.findViewById(R.id.rating_food);
 //
 //

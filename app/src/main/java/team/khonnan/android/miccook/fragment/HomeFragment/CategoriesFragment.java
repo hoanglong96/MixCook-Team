@@ -33,7 +33,7 @@ import team.khonnan.android.miccook.networks.getFoodModels.GetFoodRespondModel;
 public class CategoriesFragment extends Fragment {
 
     //catalog
-    private List<Type> typeList = new ArrayList<>();
+    private List<Type> typeList;
     private CatalogAdapter catalogAdapter;
     private RecyclerView rvCatalog;
 
@@ -53,13 +53,14 @@ public class CategoriesFragment extends Fragment {
 
         rvCatalog = view.findViewById(R.id.rv_categories);
 
+
+        loadType();
         //Categories
         catalogAdapter = new CatalogAdapter(typeList,getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true);
         rvCatalog.setLayoutManager(linearLayoutManager);
         rvCatalog.setAdapter(catalogAdapter);
         catalogAdapter.notifyDataSetChanged();
-        loadType();
         catalogAdapter.setOnItemClick(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +89,7 @@ public class CategoriesFragment extends Fragment {
     }
 
     public void loadType(){
+        typeList = new ArrayList<>();
 
         Type monBanh = new Type("Cake",R.drawable.cake);
         typeList.add(monBanh);

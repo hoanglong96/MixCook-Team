@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import team.khonnan.android.miccook.R;
-import team.khonnan.android.miccook.adapters.NewRecipesAdapter;
+import team.khonnan.android.miccook.adapters.FoodUserAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
 import team.khonnan.android.miccook.fragment.DetailFoodFragment.FragmentDetailFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
@@ -41,7 +41,7 @@ public class RecipesUserFragment extends Fragment {
     SharedPreferences sharedPreferences;
     String id;
     RecyclerView rvFoodUser;
-    NewRecipesAdapter adapterFoodUser;
+    FoodUserAdapter adapterFoodUser;
 
 
     @Nullable
@@ -74,7 +74,7 @@ public class RecipesUserFragment extends Fragment {
                     //adapterFoodUser.notifyDataSetChanged();
                 }
                 Log.d(TAG, "getUserFoodA: " + foodModelList);
-                adapterFoodUser = new NewRecipesAdapter(foodModelList,getContext());
+                adapterFoodUser = new FoodUserAdapter(foodModelList,getContext());
                 GridLayoutManager gridLayoutManager = new GridLayoutManager
                         (getContext(), 1, GridLayoutManager.VERTICAL, false);
                 rvFoodUser.setLayoutManager(gridLayoutManager);

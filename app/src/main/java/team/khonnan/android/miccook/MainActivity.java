@@ -26,15 +26,25 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import team.khonnan.android.miccook.fragment.FragmentFavorites;
 import team.khonnan.android.miccook.fragment.HomeFragment.HomeFragment;
 import team.khonnan.android.miccook.fragment.NewRecipesFragment.FragmentNewRecipes;
-import team.khonnan.android.miccook.fragment.SearchFragment;
-import team.khonnan.android.miccook.fragment.ShopFragment.FragmentShopping;
 import team.khonnan.android.miccook.fragment.ProfileFragment.FragmentProfileAccount;
+import team.khonnan.android.miccook.fragment.SearchFragment;
+import team.khonnan.android.miccook.fragment.SeeMoreFragment;
+import team.khonnan.android.miccook.fragment.ShopFragment.FragmentShopping;
 import team.khonnan.android.miccook.managers.ScreenManager;
+import team.khonnan.android.miccook.networks.apis.GetFoodByType;
+import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
+import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
+import team.khonnan.android.miccook.networks.getFoodModels.GetFoodRespondModel;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
@@ -43,7 +53,11 @@ public class MainActivity extends AppCompatActivity
     TextView tvName;
     Toolbar toolbar;
     ImageView ivSearch;
-
+    List<FoodModel> foodMonChinh = new ArrayList<>();
+    List<FoodModel> foodAnSang = new ArrayList<>();
+    List<FoodModel> foodAnVat = new ArrayList<>();
+    List<FoodModel> foodMonBanh = new ArrayList<>();
+    List<FoodModel> foodDoUong = new ArrayList<>();
     private SliderLayout mDemoSlider;
 
 
@@ -93,21 +107,79 @@ public class MainActivity extends AppCompatActivity
 
         ScreenManager.openFragment(getSupportFragmentManager(), new HomeFragment(), R.id.content_main);
 
+        //load type food
+        final GetFoodByType getFoodByType = RetrofitFactory.getInstance().create(GetFoodByType.class);
+        getFoodByType.getFoodByType("1").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodMonChinh = response.body().getFood();
+                Log.d("gaugau", "foodMonChinh: " + foodMonChinh);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+        getFoodByType.getFoodByType("2").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodAnSang = response.body().getFood();
+                Log.d("gaugau", "foodAnSang: " + foodAnSang);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+        getFoodByType.getFoodByType("3").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodAnVat = response.body().getFood();
+                Log.d("gaugau", "foodAnVat: " + foodAnVat);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+        getFoodByType.getFoodByType("4").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodMonBanh = response.body().getFood();
+                Log.d("gaugau", "foodMonBanh: " + foodMonBanh);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+        getFoodByType.getFoodByType("5").enqueue(new Callback<GetFoodRespondModel>() {
+            @Override
+            public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
+                foodDoUong = response.body().getFood();
+                Log.d("gaugau", "foodDoUong: " + foodDoUong);
+            }
+
+            @Override
+            public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
+                Log.d("meomeo", "onFailure: Can not reach data");
+            }
+        });
+
         //Slider
         mDemoSlider = (SliderLayout) findViewById(R.id.slider);
 
-        HashMap<String, String> url_maps = new HashMap<String, String>();
-        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
         HashMap<String, Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal", R.drawable.mainfood);
-        file_maps.put("Big Bang Theory", R.drawable.breakfast);
-        file_maps.put("House of Cards", R.drawable.snack);
-        file_maps.put("Game of Thrones", R.drawable.cake);
-        file_maps.put("Đồ uống", R.drawable.drink);
+        file_maps.put("Main dishes", R.drawable.mainfood);
+        file_maps.put("Breakfast", R.drawable.breakfast);
+        file_maps.put("Snacks", R.drawable.snack);
+        file_maps.put("Cake", R.drawable.cake);
+        file_maps.put("Drink", R.drawable.drink);
 
         for (String idname : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
@@ -120,7 +192,7 @@ public class MainActivity extends AppCompatActivity
             //add your extra information
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle()
-                    .putString("extra", name);
+                    .putString("extra", idname);
 
             mDemoSlider.addSlider(textSliderView);
         }
@@ -222,7 +294,24 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
+        String nameType = (String) slider.getBundle().get("extra");
         Toast.makeText(this, slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+        if(nameType.equals("Main dishes")){
+            ScreenManager.openFragment(getSupportFragmentManager(),
+                    new SeeMoreFragment(), R.id.drawer_layout,foodMonChinh,"Main dishes");
+        }else if(nameType.equals("Breakfast")){
+            ScreenManager.openFragment(getSupportFragmentManager(),
+                    new SeeMoreFragment(), R.id.drawer_layout,foodAnSang,"Breakfast");
+        }else if(nameType.equals("Snacks")){
+            ScreenManager.openFragment(getSupportFragmentManager(),
+                    new SeeMoreFragment(), R.id.drawer_layout,foodAnVat,"Snacks");
+        }else if(nameType.equals("Drink")){
+            ScreenManager.openFragment(getSupportFragmentManager(),
+                    new SeeMoreFragment(), R.id.drawer_layout,foodDoUong,"Drink");
+        }else if(nameType.equals("Cake")){
+            ScreenManager.openFragment(getSupportFragmentManager(),
+                    new SeeMoreFragment(), R.id.drawer_layout,foodMonBanh,"Cake");
+        }
     }
 
 
