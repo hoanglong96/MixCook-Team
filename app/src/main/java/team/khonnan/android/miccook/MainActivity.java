@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity
     List<FoodModel> foodDoUong = new ArrayList<>();
     private SliderLayout mDemoSlider;
     SharedPreferences sharedPreferences;
+
+    Boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,8 +251,24 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }else if(getSupportFragmentManager().getBackStackEntryCount() != 1){
             super.onBackPressed();
+        }else{
+            if (doubleBackToExitPressedOnce) {
+                System.exit(0);
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
         }
     }
 
@@ -355,4 +374,5 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+
 }

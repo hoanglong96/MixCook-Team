@@ -8,23 +8,25 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#f4cec4c4"
         >
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/abc_background"
-            android:src="#9d4d2a2a"/>
+            android:layout_height="350dp"
+            android:background="@drawable/bg_food"
+            android:id="@+id/imageView" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="34dp"
             android:text="Mix Cook"
             android:textSize="50sp"
             android:textColor="@color/textPrimary"
             android:fontFamily="sans-serif"
-            android:id="@+id/app_name"/>
+            android:id="@+id/app_name"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +35,15 @@
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textSize="20dp"
-            android:text="Everyone can cook"/>
+            android:text="Everyone can cook"
+            android:id="@+id/textView" />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/icon"
+            android:layout_above="@+id/app_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp" />
     </RelativeLayout>
     <ProgressBar
         android:id="@+id/progress_bar_activity"

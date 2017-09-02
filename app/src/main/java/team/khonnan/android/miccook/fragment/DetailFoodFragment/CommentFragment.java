@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +31,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import team.khonnan.android.miccook.MainActivity;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.adapters.CommentAdapter;
 import team.khonnan.android.miccook.event.OnClickFood;
@@ -42,7 +40,6 @@ import team.khonnan.android.miccook.firebases.NotiRequestModel;
 import team.khonnan.android.miccook.firebases.NotiRespondModel;
 import team.khonnan.android.miccook.firebases.NotificationModel;
 import team.khonnan.android.miccook.firebases.SendNoti;
-import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
@@ -56,7 +53,6 @@ import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 public class CommentFragment extends Fragment {
 
-    LinearLayout lnRating;
     EditText etComment;
     ImageView ivSend;
     LinearLayout lnSend;
@@ -119,31 +115,7 @@ public class CommentFragment extends Fragment {
                 sendChat();
             }
         });
-        lnRating = view.findViewById(R.id.ln_rating);
         rvComment = view.findViewById(R.id.rv_comment);
-        RatingBar ratingBar = lnRating.findViewById(R.id.rb_inner);
-        ratingBar.setRating(foodModel.getRating());
-        boolean isRated=false;
-        if(foodModel.getListRate().size()>0) {
-            for (String s : foodModel.getListRate()) {
-                if (s.equals(MainActivity.userProfileModel.getIdFb())) {
-                    isRated = true;
-                    break;
-                }
-            }
-        }
-
-        if(!isRated){
-            lnRating.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentRating(),R.id.drawer_layout);
-                    Log.d(TAG, "onClick: Click rating");
-                }
-            });
-        }
-
-
         Log.d(TAG, "setupUI: " + comments);
     }
 

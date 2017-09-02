@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -30,6 +31,7 @@ import retrofit2.Response;
 import team.khonnan.android.miccook.MainActivity;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.event.OnClickFood;
+import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.UpdateFavoriteModel;
 import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.apis.UpdateFavorite;
@@ -52,6 +54,8 @@ public class FragmentDetailFood extends Fragment {
 
 
     private FoodModel foodModel;
+    private TextView tvNumRating;
+
 
     @Nullable
     @Override
@@ -79,8 +83,9 @@ public class FragmentDetailFood extends Fragment {
         tvNameFood = view.findViewById(R.id.toolbar_title);
         tvTypeFood = view.findViewById(R.id.type_food);
         ivFood = view.findViewById(R.id.header);
-
+        lnRating = view.findViewById(R.id.ln_rating);
         ivFavorite = view.findViewById(R.id.iv_favorite_button);
+        tvNumRating = view.findViewById(R.id.num_rating);
         listeFavorite = MainActivity.userProfileModel.getListFavorite();
         for (int i = 0; i < listeFavorite.size(); i++) {
             if (listeFavorite.get(i).equals(foodModel.get_id())) {
@@ -90,6 +95,31 @@ public class FragmentDetailFood extends Fragment {
             }
         }
 
+
+        //Rating
+
+        tvNumRating.setText(String.valueOf(foodModel.getRateNum()));
+
+        RatingBar ratingBar = lnRating.findViewById(R.id.rb_inner);
+        ratingBar.setRating(foodModel.getRating());
+        boolean isRated=false;
+        if(foodModel.getListRate().size()>0) {
+            for (String s : foodModel.getListRate()) {
+                if (s.equals(MainActivity.userProfileModel.getIdFb())) {
+                    isRated = true;
+                    break;
+                }
+            }
+        }
+
+        if(!isRated){
+            lnRating.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentRating(),R.id.drawer_layout);
+                    }
+            });
+        }
 
         ivFavorite.setOnClickListener(new View.OnClickListener() {
             @Override

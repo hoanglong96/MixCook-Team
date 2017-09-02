@@ -15,16 +15,16 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Tìm kiếm công thức</string>
+    <string name="slide_1_title">Search to cooking formula</string>
     <string name="slide_1_desc">Tìm kiếm các công thức nấu món ăn mà bạn yêu thích</string>
 
-    <string name="slide_2_title">Tạo công thức</string>
+    <string name="slide_2_title">Create new recipes</string>
     <string name="slide_2_desc">Tự tạo ra các công thức nấu ngon và chia sẻ với mọi người</string>
 
-    <string name="slide_3_title">Đi chợ</string>
+    <string name="slide_3_title">Shopping List</string>
     <string name="slide_3_desc">Note các nguyên liệu cần cho bữa ăn và đi chợ ngay thôi!</string>
 
-    <string name="slide_4_title">Món ăn yêu thích</string>
+    <string name="slide_4_title">Favorites Food</string>
     <string name="slide_4_desc">Lưu những món ăn mà bạn yêu thích</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
