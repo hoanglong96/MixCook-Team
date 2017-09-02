@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +32,9 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import com.kosalgeek.android.photoutil.CameraPhoto;
-import com.kosalgeek.android.photoutil.ImageLoader;
 import com.roger.catloadinglibrary.CatLoadingView;
 
-import java.io.FileInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -221,6 +221,7 @@ public class FragmentNewRecipes extends Fragment {
 
         rvIngredients = (RecyclerView) view.findViewById(R.id.lv_ingredients);
         rvHow = (RecyclerView) view.findViewById(R.id.lv_how);
+
     }
 
     public void seekBar() {
@@ -249,7 +250,7 @@ public class FragmentNewRecipes extends Fragment {
             }
         });
 
-        //seekbar level
+        //seekBar level
         sbLevel.setMax(2);
         final int minLevel = 0;
         final int[] progressLevel = new int[1];
@@ -257,15 +258,6 @@ public class FragmentNewRecipes extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 progressLevel[0] = minLevel + i;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
                 if (progressLevel[0] == 0) {
                     tvLevel.setText("Easy");
                     ivMedium.setVisibility(View.GONE);
@@ -278,6 +270,16 @@ public class FragmentNewRecipes extends Fragment {
                     tvLevel.setText("Hard");
                     ivHard.setVisibility(View.VISIBLE);
                 }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
@@ -426,30 +428,32 @@ public class FragmentNewRecipes extends Fragment {
                 ivChooseImage.setImageBitmap(bitmap);
                 ivRecipes.setVisibility(View.GONE);
             } catch (IOException e) {
-                Log.d("haizzzzzzz", "onActivityResult: " + e);
+                Log.d("haizzzzzzz", "onActivityResultlib: " + e);
             }
 
             isGalery = true;
         }
-        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
+        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK && data != null) {
 
-            absolutelyPath = cameraPhoto.getPhotoPath();
-//            }
+            path = data.getData();
+            Log.d("path", "onActivityResultcam: " + path);
+            bitmap = (Bitmap) data.getExtras().get("data");
 
 
-            Log.d("path camera", "onActivityResult: " + absolutelyPath);
-            Bitmap photo = null;
-            try {
-                photo = ImageLoader.init().from(absolutelyPath).requestSize(512, 512).getBitmap();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            ivChooseImage.setImageBitmap(photo);
+            ivChooseImage.setImageBitmap(bitmap);
             ivRecipes.setVisibility(View.GONE);
+
+            //isGalery = true;
+//            ivChooseImage.setImageBitmap(photo);
+//            ivRecipes.setVisibility(View.GONE);
+
+
+
 
             isGalery = false;
         }
     }
+
 
     public void chooseImage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -467,17 +471,20 @@ public class FragmentNewRecipes extends Fragment {
                                 startActivityForResult(intent, IMG_REQUEST);
                                 break;
                             case 1:
-                                Toast.makeText(getContext(), "take camera now", Toast.LENGTH_SHORT).show();
-                                cameraPhoto = new CameraPhoto(getActivity().getApplicationContext());
-                                try {
-                                    startActivityForResult(cameraPhoto.takePhotoIntent(), TAKE_PHOTO_CODE);
-                                    cameraPhoto.addToGallery();
-                                    Toast.makeText(getContext(), "take camera done", Toast.LENGTH_SHORT).show();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    Log.d("camera fail", "onClick: " + e);
-                                    Toast.makeText(getContext(), "error " + e, Toast.LENGTH_SHORT).show();
-                                }
+//                                Toast.makeText(getContext(), "take camera now", Toast.LENGTH_SHORT).show();
+//                                cameraPhoto = new CameraPhoto(getActivity().getApplicationContext());
+//                                try {
+//                                    startActivityForResult(cameraPhoto.takePhotoIntent(), TAKE_PHOTO_CODE);
+//                                    cameraPhoto.addToGallery();
+//                                    Toast.makeText(getContext(), "take camera done", Toast.LENGTH_SHORT).show();
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                    Log.d("camera fail", "onClick: " + e);
+//                                    Toast.makeText(getContext(), "error " + e, Toast.LENGTH_SHORT).show();
+//                                }
+
+                                Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(intent1,TAKE_PHOTO_CODE);
 
                                 break;
 
@@ -489,6 +496,8 @@ public class FragmentNewRecipes extends Fragment {
 
         builder.show();
     }
+
+
 
     String nameOfImage;
 
@@ -513,11 +522,16 @@ public class FragmentNewRecipes extends Fragment {
 //                java.net.URI juri = new java.net.URI(path.toString());
 //                InputStream inputStream = juri.toURL().openConnection().getInputStream();
             InputStream inputStream;
-            if (isGalery)
+            if (isGalery) {
                 inputStream = getActivity().getContentResolver().openInputStream(path);
-            else
-                inputStream = new FileInputStream(absolutelyPath);
-            cloudinary.uploader().upload(inputStream, ObjectUtils.asMap("public_id", nameOfImage));
+                cloudinary.uploader().upload(inputStream, ObjectUtils.asMap("public_id", nameOfImage));
+            }
+            else{
+                String myBase64Image = encodeToBase64(bitmap);
+                Log.d("myBase64Image", "uploadImage: "+myBase64Image);
+                cloudinary.uploader().upload(myBase64Image, ObjectUtils.asMap("public_id", nameOfImage));
+
+            }
             success = true;
             return;
         } catch (FileNotFoundException e) {
@@ -530,6 +544,15 @@ public class FragmentNewRecipes extends Fragment {
 //            }
         success = false;
     }
+
+    public static String encodeToBase64(Bitmap image)
+    {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        return "data:image/png;base64,"+Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+
 
     class UploadImage extends AsyncTask<String, Void, Void> {
 

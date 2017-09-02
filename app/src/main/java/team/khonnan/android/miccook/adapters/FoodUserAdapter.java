@@ -88,10 +88,7 @@ public class FoodUserAdapter extends RecyclerView.Adapter<FoodUserAdapter.UserVi
             }
 
             Picasso.with(context).load(foodModel.getImageShow()).resize(500,500).into(ivFood);
-            int rate = (int) foodModel.getRating();
-            if(rate > 5){
-                ratingBarFood.setRating(rate/2);
-            }else{ratingBarFood.setRating(rate);}
+            ratingBarFood.setRating(foodModel.getRating());
 
             view.setTag(foodModel);
 
