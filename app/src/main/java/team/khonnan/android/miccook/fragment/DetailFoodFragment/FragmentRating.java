@@ -17,9 +17,12 @@ import android.widget.Toast;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import team.khonnan.android.miccook.MainActivity;
 import team.khonnan.android.miccook.R;
 import team.khonnan.android.miccook.event.OnClickFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
@@ -37,12 +40,13 @@ public class FragmentRating extends Fragment implements View.OnClickListener {
 
     private RelativeLayout rlFive,rlFour,rlThree,rlTwo,rlOne;
     private Toolbar toolbarRating;
-
+    List<String> listRate;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rating, container, false);
         setupUI(view);
+        listRate = foodModel.getListRate();
         setupListener();
         return view;
     }
@@ -135,7 +139,8 @@ public class FragmentRating extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.bt_submit:
                 if (newRate != 0) {
-                    UpdateRatingModel updateRatingModel = new UpdateRatingModel(newRate, foodModel.getRateNum() + 1);
+                    listRate.add(MainActivity.userProfileModel.getIdFb());
+                    UpdateRatingModel updateRatingModel = new UpdateRatingModel(newRate, foodModel.getRateNum() + 1, listRate);
                     final UpdateRating updateRating = RetrofitFactory.getInstance().create(UpdateRating.class);
                     Call<UpdateRatingModel> call = updateRating.updateRating(foodModel.get_id(), updateRatingModel);
                     call.enqueue(new Callback<UpdateRatingModel>() {

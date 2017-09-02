@@ -102,6 +102,7 @@ public class FragmentDetailFood extends Fragment {
 
         RatingBar ratingBar = lnRating.findViewById(R.id.rb_inner);
         ratingBar.setRating(foodModel.getRating());
+
         boolean isRated=false;
         if(foodModel.getListRate().size()>0) {
             for (String s : foodModel.getListRate()) {

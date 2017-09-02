@@ -55,7 +55,7 @@
                 android:elevation="4dp"
                 android:textColor="@color/textPrimary"
                 android:textAllCaps="false"
-                android:background="#e1d615"
+                android:background="@color/colorPrimary"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"/>
         </LinearLayout>
