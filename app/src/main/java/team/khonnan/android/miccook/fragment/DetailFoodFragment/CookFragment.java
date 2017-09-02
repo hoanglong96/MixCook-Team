@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,6 @@ import team.khonnan.android.miccook.networks.getFoodModels.CookModel;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 
 import static android.view.View.inflate;
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
  * Created by apple on 8/25/17.
@@ -51,7 +49,6 @@ public class CookFragment extends Fragment {
     @Subscribe(sticky = true)
     public void onEvent(OnClickFood onClickFood) {
         foodModel = onClickFood.getFoodModel();
-        Log.d(TAG, "onEventOneFragment: " + foodModel);
     }
 
     boolean isFirstTime = true;
@@ -70,22 +67,6 @@ public class CookFragment extends Fragment {
             food.add(cookModels.get(i));
         }
 
-        for (int i=0;i<listCookStep.size();i++){
-            Log.d(TAG, "setupCook: " + listCookStep.get(i));
-        }
-
-
-//        mSetpview0.setStepsViewIndicatorComplectingPosition(listCookStep.size())
-//                .reverseDraw(false)
-//                .setStepViewTexts(listCookStep)
-//                .setLinePaddingProportion(1f)
-//                .setStepsViewIndicatorCompletedLineColor(Color.parseColor("#000000"))
-//                .setStepViewComplectedTextColor(Color.parseColor("#000000"))
-//                .setStepViewUnComplectedTextColor(ContextCompat.getColor(getContext(),R.color.dot_dark_screen1))
-//                .setStepsViewIndicatorUnCompletedLineColor(Color.parseColor("#000000"))
-//                .setStepsViewIndicatorCompleteIcon(ContextCompat.getDrawable(getContext(),R.drawable.ic_fiber_manual_record_black_24dp))
-//                .setStepsViewIndicatorAttentionIcon(ContextCompat.getDrawable(getContext(),R.drawable.attention))
-//                .setStepsViewIndicatorDefaultIcon(ContextCompat.getDrawable(getContext(),R.drawable.default_icon));
         cookTime = view.findViewById(R.id.tv_time);
         String[] time = foodModel.getTime().split(" ");
         cookTime.setText(time[0]);

@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +35,6 @@ import team.khonnan.android.miccook.networks.apis.RetrofitFactory;
 import team.khonnan.android.miccook.networks.apis.UpdateFavorite;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 import team.khonnan.android.miccook.networks.getUserProfileModels.UserProfileModel;
-
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
  * Created by apple on 8/22/17.
@@ -70,8 +67,7 @@ public class FragmentDetailFood extends Fragment {
     @Subscribe(sticky = true)
     public void onEvent(OnClickFood onClickFood) {
         foodModel = onClickFood.getFoodModel();
-        Log.d(TAG, "onEvent: " + foodModel);
-    }
+        }
 
 
     List<String> listeFavorite = new ArrayList<>();
@@ -85,7 +81,6 @@ public class FragmentDetailFood extends Fragment {
         ivFood = view.findViewById(R.id.header);
 
         ivFavorite = view.findViewById(R.id.iv_favorite_button);
-        Log.d(TAG, "setupUI: userProfileModel" + MainActivity.userProfileModel);
         listeFavorite = MainActivity.userProfileModel.getListFavorite();
         for (int i = 0; i < listeFavorite.size(); i++) {
             if (listeFavorite.get(i).equals(foodModel.get_id())) {
@@ -124,8 +119,7 @@ public class FragmentDetailFood extends Fragment {
                     @Override
                     public void onResponse(Call<UserProfileModel> call, Response<UserProfileModel> response) {
                         MainActivity.userProfileModel = response.body();
-                        Log.d(TAG, "onResponse: favorite change"+response.body());
-                    }
+                        }
 
                     @Override
                     public void onFailure(Call<UserProfileModel> call, Throwable t) {
@@ -144,19 +138,7 @@ public class FragmentDetailFood extends Fragment {
                 getActivity().onBackPressed();
             }
         });
-//        lnRating = view.findViewById(R.id.rating_food);
-//
-//
-//        lnRating.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d(TAG, "onClick: abc");
-//                ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentRating(),R.id.drawer_layout );
-//            }
-//        });
 
-
-        Log.d(TAG, "onCreateView: " + foodModel.getName());
         tvNameFood.setText(foodModel.getName());
         int typeNumber = foodModel.getType();
         String type = null;

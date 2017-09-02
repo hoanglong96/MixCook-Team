@@ -7,8 +7,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
-import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -68,9 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                             public void onCompleted(JSONObject object,
                                                     GraphResponse response) {
                                 // Application code
-                                Log.d("hihi", "name : " + object.optString("name"));
-                                Log.d("hihi", "id : " + object.optString("id"));
-                                Log.d("hihi", "email : " + object.optString("email"));
                                 userInfo = new UserInfo();
                                 userInfo.setNameFb(object.optString("name"));
                                 userInfo.setIdFb(object.optString("id"));
@@ -94,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
 
-                                Log.d("Share", "onCompleted: " + object.optString("id"));
                                 final CreateUser createUser = RetrofitFactory.getInstance().create(CreateUser.class);
                                 Call<UserInfo> call = createUser.createUser(userInfo);
                                 call.enqueue(new Callback<UserInfo>() {
@@ -184,9 +178,6 @@ public class LoginActivity extends AppCompatActivity {
                             public void onCompleted(JSONObject object,
                                                     GraphResponse response) {
                                 // Application code
-                                Log.d("hihi", "name : " + object.optString("name"));
-                                Log.d("hihi", "id : " + object.optString("id"));
-                                Log.d("hihi", "email : " + object.optString("email"));
                                 userInfo = new UserInfo();
                                 userInfo.setNameFb(object.optString("name"));
                                 userInfo.setIdFb(object.optString("id"));
@@ -205,7 +196,6 @@ public class LoginActivity extends AppCompatActivity {
                                         + "/picture?type=large");
                                 editor1.commit();
 
-                                Log.d("Share", "onCompleted: " + object.optString("id"));
                                 final CreateUser createUser = RetrofitFactory.getInstance().create(CreateUser.class);
                                 Call<UserInfo> call = createUser.createUser(userInfo);
                                 call.enqueue(new Callback<UserInfo>() {
@@ -260,7 +250,6 @@ public class LoginActivity extends AppCompatActivity {
             for (Signature signature : packageInfo.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
-                Log.d("ahih", Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
         } catch (NoSuchAlgorithmException e){
 

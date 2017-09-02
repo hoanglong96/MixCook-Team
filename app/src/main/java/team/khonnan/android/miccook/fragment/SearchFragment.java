@@ -76,7 +76,6 @@ public class SearchFragment extends Fragment {
                             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                                 //TODO: add searching
                                 List<FoodModel> list = response.body().getFood();
-                                Log.d(TAG, "onResponse: " + list.size());
                                 resultAdapter = new SearchAdapter(list,getContext());
                                 GridLayoutManager gridLayoutManager = new GridLayoutManager
                                         (getContext(), 1, GridLayoutManager.VERTICAL, false);

@@ -54,11 +54,9 @@ public class FragmentRating extends Fragment implements View.OnClickListener {
         rbRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                Log.d(TAG, "onRatingChanged: vote: " + v + "\n - id: " + foodModel.get_id() + "\n - rating: " + foodModel.getRating() + "\n - rateNum: " + foodModel.getRateNum());
                 float currentPoint = foodModel.getRating()*foodModel.getRateNum();
                 float newPoint = currentPoint + v;
                 newRate = newPoint/(foodModel.getRateNum()+1);
-                Log.d(TAG, "onRatingChanged: currentpoint: "+currentPoint+"\n - newpoint: "+newPoint+"\n - newrate: "+newRate);
             }
         });
         btSubmit.setOnClickListener(this);
@@ -110,19 +108,16 @@ public class FragmentRating extends Fragment implements View.OnClickListener {
     @Subscribe(sticky = true)
     public void onEvent(OnClickFood onClickFood) {
         foodModel = onClickFood.getFoodModel();
-        Log.d(TAG, "onEventOneFragment: " + foodModel);
-    }
+        }
 
     void somethingCool(){
         final GetFoodByIdFood getFoodByIdFood = RetrofitFactory.getInstance().create(GetFoodByIdFood.class);
-        Log.d(TAG, "somethingCool: "+foodModel.get_id());
         Call<FoodModel> call2 = getFoodByIdFood.getFoodByIdFood(foodModel.get_id());
         call2.enqueue(new Callback<FoodModel>() {
 
             @Override
             public void onResponse(Call<FoodModel> call, Response<FoodModel> response) {
                 EventBus.getDefault().postSticky(new OnClickFood(response.body()));
-                Log.d(TAG, "onResponse: "+response.body());
                 ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
             }
 

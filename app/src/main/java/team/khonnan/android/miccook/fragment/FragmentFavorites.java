@@ -59,7 +59,6 @@ public class FragmentFavorites extends Fragment {
                 toolbar.setTitle("Cook Mix");
             }
         });
-        Log.d(TAG, "onCreateView: jumpin");
         getFavorite();
         return view;
     }
@@ -68,7 +67,6 @@ public class FragmentFavorites extends Fragment {
     List<FoodModel> listFavorite;
     public void getFavorite(){
         final GetFavoriteFood getFavoriteFood = RetrofitFactory.getInstance().create(GetFavoriteFood.class);
-        Log.d(TAG, "getFavorite: "+MainActivity.userProfileModel.getIdFb());
         getFavoriteFood.getFavoriteFood(MainActivity.userProfileModel.getIdFb()).enqueue(new Callback<GetFoodRespondModel>() {
 
             @Override
@@ -87,7 +85,6 @@ public class FragmentFavorites extends Fragment {
                         @Override
                         public void onClick(View view) {
                             FoodModel foodModel = (FoodModel) view.getTag();
-                            Log.d(TAG, "onClickNewRecipes: " + view.getTag());
                             EventBus.getDefault().postSticky(new OnClickFood(foodModel));
                             ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
                         }
@@ -95,8 +92,7 @@ public class FragmentFavorites extends Fragment {
                 }else{
                     rlFav.setVisibility(View.VISIBLE);
                 }
-                Log.d(TAG, "onResponse: "+listFavorite);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {

@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,14 +99,10 @@ public class FragmentProfileAccount extends Fragment {
             name = sharedPreferences.getString("name", "");
             id = sharedPreferences.getString("id", "");
             avatar = sharedPreferences.getString("avatar", "");
-
-            Log.d("id", "setupUI: " + id);
-
             Picasso.with(getContext()).load("https://graph.facebook.com/" + id
                     + "/picture?type=large").into(ivProfileImage);
             tvName.setText(name);
-            //tvLink.setText("fb.com/" + id);
-        }
+            }
 
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -115,8 +110,6 @@ public class FragmentProfileAccount extends Fragment {
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
-
-        //Log.d(TAG, "setupUI: " + id);
     }
 
     @Override

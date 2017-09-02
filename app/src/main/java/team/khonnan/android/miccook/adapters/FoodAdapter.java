@@ -89,8 +89,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                     tvLevel.setText(foodModel.getLevel());
                 }
                 String rating = String.valueOf(foodModel.getRating());
-                Log.d(TAG, "setData: " + rating);
-
                 tvRating.setText(rating);
             }
 

@@ -56,8 +56,7 @@ public class NguyenLieuFragment extends Fragment {
     @Subscribe(sticky = true)
     public void onEvent(OnClickFood onClickFood) {
         foodModel = onClickFood.getFoodModel();
-        Log.d(TAG, "onEventOneFragment: " + foodModel);
-    }
+        }
 
 
 

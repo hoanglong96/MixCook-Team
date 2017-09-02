@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +54,6 @@ public class RecipesUserFragment extends Fragment {
     }
 
     public void setupUI(View view){
-        Log.d(TAG, "setupUI: " + id);
         getUserFood();
         rvFoodUser = view.findViewById(R.id.rv_food_user);
     }
@@ -69,11 +67,6 @@ public class RecipesUserFragment extends Fragment {
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodModelList = response.body().getFood();
-//                for (FoodModel foodModel : list) {
-//                    foodModelList.add(foodModel);
-//                    //adapterFoodUser.notifyDataSetChanged();
-//                }
-                Log.d(TAG, "getUserFoodA: " + foodModelList);
                 adapterFoodUser = new FoodUserAdapter(foodModelList,getContext());
                 GridLayoutManager gridLayoutManager = new GridLayoutManager
                         (getContext(), 1, GridLayoutManager.VERTICAL, false);
@@ -85,7 +78,6 @@ public class RecipesUserFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         FoodModel foodModel = (FoodModel) view.getTag();
-                        Log.d(TAG, "onClickNewRecipes: " + view.getTag());
                         EventBus.getDefault().postSticky(new OnClickFood(foodModel));
                         ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
                     }

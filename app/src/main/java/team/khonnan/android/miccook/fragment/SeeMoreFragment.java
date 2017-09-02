@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,6 @@ import team.khonnan.android.miccook.event.OnClickFood;
 import team.khonnan.android.miccook.fragment.DetailFoodFragment.FragmentDetailFood;
 import team.khonnan.android.miccook.managers.ScreenManager;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
-
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
  * Created by apple on 11/08/2017.
@@ -80,7 +77,6 @@ public class SeeMoreFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             foodModelList = (List<FoodModel>) getArguments().getSerializable("type");
-            Log.d("abc", "setupUI: " + foodModelList);
             String title = getArguments().getString("title");
             toolbar.setTitle(title);
             foodAdapter = new FoodAdapter(foodModelList,getContext());
@@ -94,7 +90,6 @@ public class SeeMoreFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     FoodModel foodModel = (FoodModel) view.getTag();
-                    Log.d(TAG, "onClick: " + view.getTag());
                     EventBus.getDefault().postSticky(new OnClickFood(foodModel));
                     ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
                 }

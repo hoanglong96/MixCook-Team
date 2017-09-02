@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity
         ivSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "get highhhhhhh", Toast.LENGTH_SHORT).show();
                 ScreenManager.openFragment(getSupportFragmentManager(), new SearchFragment(), R.id.drawer_layout);
             }
         });
@@ -94,9 +93,7 @@ public class MainActivity extends AppCompatActivity
         sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         getCurrentUserProfile();
         String id = sharedPreferences.getString("id", "");
-        Log.d("MainActivityABCD", "onCreate: " + id);
         String name = sharedPreferences.getString("name", "");
-        Log.d("MainActivityABCD", "onCreate: " + name);
         View headerView = navigationView.getHeaderView(0);
         avatarUser = headerView.findViewById(R.id.iv_avatar_user);
         tvName = headerView.findViewById(R.id.tv_name_nav_header);
@@ -121,8 +118,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodMonChinh = response.body().getFood();
-                Log.d("gaugau", "foodMonChinh: " + foodMonChinh);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
@@ -145,8 +141,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodAnVat = response.body().getFood();
-                Log.d("gaugau", "foodAnVat: " + foodAnVat);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
@@ -157,8 +152,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodMonBanh = response.body().getFood();
-                Log.d("gaugau", "foodMonBanh: " + foodMonBanh);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
@@ -169,8 +163,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodDoUong = response.body().getFood();
-                Log.d("gaugau", "foodDoUong: " + foodDoUong);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
@@ -262,27 +255,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//         Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.search, menu);
-//        Toast.makeText(getBaseContext(), "get here", Toast.LENGTH_SHORT).show();
-//        MenuItem menuItem = menu.findItem(R.id.search);
-//        SearchView searchView = (SearchView) menuItem.getActionView();
-//
-//        RxSearchView.queryTextChanges(searchView)
-//                .debounce(500, TimeUnit.MILLISECONDS)
-//                .filter(new Predicate<CharSequence>() {
-//                    @Override
-//                    public boolean test(CharSequence charSequence) throws Exception {
-//                        return true;
-//                    }
-//                })
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<CharSequence>() {
-//                    @Override
-//                    public void accept(CharSequence charSequence) throws Exception {
-//                        Log.d("charSequence", "accept: " + charSequence);
-//                    }
-//                });
         return true;
     }
 

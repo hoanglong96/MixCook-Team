@@ -71,7 +71,6 @@ public class RecentFoodFragment extends Fragment {
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 List<FoodModel> list = response.body().getFood();
 //                recentFoods = response.body().getFood();
-                Log.d(TAG, "onResponsexxx: "+recentFoods);
 
                 for (int i = list.size()-1; i >= 0; i--) {
                     FoodModel food = new FoodModel();

@@ -126,7 +126,6 @@ public class FragmentNewRecipes extends Fragment {
             }
         });
 
-        Log.d("new recipes", "onCreateView: " + idFbUser);
 
         setupUI(view);
         seekBar();
@@ -144,7 +143,6 @@ public class FragmentNewRecipes extends Fragment {
             public void onClick(View view) {
                 ingredientsModel = new MaterialModel(etIngredients.getText().toString(), etQuantum.getText().toString());
                 listIngredients.add(ingredientsModel);
-                Log.d("abc", "onClick: " + ingredientsModel);
                 adapterIngredients.notifyDataSetChanged();
 
                 etIngredients.setText("");
@@ -253,7 +251,6 @@ public class FragmentNewRecipes extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-//                tvSet.setText(String.valueOf(progress[0]));
                 Log.d("abc", "onProgressChanged: " + sbSet.getProgress());
                 Log.d("abc", "onStopTrackingTouch: " + progress[0]);
             }
@@ -415,7 +412,6 @@ public class FragmentNewRecipes extends Fragment {
                 if (createSuccessful = false) {
                     Toast.makeText(getContext(), "Create fail", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("asf", "createNewFood: ");
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
@@ -430,7 +426,6 @@ public class FragmentNewRecipes extends Fragment {
 
         if (requestCode == IMG_REQUEST && resultCode == RESULT_OK && data != null) {
             path = data.getData();
-            Log.d("path", "onActivityResult: " + path);
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), path);
                 ivChooseImage.setImageBitmap(bitmap);
@@ -475,17 +470,6 @@ public class FragmentNewRecipes extends Fragment {
                                 startActivityForResult(intent, IMG_REQUEST);
                                 break;
                             case 1:
-//                                Toast.makeText(getContext(), "take camera now", Toast.LENGTH_SHORT).show();
-//                                cameraPhoto = new CameraPhoto(getActivity().getApplicationContext());
-//                                try {
-//                                    startActivityForResult(cameraPhoto.takePhotoIntent(), TAKE_PHOTO_CODE);
-//                                    cameraPhoto.addToGallery();
-//                                    Toast.makeText(getContext(), "take camera done", Toast.LENGTH_SHORT).show();
-//                                } catch (IOException e) {
-//                                    e.printStackTrace();
-//                                    Log.d("camera fail", "onClick: " + e);
-//                                    Toast.makeText(getContext(), "error " + e, Toast.LENGTH_SHORT).show();
-//                                }
 
                                 Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                                 startActivityForResult(intent1,TAKE_PHOTO_CODE);

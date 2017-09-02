@@ -114,8 +114,7 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodMonChinh = response.body().getFood();
-                Log.d("gaugau", "foodMonChinh: " + foodMonChinh);
-            }
+               }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
@@ -126,8 +125,7 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodAnSang = response.body().getFood();
-                Log.d("gaugau", "foodAnSang: " + foodAnSang);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
@@ -138,8 +136,7 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodAnVat = response.body().getFood();
-                Log.d("gaugau", "foodAnVat: " + foodAnVat);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
@@ -150,8 +147,7 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodMonBanh = response.body().getFood();
-                Log.d("gaugau", "foodMonBanh: " + foodMonBanh);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {
@@ -162,8 +158,7 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 foodDoUong = response.body().getFood();
-                Log.d("gaugau", "foodDoUong: " + foodDoUong);
-            }
+                }
 
             @Override
             public void onFailure(Call<GetFoodRespondModel> call, Throwable t) {

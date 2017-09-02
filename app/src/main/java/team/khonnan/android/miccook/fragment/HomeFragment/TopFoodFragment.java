@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +30,6 @@ import team.khonnan.android.miccook.networks.getFoodModels.CookModel;
 import team.khonnan.android.miccook.networks.getFoodModels.FoodModel;
 import team.khonnan.android.miccook.networks.getFoodModels.GetFoodRespondModel;
 import team.khonnan.android.miccook.networks.getFoodModels.MaterialModel;
-
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
  * Created by apple on 8/28/17.
@@ -67,7 +64,6 @@ public class TopFoodFragment extends Fragment {
             public void onResponse(Call<GetFoodRespondModel> call, Response<GetFoodRespondModel> response) {
                 List<FoodModel> list = response.body().getFood();
 //                topFoods = response.body().getFood();
-                Log.d(TAG, "onResponsexxx: "+topFoods);
 
                 for (int i = 0; i < list.size(); i++) {
                     FoodModel food = new FoodModel();
@@ -105,7 +101,6 @@ public class TopFoodFragment extends Fragment {
                     }
 
                     food.setCook(cookList);
-                    Log.d("ahihi top food", food.toString());
                     topFoods.add(food);
                 }
                 topFoodAdapter.notifyDataSetChanged();
@@ -116,21 +111,6 @@ public class TopFoodFragment extends Fragment {
 
             }
         });
-
-        Log.d(TAG, "loadDataABC: " + topFoods);
-
-//        rvTopFood.setVisibility(View.GONE);
-//        progressBar.setVisibility(View.VISIBLE);
-//        progressBar.getProgressDrawable().setColorFilter(
-//                Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
-//
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                rvTopFood.setVisibility(View.VISIBLE);
-//                progressBar.setVisibility(View.GONE);
-//            }
-//        }, 1000);
 
         topFoodAdapter = new TopFoodAdapter(topFoods,getContext());
         GridLayoutManager gridLayoutManager = new GridLayoutManager
@@ -143,7 +123,6 @@ public class TopFoodFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FoodModel foodModel = (FoodModel) view.getTag();
-                Log.d(TAG, "onClickNewRecipes: " + view.getTag());
                 EventBus.getDefault().postSticky(new OnClickFood(foodModel));
                 ScreenManager.openFragment(getActivity().getSupportFragmentManager(),new FragmentDetailFood(),R.id.drawer_layout);
             }

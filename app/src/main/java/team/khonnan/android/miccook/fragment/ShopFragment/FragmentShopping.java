@@ -52,8 +52,7 @@ public class FragmentShopping extends Fragment {
     @Subscribe(sticky = true)
     public void onEvent(onClickAddToShop onClickAddToShop) {
         foodModel = onClickAddToShop.getFoodModel();
-        Log.d(TAG, "onEventOneFragment: " + foodModel);
-    }
+        }
 
     private void setupUI(View view) {
         EventBus.getDefault().register(this);
