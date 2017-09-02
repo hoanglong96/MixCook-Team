@@ -101,7 +101,7 @@ public class FragmentNewRecipes extends Fragment {
     CameraPhoto cameraPhoto;
     Uri path;
     private String absolutelyPath;
-    boolean isGalery;
+    boolean isGalery=true;
     private Bitmap bitmap;
     boolean success;
 
@@ -180,7 +180,16 @@ public class FragmentNewRecipes extends Fragment {
         btnSendRecipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createNewFood();
+                if(etNameRecipes.getText().toString().equals("")
+                        || listIngredients.size() == 0
+                        || listHow.size() == 0
+                        || etTimeCook.getText().toString().equals("")
+                        ||(isGalery && path==null)){
+
+                    Toast.makeText(getApplicationContext(), "value invalid", Toast.LENGTH_SHORT).show();
+                }else {
+                    createNewFood();
+                }
             }
         });
 
@@ -382,7 +391,6 @@ public class FragmentNewRecipes extends Fragment {
                         || time.equals(" phút") || sets <= 0 || listIngredients.size() == 0 || listHow.size() == 0)
                     createSuccessful = false;
 
-
                 CreateFoodRequestModel createFoodRequestModel = new CreateFoodRequestModel(name, author, authorName, imageShow, type, time, sets, level, rating, rateNum, listIngredients, listHow);
 
                 final CreateNewFood createNewFood = RetrofitFactory.getInstance().create(CreateNewFood.class);
@@ -435,11 +443,7 @@ public class FragmentNewRecipes extends Fragment {
         }
         if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK && data != null) {
 
-            path = data.getData();
-            Log.d("path", "onActivityResultcam: " + path);
             bitmap = (Bitmap) data.getExtras().get("data");
-
-
             ivChooseImage.setImageBitmap(bitmap);
             ivRecipes.setVisibility(View.GONE);
 

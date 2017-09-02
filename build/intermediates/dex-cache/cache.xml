@@ -2,6 +2,24 @@
 <items version="2" >
 
     <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0203bfec7a4d4d80be3a9e03dba6f2e09c7ed3fb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="c4d24089dcd72224723ee85531dda6082882b22e">
+        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1748e70cf32d44592eb80de293ec0b126598185b/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/Users/apple/Documents/GitHub/MixCook-Team/app/libs/PhotoUtil.jar"
         jumboMode="false"
@@ -9,6 +27,15 @@
         revision="26.0.1"
         sha1="caf49e92eae4ca2805d530a92cb4777c1ef53f53">
         <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/pre-dexed/debug/PhotoUtil_cabf660d8bd83499aa9cd8af5681b5188e076b41.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/apple/Documents/GitHub/MixCook-Team/app/libs/PhotoUtil.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="caf49e92eae4ca2805d530a92cb4777c1ef53f53">
+        <dex dex="/Users/apple/Documents/GitHub/MixCook-Team/app/build/intermediates/transforms/dex/debug/folders/1000/2/PhotoUtil_cabf660d8bd83499aa9cd8af5681b5188e076b41/classes.dex" />
     </item>
 
 </items>

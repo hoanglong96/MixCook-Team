@@ -90,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#e7e1e1"
+                android:scaleType="centerCrop"
                 android:id="@+id/choose_image"
                 />
             <ImageView
@@ -507,7 +508,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TIME COOKING*"
+                android:text="TIME COOKING* (Minutes)"
                 android:textColor="@color/colorPrimary"
                 android:textAlignment="center"
                 android:layout_gravity="center"
